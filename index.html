@@ -13,6 +13,7 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--cream);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px}
+body.lock{overflow:hidden}
 #lanterns{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
 .ln{position:absolute;bottom:-60px;width:18px;height:26px;border-radius:7px 7px 10px 10px;background:radial-gradient(#fff3c8,var(--gold));box-shadow:0 0 16px 5px rgba(232,184,98,.5);opacity:.75;animation:up linear infinite}
 @keyframes up{to{transform:translateY(-115vh) translateX(26px)}}
@@ -25,21 +26,33 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:ce
 .caps{font:400 13px 'Cinzel',serif;letter-spacing:.35em;text-transform:uppercase;color:var(--cream)}
 .orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);margin:14px 0}
 .orn::before,.orn::after{content:"";width:60px;height:1px;background:var(--gold)}
-.castle{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;fill:#0f0822;opacity:.95}
+.castle{position:absolute;bottom:0;height:auto;fill:#0f0822;opacity:.95}
 .btn{font:600 11px 'Cinzel',serif;letter-spacing:.22em;color:var(--cream);background:var(--purple);border:1px solid var(--gold);border-radius:999px;padding:12px 30px;cursor:pointer}
 .btn:hover{background:var(--gold);color:#2a1650}
 .fade{opacity:0;transform:translateY(22px);transition:1s}.in .fade,.fade.in{opacity:1;transform:none}
+.inner{position:relative;z-index:2}
 
-/* 1 opening */
-/* Intro page uses intro.png (keep it in the same folder as this file). Gradient below is the fallback if the image is missing. */
-#open{background:linear-gradient(rgba(20,10,46,.25),rgba(20,10,46,.4)),url('intro.png') center/cover no-repeat,radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e)}
-#open.hasimg .fb{display:none}
-#open .script{font-size:clamp(80px,18vw,170px);line-height:1}
+/* 1 INTRO GATE: intro.png split in two halves that slide apart from the middle */
+#gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#150b2e}
+#gate.done{display:none}
+.half{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;transition:transform 1.8s cubic-bezier(.77,0,.18,1) .5s}
+.half.l{left:0}.half.r{right:0}
+.half::before{content:"";position:absolute;top:0;bottom:0;width:100vw;background:linear-gradient(rgba(20,10,46,.25),rgba(20,10,46,.4)),url('intro.png') center/cover no-repeat,radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e)}
+.l::before{left:0}.r::before{right:0}
+.l .castle{left:0;width:100vw}.r .castle{right:0;width:100vw}
+#gate.hasimg .fb{display:none}
+#gate .inner{z-index:3;transition:opacity .6s}
+#gate .script{font-size:clamp(80px,18vw,170px);line-height:1}
+.opening #gate .inner{opacity:0;pointer-events:none}
+.opening .half.l{transform:translateX(-100%)}
+.opening .half.r{transform:translateX(100%)}
 .enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
 @keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
-.inner{position:relative;z-index:2}
-/* 2 hero */
-#home{background:radial-gradient(circle at 78% 40%,rgba(255,170,60,.35),transparent 40%),linear-gradient(160deg,#1c0f3d,#3b2368 60%,#24123f)}
+
+/* 2 HERO: uses '2nd page.jpg' (same folder). Gradients are the fallback. */
+#home{background:linear-gradient(rgba(20,10,46,.3),rgba(20,10,46,.45)),url('2nd page.jpg') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(255,170,60,.35),transparent 40%),linear-gradient(160deg,#1c0f3d,#3b2368 60%,#24123f);transform:scale(1.07);transition:transform 2.4s ease}
+.opening #home{transform:none}
+#home.hasimg .bigl{display:none}
 #home .script{font-size:clamp(64px,13vw,120px);line-height:1.05}
 #home h2{font:400 clamp(22px,4vw,34px) 'Cinzel',serif;letter-spacing:.45em;margin:0;padding-left:.45em}
 #home .quote{font-style:italic;max-width:430px;margin:8px auto 26px;line-height:1.5}
@@ -70,14 +83,13 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:ce
 .gal{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;max-width:860px;width:100%}
 .fr{border:2px solid var(--gold);padding:5px;border-radius:3px}
 .ph{width:100%;height:100%;min-height:90px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:36px}
-/* swap any .ph background with: style="background-image:url('your-photo.jpg')" */
 .big .ph{min-height:420px;background:linear-gradient(160deg,#f9d7b8,#e8a8b8 60%,#b887c9);position:relative;align-items:flex-end;justify-content:flex-start}
 .big svg{position:absolute;inset:auto 0 0 0;width:100%}
 .big .script{position:relative;font-size:32px;color:#fff;padding:14px;text-shadow:0 2px 8px #0006}
 .th{display:grid;gap:12px}
 /* 6 rsvp */
 #rsvp{background:linear-gradient(120deg,#3b2368,#9a5a8a 55%,#f0a36a);gap:5vw}
-form,.f{display:block;text-align:left}
+.f{display:block;text-align:left}
 label{display:block;font:600 11px 'Cinzel',serif;letter-spacing:.14em;margin:12px 0 4px}
 input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-radius:4px;background:#fbf1da;color:var(--ink);font:inherit}
 .parch .script{text-align:center}.parch .btn{display:block;margin:20px auto 0}
@@ -88,6 +100,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 #end{background:linear-gradient(#24123f,#8d3f7a 70%,#e9843f)}
 #end .script{font-size:clamp(40px,8vw,70px);color:var(--cream);line-height:1.2}
 #end svg.sun{width:34px;fill:var(--gold);margin:18px 0 6px}
+#end .castle{left:0;right:0;width:100%}
 @media(max-width:720px){
  nav{font-size:9px;gap:9px;padding-right:46px}
  #story,#rsvp{flex-direction:column}.tower{width:110px}
@@ -98,7 +111,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 }
 </style>
 </head>
-<body>
+<body class="lock">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="19"/><g stroke="currentColor"><path d="M50 4v16M50 80v16M4 50h16M80 50h16M17 17l11 11M72 72l11 11M83 17L72 28M28 72L17 83" stroke="#a8501a" stroke-width="6" stroke-linecap="round" fill="none"/></g></symbol>
  <symbol id="castle" viewBox="0 0 800 190"><path d="M0 190V150h90v-30l12-28 12 28v30h70v-60l16-50 16 50v60h60v-40h34v-26l14-34 14 34v26h40v-80l20-70 20 70v80h40V90l18-40 18 40v50h60v-26l12-30 12 30v36h60v-50l16-40 16 40v50h70v-30h60v50H0z"/></symbol>
@@ -110,8 +123,10 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  <button id="music" class="off" aria-label="Toggle music" title="Music on/off">♫</button>
 </nav>
 
-<!-- 1 Opening (background image: intro.png) -->
-<section id="open">
+<!-- 1 INTRO GATE (intro.png) -->
+<div id="gate">
+ <div class="half l"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
+ <div class="half r"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
  <div class="inner">
   <div class="caps">A Debut Celebration</div>
   <h1 class="script">Franz</h1>
@@ -119,10 +134,9 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
   <div class="caps">A New Chapter Begins</div>
   <button class="enter" id="enter">ENTER<br>⌄</button>
  </div>
- <svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg>
-</section>
+</div>
 
-<!-- 2 Welcome -->
+<!-- 2 Welcome (2nd page.jpg) -->
 <section id="home">
  <div class="inner fade">
   <div class="caps">You’re Invited To</div>
@@ -219,8 +233,11 @@ for(var k=0;k<16;k++){var d=document.createElement('div');d.className='ln';
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.2});
 [].forEach.call(document.querySelectorAll('.fade'),function(n){io.observe(n)});
 
-/* hide the drawn castle once intro.png loads */
-var im=new Image();im.onload=function(){document.getElementById('open').classList.add('hasimg')};im.src='intro.png';
+/* image checks: hide the drawn fallbacks when your pictures load */
+var gate=document.getElementById('gate'),home=document.getElementById('home');
+function ld(src,fn){var i=new Image();i.onload=fn;i.src=src}
+ld('intro.png',function(){gate.classList.add('hasimg')});
+ld('2nd page.jpg',function(){home.classList.add('hasimg')});
 
 /* soft ambient music (generated, no audio files) */
 var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
@@ -233,7 +250,12 @@ function music(v){
   if(v){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();note();timer=setInterval(note,900)}
   else{clearInterval(timer)}}catch(e){}}
 mb.onclick=function(){music(!on)};
-document.getElementById('enter').onclick=function(){music(true);document.getElementById('home').scrollIntoView({behavior:'smooth'})};
+
+/* ENTER: doors open from the middle, then page 2 */
+document.getElementById('enter').onclick=function(){
+ music(true);window.scrollTo(0,0);
+ document.body.classList.add('opening');
+ setTimeout(function(){gate.classList.add('done');document.body.classList.remove('lock')},2500)};
 
 function tog(b,t,a,z){document.getElementById(b).onclick=function(){var e=document.getElementById(t),s=e.classList.toggle('show');this.textContent=s?a:z}}
 tog('learn','more','SHOW LESS','LEARN MORE');tog('prog','full','HIDE PROGRAM','VIEW FULL PROGRAM');
