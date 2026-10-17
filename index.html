@@ -195,12 +195,64 @@ body.used #hint{display:none}
 /* Form inputs */
 input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; width: 100%;}
 
-/* === MOBILE BACKGROUND FORCE RULE === */
+
+/* ========================================================= */
+/* === MOBILE BACKGROUND FORCE RULE - CONTAIN & NO-STRETCH === */
+/* ========================================================= */
 @media(max-width: 720px) {
-  /* Forces background images to shrink/resize completely into view without cropping on mobile */
-  #home, #story, #cele, #eighteens, #rsvp, #end {
-    background-size: 100% 100% !important;
-    background-position: center center !important;
+  /* For the Intro Gate halves */
+  .half::before {
+    background-image: 
+      linear-gradient(rgba(20,10,46,.25),rgba(20,10,46,.4)), 
+      url('intro.png'), 
+      radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e) !important;
+    background-size: 100% 100%, contain, 100% 100% !important;
+    background-position: center, center, center !important;
+    background-repeat: no-repeat !important;
+  }
+  
+  /* For all inner pages */
+  #home {
+    background-image: linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)), url('2nd page.jpg') !important;
+    background-size: 100% 100%, contain !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat !important;
+    background-color: #0a0514 !important;
+  }
+  #story {
+    background-image: linear-gradient(rgba(10,4,20,.3),rgba(5,2,12,.6)), url('3rd page.jpg') !important;
+    background-size: 100% 100%, contain !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat !important;
+    background-color: #0a0514 !important;
+  }
+  #cele {
+    background-image: linear-gradient(rgba(15,8,25,.5),rgba(10,5,20,.7)), url('4th page.jpg') !important;
+    background-size: 100% 100%, contain !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat !important;
+    background-color: #0a0514 !important;
+  }
+  #eighteens {
+    background-image: linear-gradient(rgba(10,4,20,.6),rgba(5,2,12,.8)), url('5th page.jpg') !important;
+    background-size: 100% 100%, contain !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat !important;
+    background-color: #0a0514 !important;
+  }
+  #rsvp {
+    background-image: linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.7)), url('6th page.jpg') !important;
+    background-size: 100% 100%, contain !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat !important;
+    background-color: #0a0514 !important;
+  }
+  #end {
+    background-image: linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)), url('7th page.jpg') !important;
+    background-size: 100% 100%, contain !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat !important;
+    background-color: #0a0514 !important;
   }
 }
 
