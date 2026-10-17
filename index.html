@@ -86,10 +86,6 @@ body.used #hint{display:none}
 .hero-info svg{width:20px;height:20px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block; margin:0 auto 6px;}
 .hero-info small{display:block;font:400 12px 'Cormorant Garamond',serif;letter-spacing:.02em;color:#f3e3c8; margin-top:4px; text-transform: none;}
 
-.chev{display:block;margin:30px auto 0;background:none;border:0;padding:6px;cursor:pointer;animation:bob 2.4s ease-in-out infinite}
-.chev svg{width:22px;height:14px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block}
-@keyframes bob{50%{transform:translateY(-8px)}}
-
 /* PAGE 3 MY STORY */
 #story{
  background:linear-gradient(rgba(10,4,20,.3),rgba(5,2,12,.6)),url('3rd page.jpg') center/cover no-repeat;
@@ -136,8 +132,8 @@ body.used #hint{display:none}
 .swatch { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(232,184,98,.8); box-shadow: 0 2px 6px rgba(0,0,0,0.6); }
 
 /* PAGE 5 MY 18S */
-#eighteens{background:linear-gradient(rgba(10,4,20,.6),rgba(5,2,12,.8)),url('5th page.jpg') center/cover no-repeat;}
-#eighteens .script { font-size: clamp(48px, 12vw, 80px); }
+#eighteens{background:linear-gradient(rgba(6,3,15,.7),rgba(2,1,8,.9)),url('5th page.jpg') center/cover no-repeat;}
+#eighteens .script { font-size: clamp(48px, 12vw, 80px); margin-bottom: 15px; text-shadow: 0 4px 15px rgba(0,0,0,0.8), 0 0 30px rgba(232,184,98,0.5);}
 
 /* LIGHTBOX for roles */
 #lb-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; padding: 20px; }
@@ -175,7 +171,7 @@ body.used #hint{display:none}
 
 /* PAGE 7 RSVP */
 #rsvp { 
- background:linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.7)),url('6th page.jpg') center/cover no-repeat;
+ background:linear-gradient(rgba(10,4,20,.6),rgba(5,2,12,.8)),url('6th page.jpg') center/cover no-repeat;
 }
 .rsvp-wrapper {
  margin-top: 5vh; 
@@ -184,29 +180,27 @@ body.used #hint{display:none}
  align-items: center; 
  width: 100%; 
  text-align: center;
+ gap: 20px;
 }
 .qr-code { width: 160px; height: 160px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.8); box-shadow: 0 10px 30px rgba(0,0,0,0.8); object-fit: cover; transition: transform 0.3s;}
 
-/* PAGE 8 FOOTER / OUTRO */
-#end { background:linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)),url('7th page.jpg') center/cover no-repeat; }
-#end .script { font-size: clamp(50px,12vw,90px); color:var(--cream); line-height:1.1; text-shadow: 0 3px 10px rgba(0,0,0,0.8); }
-#end svg.sun { width: 30px; fill:var(--gold); margin: 15px 0 8px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+/* PAGE 8 LIVE PHOTO */
+#livephoto { background:linear-gradient(rgba(10,4,20,.7),rgba(5,2,12,.9)),url('7th page.jpg') center/cover no-repeat; }
+#livephoto .script { font-size: clamp(40px,10vw,70px); color:var(--cream); line-height:1.2; text-shadow: 0 3px 15px rgba(0,0,0,0.9); margin-bottom: 20px; }
+.live-stream { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; width: 100%; max-width: 600px; padding: 10px; }
+.live-item { aspect-ratio: 1/1; background: rgba(255,255,255,0.1); border: 1px dashed rgba(232,184,98,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: rgba(232,184,98,0.5); font-size: 24px; }
 
 /* Form inputs */
-input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; width: 100%;}
+input, select, textarea { font-size: 14px; padding: 12px; border-radius:4px; width: 100%;}
 
 /* ========================================================= */
 /* === MOBILE FIT: same layout as desktop, scaled to fit === */
-/* Mobile backgrounds COVER the whole page (no stretch, no    */
-/* bars, no sideways scroll). Use the --focus values below to */
-/* choose which part of each image stays in view:             */
-/*   0% = left edge, 50% = center, 100% = right edge          */
 /* ========================================================= */
 @media(max-width: 720px) {
   :root{
-    --focus-cover: 50% 60%;   /* cover page: boat + lanterns */
-    --focus-home:  85% 50%;   /* page 2: big lamp on the right */
-    --focus-story: 50% 50%;   /* page 3: tower (adjust X% to move left/right) */
+    --focus-cover: 10% 60%;   /* cover page: boat + lanterns shifted left */
+    --focus-home:  center 10%;  /* page 2: big lamp on the upper side */
+    --focus-story: 20% 50%;   /* page 3: tower shifted left */
     --focus-cele:  50% 50%;
     --focus-18:    50% 50%;
     --focus-rsvp:  50% 50%;
@@ -214,15 +208,13 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
   }
   html, body { height: 100dvh; }
 
-  /* cover/intro gate (both doors share the same focus) */
   .half::before {
     background-size: 100% 100%, cover, 100% 100%;
     background-position: center, var(--focus-cover), center;
     background-repeat: no-repeat;
   }
 
-  /* inner pages: layer 1 = dark overlay, layer 2 = image covering the page */
-  #home, #story, #cele, #eighteens, #rsvp, #end {
+  #home, #story, #cele, #eighteens, #rsvp, #livephoto {
     background-size: 100% 100%, cover;
     background-repeat: no-repeat;
     background-color: #0a0514;
@@ -232,46 +224,42 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
   #cele      { background-position: center, var(--focus-cele); }
   #eighteens { background-position: center, var(--focus-18); }
   #rsvp      { background-position: center, var(--focus-rsvp); }
-  #end       { background-position: center, var(--focus-end); }
+  #livephoto { background-position: center, var(--focus-end); }
 
-  /* page 3 card panel at 20% opacity */
   #story .parch {
     background: rgba(253, 244, 227, 0.2);
     border-color: rgba(232, 184, 98, 0.5);
     box-shadow: 0 0 25px rgba(255, 220, 150, 0.15), 0 10px 30px rgba(10, 5, 20, 0.35);
   }
 
-  /* menu: readable, wraps to two rows; music button moves to bottom */
   nav a { font-size: 8.5px; padding: 6px 8px; letter-spacing: .1em; }
   #music { top: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
 
-  /* every page: room for menu on top, content centered, scrolls only if needed */
   .pg { padding: 118px 18px calc(30px + env(safe-area-inset-bottom, 0px)); }
   .pg > * { margin-top: auto; margin-bottom: auto; }
   #home .inner { height: auto; }
 
-  /* home */
   .hero-info .it { font-size: 9px; padding: 0 8px; }
   .hero-info small { font-size: 12px; }
 
-  /* celebration */
-  .inline-details-row { gap: 6px; }
-  .detail-col .ttl { font-size: 10px; }
-  #countdown { white-space: normal; font-size: 9px; }
+  /* Celebration - Text larger */
+  .inline-details-row { gap: 12px; flex-wrap: wrap; }
+  .detail-col .ttl { font-size: 14px; font-weight: 600; }
+  #countdown { white-space: normal; font-size: 13px; margin-top: 6px; }
+  .map-link { font-size: 13px; }
 
-  /* gallery: 1 hero + 3x2 square thumbnails, no distortion */
+  /* Gallery */
   #gallery { padding: 118px 15px calc(30px + env(safe-area-inset-bottom, 0px)); }
   .gal { height: auto; }
   .big { flex: none; height: 42dvh; min-height: 260px; }
   .th { grid-template-columns: repeat(3, 1fr); }
   .th .fr { aspect-ratio: 1 / 1; }
 
-  /* rsvp */
-  .rsvp-wrapper { margin-top: 0; }
-  .qr-code { width: 170px; height: 170px; }
+  /* RSVP */
+  .rsvp-wrapper { margin-top: 0; gap: 25px; }
+  .qr-code { width: 180px; height: 180px; }
 }
 
-/* Desktop styles applied when width is larger */
 @media(min-width: 768px) {
  nav a { font-size: 10.5px; padding: 7px 13px; }
  #top { padding: 0 56px; }
@@ -301,10 +289,9 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
  .ph { min-height: 120px; }
  .big .ph { min-height: min(600px, 70vh); padding-bottom: 24px; }
  .big .script { font-size: clamp(32px, 4vw, 44px); }
- .rsvp-wrapper { margin-top: 10vh; }
+ .rsvp-wrapper { margin-top: 10vh; gap: 30px; }
  .qr-code { width: 220px; height: 220px; }
- #end .script { font-size: clamp(60px, 12vw, 110px); }
- #end svg.sun { width: 40px; margin: 24px 0 12px; }
+ #livephoto .script { font-size: clamp(60px, 12vw, 100px); }
 }
 
 @media(max-height: 500px) {
@@ -324,6 +311,7 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="19"/><g stroke="currentColor"><path d="M50 4v16M50 80v16M4 50h16M80 50h16M17 17l11 11M72 72l11 11M83 17L72 28M28 72L17 83" stroke="#a8501a" stroke-width="6" stroke-linecap="round" fill="none"/></g></symbol>
  <symbol id="castle" viewBox="0 0 800 190"><path d="M0 190V150h90v-30l12-28 12 28v30h70v-60l16-50 16 50v60h60v-40h34v-26l14-34 14 34v26h40v-80l20-70 20 70v80h40V90l18-40 18 40v50h60v-26l12-30 12 30v36h60v-50l16-40 16 40v50h70v-30h60v50H0z"/></symbol>
+ <symbol id="cam" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
 </svg>
 
 <!-- MENU -->
@@ -336,7 +324,7 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
   <a href="#" data-i="3">MY 18S</a>
   <a href="#" data-i="4">GALLERY</a>
   <a href="#" data-i="5">RSVP</a>
-  <a href="#" data-i="6">THANK YOU</a>
+  <a href="#" data-i="6">LIVE PHOTO</a>
  </nav>
  <div id="hint">✦ Tap the menu to turn the page ✦</div>
 </div>
@@ -362,7 +350,7 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
  <div class="inner hero fade">
   <div class="eyebrow">YOU’RE INVITED TO</div>
   <h2 class="name">Franz’s</h2>
-  <div class="debut">18TH</div>
+  <div class="debut">DEBUT</div>
   <svg class="flourish" viewBox="0 0 210 30" aria-hidden="true">
    <g fill="none" stroke="#e6bf7a" stroke-width="1.1" stroke-linecap="round">
     <path d="M4 15H68c8 0 10-6 18-6"/>
@@ -378,6 +366,11 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
    </g>
   </svg>
   
+  <p style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size: clamp(14px, 3vw, 20px); max-width: 320px; margin: 20px auto; color: #f6e9d0; text-shadow:0 2px 8px #000; line-height: 1.4;">
+    A dream, a journey, a new chapter...<br>and I'd be honored to have you<br>with me as I step into it.
+  </p>
+  <div class="orn" style="margin: 20px auto;">❀</div>
+
   <div class="hero-info">
    <div class="it">
     <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2"/></svg>
@@ -389,7 +382,7 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
    </div>
    <div class="it">
     <svg viewBox="0 0 24 24"><path d="M9 3l1.5 4L8.5 11 5 21h14l-3.5-10-2-4L15 3"/><path d="M10.5 7h3"/></svg>
-    <div>DRESS CODE<small>Shades of White</small></div>
+    <div>DRESS CODE<small>White</small></div>
    </div>
   </div>
 
@@ -439,16 +432,16 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
 
 <!-- PAGE 5: MY 18S -->
 <section class="pg" id="eighteens">
- <div class="inner fade" style="max-width: 540px; padding: 15px; text-align: center; margin: auto;">
+ <div class="inner fade" style="max-width: 540px; padding: 25px 15px; text-align: center; margin: auto;">
   <h2 class="script">My 18s</h2>
-  <div class="caps" style="margin-top:10px; font-weight:600; color:var(--gold); text-shadow:0 2px 6px #000; font-size: 14px;">Find Your Role</div>
+  <div class="caps" style="margin-top:20px; font-weight:600; color:var(--gold); text-shadow:0 2px 6px #000; font-size: 16px;">Find Your Role</div>
   
-  <p style="font-size: 18px; font-style: italic; margin: 15px 0 8px; color: #fff; text-shadow:0 2px 8px #000;">I have a little note for you...</p>
-  <p style="font-size: 14px; margin: 0 0 15px; color: #eee; text-shadow:0 2px 8px #000;">Enter your name below to read it and see your special part.</p>
+  <p style="font-size: 22px; font-style: italic; margin: 30px 0 15px; color: #fff; text-shadow:0 2px 10px #000; line-height: 1.4;">I have a little note for you...</p>
+  <p style="font-size: 16px; margin: 0 0 30px; color: #e8d5b5; text-shadow:0 2px 8px #000;">Enter your name below to read it and see your special part.</p>
   
-  <div style="display:flex; flex-direction:column; gap:10px; max-width: 260px; margin: 0 auto;">
+  <div style="display:flex; flex-direction:column; gap:15px; max-width: 280px; margin: 0 auto 30px;">
    <input id="roleName" placeholder="e.g. Mavis Godani" style="text-align:center; background: rgba(255,255,255,0.9); border: 1px solid rgba(232,184,98,.6); color: #2a1650; font-weight: 500;">
-   <button class="btn" id="checkRole" style="width:100%; font-size: 12px; padding: 12px;">OPEN MY NOTE</button>
+   <button class="btn" id="checkRole" style="width:100%; font-size: 14px; padding: 14px;">OPEN MY NOTE</button>
   </div>
   
   <div class="orn">❀</div>
@@ -488,28 +481,41 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
 <!-- PAGE 7: RSVP -->
 <section class="pg" id="rsvp">
  <div class="inner fade rsvp-wrapper">
-  <h2 class="script" style="color: #fff; text-shadow:0 3px 12px rgba(0,0,0,0.9); font-size: clamp(40px, 10vw, 100px); margin-bottom: 5px;">Kindly RSVP</h2>
-  <p style="font-size: clamp(14px, 2.5vw, 24px); font-style: italic; margin: 0 0 20px; color: #f6e9d0; text-shadow:0 2px 8px #000;">I can’t wait to celebrate with you!</p>
+  <div>
+    <h2 class="script" style="color: #fff; text-shadow:0 3px 12px rgba(0,0,0,0.9); font-size: clamp(50px, 12vw, 110px); margin-bottom: 10px;">Kindly RSVP</h2>
+    <p style="font-size: clamp(16px, 3vw, 26px); font-style: italic; margin: 0; color: #f6e9d0; text-shadow:0 2px 8px #000; line-height: 1.4;">I can’t wait to celebrate with you!</p>
+  </div>
   
-  <img src="sampleQR.png" alt="RSVP QR Code" class="qr-code">
-  <p style="font-size: clamp(12px, 1.8vw, 18px); font-weight: 600; margin-top: 15px; color: var(--gold); letter-spacing: 0.15em; text-shadow:0 2px 8px #000;">SCAN TO RSVP</p>
+  <div style="margin: 10px 0;">
+    <img src="sampleQR.png" alt="RSVP QR Code" class="qr-code">
+    <p style="font-size: clamp(13px, 2vw, 20px); font-weight: 600; margin-top: 20px; color: var(--gold); letter-spacing: 0.15em; text-shadow:0 2px 8px #000;">SCAN TO RSVP</p>
+  </div>
   
-  <p class="gift script" style="color:var(--cream); text-shadow: 0 2px 10px #000; margin-top: 25px; font-size:clamp(20px, 4vw, 28px);">
+  <p class="gift script" style="color:var(--cream); text-shadow: 0 2px 10px #000; margin: 0; font-size:clamp(24px, 5vw, 36px);">
     <svg style="display:inline-block; vertical-align:middle; margin-right:8px; width:clamp(20px, 3vw, 34px); fill:var(--gold);"><use href="#sun"/></svg>
     Your presence is the greatest gift.
   </p>
  </div>
 </section>
 
-<!-- PAGE 8: FOOTER / OUTRO -->
-<section class="pg" id="end">
- <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center; max-width: 600px; margin: auto; padding: 15px;">
-  <h2 class="script">And so,<br>the adventure begins…</h2>
-  <svg class="sun"><use href="#sun"/></svg>
-  <div class="caps" style="font-size: clamp(12px, 1.8vw, 18px); font-weight: 600; color:var(--gold); letter-spacing:0.35em; text-shadow: 0 2px 8px #000;">Thank You</div>
-  <p style="font-style:italic; margin:10px 0 0; font-size: clamp(14px, 2.5vw, 21px); line-height: 1.5; color:#fff; text-shadow: 0 2px 8px #000;">
-    From the bottom of my heart, thank you for making my 18th birthday so magical. Your presence, love, and support mean the world to me. I will forever cherish the memories we created as I step into this beautiful new chapter.
+<!-- PAGE 8: LIVE PHOTO -->
+<section class="pg" id="livephoto">
+ <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center; max-width: 800px; margin: auto; padding: 15px;">
+  <h2 class="script">Live Photo Stream</h2>
+  <div class="caps" style="font-size: clamp(12px, 1.8vw, 18px); font-weight: 600; color:var(--gold); letter-spacing:0.2em; text-shadow: 0 2px 8px #000; margin-bottom: 20px;">Capture the Magic</div>
+  
+  <p style="font-style:italic; margin:0 0 30px; font-size: clamp(14px, 2.5vw, 21px); line-height: 1.5; color:#fff; text-shadow: 0 2px 8px #000;">
+    Scan the QR code at your table to upload your favorite moments. They will appear right here!
   </p>
+
+  <div class="live-stream">
+    <div class="live-item"><svg style="width:30px; fill:none; stroke:currentColor;" viewBox="0 0 24 24"><use href="#cam"/></svg></div>
+    <div class="live-item"><svg style="width:30px; fill:none; stroke:currentColor;" viewBox="0 0 24 24"><use href="#cam"/></svg></div>
+    <div class="live-item"><svg style="width:30px; fill:none; stroke:currentColor;" viewBox="0 0 24 24"><use href="#cam"/></svg></div>
+    <div class="live-item"><svg style="width:30px; fill:none; stroke:currentColor;" viewBox="0 0 24 24"><use href="#cam"/></svg></div>
+    <div class="live-item" style="display:none;"><svg style="width:30px; fill:none; stroke:currentColor;" viewBox="0 0 24 24"><use href="#cam"/></svg></div>
+    <div class="live-item" style="display:none;"><svg style="width:30px; fill:none; stroke:currentColor;" viewBox="0 0 24 24"><use href="#cam"/></svg></div>
+  </div>
  </div>
 </section>
 
@@ -533,7 +539,7 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
 
 <script>
 var body=document.body,gate=document.getElementById('gate'),
- pages=['home','story','cele','eighteens','gallery','rsvp','end'].map(function(id){return document.getElementById(id)}),
+ pages=['home','story','cele','eighteens','gallery','rsvp','livephoto'].map(function(id){return document.getElementById(id)}),
  links=[].slice.call(document.querySelectorAll('nav a[data-i]')),
  cur=0,busy=false,T=1000;
 
