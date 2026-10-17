@@ -82,11 +82,9 @@ body.used #hint{display:none}
 }
 .hero{max-width:700px;text-shadow:0 1px 10px rgba(10,4,28,.8)}
 .hero .eyebrow{font:400 13px 'Cinzel',serif;letter-spacing:.34em;padding-left:.34em;color:#f1e2c8}
-/* bigger "Franz's" */
 .hero .name{font-family:'Allura','Great Vibes',cursive;font-weight:400;font-size:clamp(104px,16vw,172px);line-height:.92;margin:8px 0 0;color:#ecc783;-webkit-text-stroke:.6px #ecc783;text-shadow:0 0 30px rgba(236,199,131,.32),0 2px 12px rgba(10,4,28,.85)}
 .hero .debut{font:400 clamp(22px,2.8vw,31px) 'Cinzel',serif;letter-spacing:.5em;padding-left:.5em;color:#f5e8d2;margin:0}
 .hero .flourish{display:block;margin:18px auto 0;width:220px;height:32px;overflow:visible}
-/* more room now for the date / venue / dress code */
 .hero-info{display:flex;justify-content:center;align-items:stretch;margin-top:40px}
 .hero-info .it{padding:4px clamp(20px,4vw,54px);border-left:1px solid rgba(230,191,122,.6);font:600 13px 'Cinzel',serif;letter-spacing:.18em;color:#f6e9d0;line-height:2}
 .hero-info .it:first-child{border-left:0}
@@ -103,11 +101,42 @@ body.used #hint{display:none}
 #story.hasimg{justify-content:flex-end;padding-right:clamp(20px,8vw,120px)}
 #story.hasimg .tower{display:none}
 .tower{width:min(260px,30vw);flex:none}.tower svg{width:100%}
-.parch{background:var(--parch);color:var(--ink);padding:clamp(28px,5vw,56px);max-width:520px;border-radius:6px;box-shadow:0 20px 60px rgba(30,10,60,.5);position:relative}
-.parch .script{color:var(--ink);text-shadow:none;font-size:clamp(40px,7vw,58px)}
-.parch p{line-height:1.6;margin:14px 0}
-.parch .orn{color:var(--ink)}.parch .orn::before,.parch .orn::after{background:var(--ink)}
+
+/* UPDATED PARCHMENT STYLE based on inspiration */
+.parch {
+    background: linear-gradient(135deg, rgba(253, 244, 227, 0.95), rgba(245, 223, 186, 0.9));
+    color: #4a2e21; /* Dark, warm ink color */
+    padding: clamp(32px, 6vw, 64px);
+    max-width: 560px;
+    border-radius: 4px;
+    box-shadow: 0 0 35px rgba(255, 220, 150, 0.4), inset 0 0 45px rgba(230, 180, 110, 0.35);
+    border: 1px solid rgba(232, 184, 98, 0.4);
+    position: relative;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+.parch::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(138, 90, 60, 0.15); /* Subtle inner border for parchment detail */
+    pointer-events: none;
+}
+.parch .script {
+    color: #6b3e34; /* Richer reddish-brown for the script header */
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.6);
+    font-size: clamp(48px, 8vw, 68px);
+    margin-bottom: 8px;
+}
+.parch p {
+    line-height: 1.6;
+    margin: 16px 0;
+    font-size: 20px;
+}
+.parch .orn {color: #8a5a40;}
+.parch .orn::before, .parch .orn::after {background: #8a5a40; opacity: 0.5;}
 #more{display:none}#more.show{display:block}
+
 /* PAGE 4 CELEBRATION */
 #cele{background:radial-gradient(ellipse at 50% 0,rgba(255,190,90,.3),transparent 55%),linear-gradient(#2a1650,#1a0d36)}
 #cele .script{font-size:clamp(52px,10vw,86px)}
@@ -129,7 +158,10 @@ body.used #hint{display:none}
 .f{display:block;text-align:left}
 label{display:block;font:600 11px 'Cinzel',serif;letter-spacing:.14em;margin:12px 0 4px}
 input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-radius:4px;background:#fbf1da;color:var(--ink);font:inherit}
-.parch .script{text-align:center}.parch .btn{display:block;margin:20px auto 0}
+.parch.f .script{text-align:center; color: var(--ink);}
+.parch.f { background: var(--parch); box-shadow: 0 20px 60px rgba(30,10,60,.5); border: none; color: var(--ink); backdrop-filter: none; }
+.parch.f::before { display: none; }
+.parch .btn{display:block;margin:20px auto 0}
 .gift{max-width:230px;font-size:24px;font-style:italic;line-height:1.4}
 .gift svg{width:54px;fill:#fff3c8;display:block;margin:0 auto 10px}
 #ty{text-align:center;margin-top:12px;color:var(--ink);font-style:italic}
@@ -206,7 +238,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  <div class="inner hero fade">
   <div class="eyebrow">YOU’RE INVITED TO</div>
   <h2 class="name">Franz’s</h2>
-  <div class="debut">DEBUT</div>
+  <div class="debut">18TH</div>
   <svg class="flourish" viewBox="0 0 210 30" aria-hidden="true">
    <g fill="none" stroke="#e6bf7a" stroke-width="1.1" stroke-linecap="round">
     <path d="M4 15H68c8 0 10-6 18-6"/>
@@ -246,10 +278,10 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
   <svg viewBox="0 0 160 330"><path d="M10 330l20-120h100l20 120z" fill="#3d6b46"/><rect x="45" y="90" width="70" height="130" fill="#a88fbe"/><polygon points="35,92 80,10 125,92" fill="#c0568a"/><path d="M70 150a10 10 0 0 1 20 0v22H70z" fill="#ffd96b"/><path d="M80 175c12 40-14 70 0 120" fill="none" stroke="#f5c542" stroke-width="5" stroke-linecap="round"/></svg>
  </div>
  <div class="parch fade">
-  <h2 class="script">My Story</h2>
-  <p>From big dreams and little adventures, to a heart full of love and endless curiosity… this is my story, the story of a girl who believes in a brighter tomorrow.</p>
-  <p>Today, I celebrate not just my past, but the beautiful journey ahead.</p>
-  <p id="more">I grew up in a small house with a big garden, painted flowers on every wall I was allowed to, and always dreamed of one sky full of lanterns. At eighteen, I am brave, kind, and ready to share that sky with the people I love.</p>
+  <h2 class="script">A Little About Me</h2>
+  <p>I find inspiration in the pages of classic novels, the timeless melodies of jazz, and the creativity of makeup. I love discovering beauty in the little things and finding my own ways to express who I am.</p>
+  <p>As I turn eighteen, I’m stepping into a new chapter filled with possibilities, new experiences, and dreams waiting to take shape. I may not know exactly where life will lead me, but I’m excited to discover what lies ahead and become the person I aspire to be.</p>
+  <p id="more"><b>This is my story, my journey, and the beginning of something beautiful.</b></p>
   <div class="orn">❀</div>
   <button class="btn" id="learn">LEARN MORE</button>
  </div>
