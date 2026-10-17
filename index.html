@@ -32,26 +32,25 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:ce
 .fade{opacity:0;transform:translateY(22px);transition:1s}.in .fade,.fade.in{opacity:1;transform:none}
 .inner{position:relative;z-index:2}
 
-/* 1 INTRO GATE: intro.png split in two halves that slide apart from the middle */
-#gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#150b2e}
+/* 1 INTRO GATE (cover page): intro.png split in two halves that slide apart from the middle */
+#gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:transparent}
 #gate.done{display:none}
-.half{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;transition:transform 1.8s cubic-bezier(.77,0,.18,1) .5s}
+.half{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;background:#150b2e;transition:transform 1.1s cubic-bezier(.7,0,.2,1)}
 .half.l{left:0}.half.r{right:0}
 .half::before{content:"";position:absolute;top:0;bottom:0;width:100vw;background:linear-gradient(rgba(20,10,46,.25),rgba(20,10,46,.4)),url('intro.png') center/cover no-repeat,radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e)}
 .l::before{left:0}.r::before{right:0}
 .l .castle{left:0;width:100vw}.r .castle{right:0;width:100vw}
 #gate.hasimg .fb{display:none}
-#gate .inner{z-index:3;transition:opacity .6s}
+#gate .inner{z-index:3;transition:opacity .3s}
 #gate .script{font-size:clamp(80px,18vw,170px);line-height:1}
 .opening #gate .inner{opacity:0;pointer-events:none}
-.opening .half.l{transform:translateX(-100%)}
-.opening .half.r{transform:translateX(100%)}
+.opening .half.l{transform:translateX(-101%)}
+.opening .half.r{transform:translateX(101%)}
 .enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
 @keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
 
 /* 2 HERO: uses '2nd page.jpg' (same folder). Gradients are the fallback. */
-#home{padding-right:clamp(0px,9vw,140px);background:linear-gradient(rgba(20,10,46,.18),rgba(20,10,46,.3)),url('2nd page.jpg') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(255,170,60,.35),transparent 40%),linear-gradient(160deg,#1c0f3d,#3b2368 60%,#24123f);transform:scale(1.07);transition:transform 2.4s ease}
-.opening #home{transform:none}
+#home{padding-right:clamp(0px,9vw,140px);background:linear-gradient(rgba(20,10,46,.18),rgba(20,10,46,.3)),url('2nd page.jpg') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(255,170,60,.35),transparent 40%),linear-gradient(160deg,#1c0f3d,#3b2368 60%,#24123f)}
 #home.hasimg .bigl{display:none}
 /* soft blur only in a small oval behind the text (the big lamp on the right stays sharp) */
 #home .inner{padding:40px clamp(20px,4vw,56px)}
@@ -79,8 +78,11 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:ce
 .bigl{position:absolute;right:3vw;top:14%;width:clamp(110px,20vw,240px);aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:radial-gradient(circle at 50% 45%,#ffe2a0,#f2a640 70%,#b8641c);box-shadow:0 0 90px 30px rgba(255,170,60,.45);display:flex;align-items:center;justify-content:center;animation:bob 5s ease-in-out infinite}
 .bigl svg{width:62%;fill:#a8501a}
 @keyframes bob{50%{transform:translateY(-8px)}}
-/* 3 story */
-#story{background:linear-gradient(90deg,#4a3a7a,#8a5a8e 45%,#e6a07a);gap:5vw}
+
+/* 3 STORY: uses '3rd page.jpg' (same folder). Gradient is the fallback. */
+#story{background:url('3rd page.jpg') center/cover no-repeat,linear-gradient(90deg,#4a3a7a,#8a5a8e 45%,#e6a07a);gap:5vw}
+#story.hasimg{justify-content:flex-end;padding-right:clamp(20px,8vw,120px)}
+#story.hasimg .tower{display:none}
 .tower{width:min(260px,30vw);flex:none}.tower svg{width:100%}
 .parch{background:var(--parch);color:var(--ink);padding:clamp(28px,5vw,56px);max-width:520px;border-radius:6px;box-shadow:0 20px 60px rgba(30,10,60,.5);position:relative}
 .parch .script{color:var(--ink);text-shadow:none;font-size:clamp(40px,7vw,58px)}
@@ -118,8 +120,9 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 #end svg.sun{width:34px;fill:var(--gold);margin:18px 0 6px}
 #end .castle{left:0;right:0;width:100%}
 @media(max-width:720px){
- nav{font-size:9px;gap:9px;padding-right:46px}
+ nav{font-size:8.5px;gap:8px;padding-right:44px;padding-left:8px}
  #story,#rsvp{flex-direction:column}.tower{width:110px}
+ #story.hasimg{justify-content:center;padding-right:5vw}
  .bigl{position:relative;right:auto;top:auto;margin:0 auto 22px;width:96px}
  #home{flex-direction:column;padding-right:5vw}
  #home .inner::before{inset:-20px -14px}
@@ -137,11 +140,11 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 <div id="lanterns"></div>
 
 <nav>
- <a href="#home">HOME</a><a href="#cele">THE CELEBRATION</a><a href="#story">HER STORY</a><a href="#gallery">GALLERY</a><a href="#rsvp">RSVP</a>
+ <a href="#" id="cover">COVER</a><a href="#home">HOME</a><a href="#cele">THE CELEBRATION</a><a href="#story">HER STORY</a><a href="#gallery">GALLERY</a><a href="#rsvp">RSVP</a>
  <button id="music" class="off" aria-label="Toggle music" title="Music on/off">♫</button>
 </nav>
 
-<!-- 1 INTRO GATE (intro.png) -->
+<!-- 1 COVER / INTRO GATE (intro.png) -->
 <div id="gate">
  <div class="half l"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
  <div class="half r"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
@@ -197,7 +200,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  <div class="bigl"><svg><use href="#sun"/></svg></div>
 </section>
 
-<!-- 3 Story -->
+<!-- 3 Story (3rd page.jpg) -->
 <section id="story">
  <div class="tower" aria-hidden="true">
   <svg viewBox="0 0 160 330"><path d="M10 330l20-120h100l20 120z" fill="#3d6b46"/><rect x="45" y="90" width="70" height="130" fill="#a88fbe"/><polygon points="35,92 80,10 125,92" fill="#c0568a"/><path d="M70 150a10 10 0 0 1 20 0v22H70z" fill="#ffd96b"/><path d="M80 175c12 40-14 70 0 120" fill="none" stroke="#f5c542" stroke-width="5" stroke-linecap="round"/></svg>
@@ -278,10 +281,11 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 [].forEach.call(document.querySelectorAll('.fade'),function(n){io.observe(n)});
 
 /* image checks: hide the drawn fallbacks when your pictures load */
-var gate=document.getElementById('gate'),home=document.getElementById('home');
+var gate=document.getElementById('gate'),home=document.getElementById('home'),story=document.getElementById('story'),body=document.body;
 function ld(src,fn){var i=new Image();i.onload=fn;i.src=src}
 ld('intro.png',function(){gate.classList.add('hasimg')});
 ld('2nd page.jpg',function(){home.classList.add('hasimg')});
+ld('3rd page.jpg',function(){story.classList.add('hasimg')});
 
 /* soft ambient music (generated, no audio files) */
 var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
@@ -295,11 +299,21 @@ function music(v){
   else{clearInterval(timer)}}catch(e){}}
 mb.onclick=function(){music(!on)};
 
-/* ENTER: doors open from the middle, then page 2 */
+/* ENTER: the two halves slide apart quickly and page 2 is already there behind them */
 document.getElementById('enter').onclick=function(){
- music(true);window.scrollTo(0,0);
- document.body.classList.add('opening');
- setTimeout(function(){gate.classList.add('done');document.body.classList.remove('lock')},2500)};
+ if(!on)music(true);
+ window.scrollTo(0,0);
+ body.classList.add('opening');
+ setTimeout(function(){gate.classList.add('done');body.classList.remove('lock')},1150)};
+
+/* COVER: slide the intro back over the page */
+document.getElementById('cover').onclick=function(e){
+ e.preventDefault();
+ window.scrollTo(0,0);
+ body.classList.add('lock');
+ gate.classList.remove('done');
+ void gate.offsetWidth;
+ body.classList.remove('opening')};
 
 function tog(b,t,a,z){document.getElementById(b).onclick=function(){var e=document.getElementById(t),s=e.classList.toggle('show');this.textContent=s?a:z}}
 tog('learn','more','SHOW LESS','LEARN MORE');tog('prog','full','HIDE PROGRAM','VIEW FULL PROGRAM');
