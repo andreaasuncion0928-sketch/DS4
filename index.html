@@ -69,7 +69,7 @@ body.used #hint{display:none}
 .enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
 @keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
 
-/* PAGE 2 HOME (Centered Horizontally, No lamp blur) */
+/* PAGE 2 HOME */
 #home{
  justify-content: center;
  background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('2nd page.jpg') center/cover no-repeat,linear-gradient(160deg,#0a0514,#1a0e2e 60%,#0a0514)
@@ -94,7 +94,7 @@ body.used #hint{display:none}
 .bigl svg{width:62%;fill:#a8501a}
 @keyframes bob{50%{transform:translateY(-8px)}}
 
-/* PAGE 3 MY STORY (Removed Tower, Parchment Right) */
+/* PAGE 3 MY STORY */
 #story{
  justify-content:flex-end; 
  background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('3rd page.jpg') center/cover no-repeat;
@@ -126,7 +126,7 @@ body.used #hint{display:none}
 .parch .orn { color: #8a5a40; }
 .parch .orn::before, .parch .orn::after { background: #8a5a40; opacity: 0.5; }
 
-/* PAGE 4 THE CELEBRATION (Horizontal layout with subs) */
+/* PAGE 4 THE CELEBRATION */
 #cele{background:linear-gradient(rgba(15,8,25,.65),rgba(10,5,20,.85)),url('4th page.jpg') center/cover no-repeat,linear-gradient(#2a1650,#1a0d36)}
 .inline-details-row { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 3vw; margin-top: 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 .detail-col { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; min-width: 180px; }
@@ -141,25 +141,58 @@ body.used #hint{display:none}
 .shades { display: flex; gap: 8px; justify-content: center; align-items: center; }
 .swatch { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(232,184,98,.8); box-shadow: 0 2px 6px rgba(0,0,0,0.6); }
 
-/* PAGE 5 MY 18S (No card panel) */
+/* PAGE 5 MY 18S */
 #eighteens{background:linear-gradient(rgba(10,4,20,.7),rgba(5,2,12,.85)),url('5th page.jpg') center/cover no-repeat;}
 
-/* LIGHTBOX for role */
+/* LIGHTBOX for roles */
 #lb-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; padding: 20px; }
 #lb-overlay.show { opacity: 1; pointer-events: auto; }
 .lb-box { background: linear-gradient(135deg, rgba(253, 244, 227, 0.98), rgba(245, 223, 186, 0.96)); color: #4a2e21; padding: 44px; max-width: 480px; width: 100%; border-radius: 6px; box-shadow: 0 10px 50px rgba(0,0,0,0.9); text-align: center; position: relative; transform: translateY(20px); transition: 0.3s; border: 1px solid rgba(232, 184, 98, 0.4); }
 #lb-overlay.show .lb-box { transform: translateY(0); }
 .lb-close { position: absolute; top: 12px; right: 18px; font-size: 32px; cursor: pointer; color: #8a5a40; background: none; border: none; padding: 0; line-height: 1; }
 
-/* PAGE 6 GALLERY */
-#gallery{background:#1a0d36}
-.gal{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;max-width:860px;width:100%}
-.fr{border:2px solid var(--gold);padding:5px;border-radius:3px}
-.ph{width:100%;height:100%;min-height:90px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:36px}
-.big .ph{min-height:min(420px,52vh);background:linear-gradient(160deg,#f9d7b8,#e8a8b8 60%,#b887c9);position:relative;align-items:flex-end;justify-content:flex-start}
-.big svg{position:absolute;inset:auto 0 0 0;width:100%}
-.big .script{position:relative;font-size:32px;color:#fff;padding:14px;text-shadow:0 2px 8px #0006}
-.th{display:grid;gap:12px}
+/* PAGE 6 GALLERY (Enchanted, glowing layout for 7 images) */
+#gallery{background:radial-gradient(ellipse at center, #1e0b35, #0a0412 85%);}
+.gal { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; max-width: 1060px; width: 100%; margin: 0 auto; }
+.th { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: center;}
+.fr { 
+  padding: 0; 
+  border-radius: 8px; 
+  border: 1px solid rgba(232, 184, 98, 0.6); 
+  box-shadow: 0 0 20px rgba(232, 184, 98, 0.2), inset 0 0 15px rgba(232, 184, 98, 0.3);
+  position: relative; 
+  overflow: hidden; 
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.fr:hover {
+  box-shadow: 0 0 35px rgba(232, 184, 98, 0.7), inset 0 0 20px rgba(232, 184, 98, 0.5);
+  transform: translateY(-4px);
+  border-color: rgba(232, 184, 98, 1);
+}
+.fr::after {
+  content: ""; position: absolute; inset: 0;
+  box-shadow: inset 0 0 35px rgba(20, 10, 40, 0.8);
+  pointer-events: none; border-radius: 8px;
+}
+.ph {
+  width: 100%; height: 100%; 
+  min-height: 120px; 
+  background-size: cover; background-position: center; 
+  display: flex; align-items: flex-end; justify-content: center; 
+  transition: transform 0.5s ease;
+}
+.fr:hover .ph { transform: scale(1.05); }
+
+.big .ph { min-height: min(560px, 65vh); padding-bottom: 24px; }
+.big .script { position: relative; font-size: clamp(32px, 4vw, 44px); color: #fff; text-shadow: 0 3px 12px #000, 0 0 25px var(--gold); z-index: 2; pointer-events:none; }
+
+/* GALLERY LIGHTBOX */
+#gal-lb-overlay { position: fixed; inset: 0; background: rgba(5,2,12,.95); z-index: 300; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; padding: 20px; backdrop-filter: blur(10px); }
+#gal-lb-overlay.show { opacity: 1; pointer-events: auto; }
+#gal-lb-img { max-width: 90vw; max-height: 90vh; border-radius: 6px; box-shadow: 0 0 50px rgba(232, 184, 98, 0.4); object-fit: contain; transform: scale(0.95); transition: 0.3s; border: 1px solid rgba(232, 184, 98, 0.4); }
+#gal-lb-overlay.show #gal-lb-img { transform: scale(1); }
+.gal-lb-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: #e8b862; background: none; border: none; padding: 0; line-height: 1; text-shadow: 0 2px 10px #000; z-index: 301;}
 
 /* PAGE 7 RSVP */
 #rsvp{background:linear-gradient(120deg,#3b2368,#9a5a8a 55%,#f0a36a);gap:5vw;flex-wrap:wrap}
@@ -207,7 +240,12 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  .cele-dot { display: none; }
  .detail-col .ttl { white-space: normal; }
  
- .gal{grid-template-columns:1fr}.th{grid-template-columns:repeat(4,1fr)}.big .ph{min-height:260px}
+ .gal { grid-template-columns: 1fr; gap: 20px;}
+ .th { grid-template-columns: repeat(3, 1fr); gap: 12px;}
+ .big .ph { min-height: 320px; }
+}
+@media(max-width:480px){
+ .th { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -299,7 +337,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </section>
 
-<!-- PAGE 4: THE CELEBRATION (Horizontal layout with subs) -->
+<!-- PAGE 4: THE CELEBRATION -->
 <section class="pg" id="cele">
  <div class="inner fade" style="width:100%;">
   <h2 class="script" style="font-size:clamp(60px, 12vw, 120px);">The Celebration</h2>
@@ -329,7 +367,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </section>
 
-<!-- PAGE 5: MY 18S (No card background, Lightbox triggers on button) -->
+<!-- PAGE 5: MY 18S -->
 <section class="pg" id="eighteens">
  <div class="inner fade" style="max-width: 540px; padding: clamp(24px, 5vw, 44px); text-align: center; margin: auto;">
   <h2 class="script" style="font-size:clamp(52px, 10vw, 86px);">My 18s</h2>
@@ -347,17 +385,23 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </section>
 
-<!-- PAGE 6: GALLERY -->
+<!-- PAGE 6: GALLERY (7 Images Grid with Enlarge Feature) -->
 <section class="pg" id="gallery">
  <div class="gal fade">
-  <div class="fr big"><div class="ph">
-   <svg viewBox="0 0 300 200" aria-hidden="true"><circle cx="150" cy="70" r="30" fill="#5b3a6e" opacity=".55"/><path d="M80 200c0-60 30-85 70-85s70 25 70 85z" fill="#5b3a6e" opacity=".55"/></svg>
-   <span class="script">Dreams do come true.</span></div></div>
+  <div class="fr big">
+   <!-- HERO IMAGE: 1st.jpeg -->
+   <div class="ph ph-click" style="background-image: url('1st.jpeg');" title="Click to enlarge">
+    <span class="script">Dreams do come true.</span>
+   </div>
+  </div>
   <div class="th">
-   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#f4a6c8,#c070b0)">🌸</div></div>
-   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#7a5aa8,#e9a07a)">🏰</div></div>
-   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#8a4a2a,#f0b050)">✨</div></div>
-   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#5b3a8e,#a888d0)">👑</div></div>
+   <!-- THUMBNAILS: 2nd.jpeg to 7th.jpeg -->
+   <div class="fr"><div class="ph ph-click" style="background-image: url('2nd.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('3rd.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('4th.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('5th.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('6th.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('7th.jpeg');" title="Click to enlarge"></div></div>
   </div>
  </div>
 </section>
@@ -399,6 +443,12 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
     <div id="lb-text" style="font-size: 20px; line-height: 1.5; color: #4a2e21; margin: 18px 0;"></div>
     <div class="orn" style="margin-bottom:0;">❀</div>
   </div>
+</div>
+
+<!-- LIGHTBOX MODAL FOR GALLERY IMAGES -->
+<div id="gal-lb-overlay">
+  <button class="gal-lb-close" id="gal-lb-close-btn">&times;</button>
+  <img id="gal-lb-img" src="" alt="Enlarged gallery view">
 </div>
 
 <script>
@@ -512,7 +562,6 @@ document.getElementById('checkRole').onclick = function() {
  var nameInput = document.getElementById('roleName').value.trim().toLowerCase();
  
  if(!nameInput){
-  // Just show a quick alert if empty
   alert("Please enter a name.");
   return;
  }
@@ -534,13 +583,31 @@ document.getElementById('checkRole').onclick = function() {
  lbOverlay.classList.add('show');
 };
 
-// Close lightbox
-lbCloseBtn.onclick = function() {
- lbOverlay.classList.remove('show');
-};
-lbOverlay.onclick = function(e) {
- if(e.target === lbOverlay) lbOverlay.classList.remove('show');
-};
+// Close role lightbox
+lbCloseBtn.onclick = function() { lbOverlay.classList.remove('show'); };
+lbOverlay.onclick = function(e) { if(e.target === lbOverlay) lbOverlay.classList.remove('show'); };
+
+
+/* GALLERY LIGHTBOX LOGIC */
+var galLbOverlay = document.getElementById('gal-lb-overlay');
+var galLbImg = document.getElementById('gal-lb-img');
+var galLbClose = document.getElementById('gal-lb-close-btn');
+
+document.querySelectorAll('.ph-click').forEach(function(el) {
+ el.onclick = function() {
+  var bg = this.style.backgroundImage;
+  if(bg) {
+   // Extract the URL from the inline background-image style (e.g. url("1st.jpeg"))
+   var url = bg.slice(4, -1).replace(/["']/g, "");
+   galLbImg.src = url;
+   galLbOverlay.classList.add('show');
+  }
+ };
+});
+
+galLbClose.onclick = function() { galLbOverlay.classList.remove('show'); };
+galLbOverlay.onclick = function(e) { if(e.target === galLbOverlay) galLbOverlay.classList.remove('show'); };
+
 
 /* RSVP SUBMIT */
 document.getElementById('sub').onclick=function(){
