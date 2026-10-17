@@ -177,20 +177,15 @@ body.used #hint{display:none}
 #gal-lb-overlay.show #gal-lb-img { transform: scale(1); }
 .gal-lb-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: #e8b862; background: none; border: none; padding: 0; line-height: 1; text-shadow: 0 2px 10px #000; z-index: 301;}
 
-/* PAGE 7 RSVP */
-#rsvp{ background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('6th page.jpg') center/cover no-repeat; flex-direction: column; align-items: center; justify-content: center; gap: 5vw; }
-.f{display:block;text-align:center; margin: auto; max-width: 440px;}
-.parch.f { background: var(--parch); box-shadow: 0 20px 60px rgba(10,5,20,.6); border: 1px solid rgba(232, 184, 98, 0.4); color: var(--ink); }
-.qr-code { width: 180px; height: 180px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.6); box-shadow: 0 10px 30px rgba(10,5,20,0.5); object-fit: cover; }
-.gift{max-width:230px;font-size:24px;font-style:italic;line-height:1.4}
-.gift svg{width:54px;fill:#fff3c8;display:block;margin:0 auto 10px}
+/* PAGE 7 RSVP (QR Code Version - Centered Text, No Card) */
+#rsvp { background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('6th page.jpg') center/cover no-repeat; }
+.qr-code { width: 220px; height: 220px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.8); box-shadow: 0 10px 40px rgba(0,0,0,0.8); object-fit: cover; }
 #rsvp .chev{position:absolute;left:0;right:0;bottom:14px;margin:0 auto;width:34px}
 
-/* PAGE 8 FOOTER */
-#end{background:linear-gradient(#24123f,#8d3f7a 70%,#e9843f)}
-#end .script{font-size:clamp(40px,8vw,70px);color:var(--cream);line-height:1.2}
-#end svg.sun{width:34px;fill:var(--gold);margin:18px 0 6px}
-#end .castle{left:0;right:0;width:100%}
+/* PAGE 8 FOOTER (7th page.jpg Background - Centered, No Card) */
+#end { background:linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.8)),url('7th page.jpg') center/cover no-repeat; }
+#end .script { font-size:clamp(60px,12vw,110px); color:var(--cream); line-height:1.2; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
+#end svg.sun { width:40px; fill:var(--gold); margin:24px 0 12px; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.8)); }
 
 @media(max-height:700px){
  .pg{padding-top:84px;padding-bottom:20px}
@@ -395,26 +390,29 @@ body.used #hint{display:none}
 
 <!-- PAGE 7: RSVP -->
 <section class="pg" id="rsvp">
- <div class="parch fade f">
-  <h2 class="script">Kindly RSVP</h2>
-  <p style="margin:8px 0 20px; text-align:center;">I can’t wait to celebrate with you!</p>
+ <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center;">
+  <h2 class="script" style="font-size:clamp(60px, 12vw, 100px);">Kindly RSVP</h2>
+  <p style="font-size: 22px; font-style: italic; margin: 8px 0 30px; color: #fff; text-shadow:0 2px 8px #000;">I can’t wait to celebrate with you!</p>
   
   <img src="sampleQR.png" alt="RSVP QR Code" class="qr-code">
-  <p style="font-size: 16px; font-weight: 600; margin-top: 16px; color: #6b3e34; letter-spacing: 0.05em; text-align:center;">SCAN TO RSVP</p>
+  <p style="font-size: 18px; font-weight: 600; margin-top: 20px; color: var(--gold); letter-spacing: 0.15em; text-shadow:0 2px 8px #000;">SCAN TO RSVP</p>
+  
+  <p class="gift script" style="color:var(--cream); text-shadow: 0 2px 8px #000; margin-top: 40px; font-size:24px;">
+    <svg style="display:inline-block; vertical-align:middle; margin-right:8px; width:34px; fill:var(--gold);"><use href="#sun"/></svg>
+    Your presence is the greatest gift of all.
+  </p>
  </div>
- <p class="gift script fade" style="color:var(--cream); text-shadow: 0 2px 8px #000;"><svg><use href="#sun"/></svg>Your presence is the greatest gift of all.</p>
  <button class="chev" data-go="6" aria-label="Next page"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
 </section>
 
 <!-- PAGE 8: FOOTER -->
 <section class="pg" id="end">
- <div class="inner fade">
+ <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center;">
   <h2 class="script">And so,<br>the adventure begins…</h2>
   <svg class="sun"><use href="#sun"/></svg>
-  <div class="caps">Thank You</div>
-  <p style="font-style:italic;margin:6px">for being part of my story.</p>
+  <div class="caps" style="font-size: 16px; color:var(--gold); letter-spacing:0.3em; text-shadow: 0 2px 8px #000;">Thank You</div>
+  <p style="font-style:italic; margin:10px 0 0; font-size: 22px; color:#fff; text-shadow: 0 2px 8px #000;">for being part of my story.</p>
  </div>
- <svg class="castle" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg>
 </section>
 
 </div>
@@ -449,6 +447,7 @@ ld('3rd page.jpg',function(){pages[1].classList.add('hasimg')});
 ld('4th page.jpg',function(){pages[2].classList.add('hasimg');});
 ld('5th page.jpg',function(){pages[3].classList.add('hasimg');});
 ld('6th page.jpg',function(){pages[5].classList.add('hasimg');});
+ld('7th page.jpg',function(){pages[6].classList.add('hasimg');});
 
 function mark(){links.forEach(function(a){a.classList.toggle('active',+a.getAttribute('data-i')===cur)})}
 
