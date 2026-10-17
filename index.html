@@ -177,13 +177,13 @@ body.used #hint{display:none}
 #gal-lb-overlay.show #gal-lb-img { transform: scale(1); }
 .gal-lb-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: #e8b862; background: none; border: none; padding: 0; line-height: 1; text-shadow: 0 2px 10px #000; z-index: 301;}
 
-/* PAGE 7 RSVP (QR Code Version - Centered Text pushed down, No Card) */
+/* PAGE 7 RSVP (Text Pushed Down, No Card, No Arrow) */
 #rsvp { 
  background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('6th page.jpg') center/cover no-repeat; 
- align-items: flex-start; /* aligns items towards the top before margin pushes it down */
+ align-items: flex-start;
 }
 .rsvp-wrapper {
- margin-top: 10vh; /* Pushes the content well below the menu list */
+ margin-top: 10vh; 
  display: flex; 
  flex-direction: column; 
  align-items: center; 
@@ -192,9 +192,8 @@ body.used #hint{display:none}
 }
 .qr-code { width: 220px; height: 220px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.8); box-shadow: 0 10px 40px rgba(0,0,0,0.8); object-fit: cover; transition: transform 0.3s;}
 .qr-code:hover { transform: scale(1.05); }
-#rsvp .chev { position:absolute; left:0; right:0; bottom:14px; margin:0 auto; width:34px; }
 
-/* PAGE 8 FOOTER (7th page.jpg Background - Centered, No Card) */
+/* PAGE 8 FOOTER / OUTRO (7th page.jpg Background - No Card) */
 #end { background:linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.8)),url('7th page.jpg') center/cover no-repeat; }
 #end .script { font-size:clamp(60px,12vw,110px); color:var(--cream); line-height:1.2; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
 #end svg.sun { width:40px; fill:var(--gold); margin:24px 0 12px; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.8)); }
@@ -252,6 +251,7 @@ body.used #hint{display:none}
   <a href="#" data-i="3">MY 18S</a>
   <a href="#" data-i="4">GALLERY</a>
   <a href="#" data-i="5">RSVP</a>
+  <a href="#" data-i="6">THANK YOU</a>
  </nav>
  <div id="hint">✦ Tap the menu to turn the page ✦</div>
 </div>
@@ -402,7 +402,7 @@ body.used #hint{display:none}
  </div>
 </section>
 
-<!-- PAGE 7: RSVP (Text Pushed Down, No Card) -->
+<!-- PAGE 7: RSVP -->
 <section class="pg" id="rsvp">
  <div class="inner fade rsvp-wrapper">
   <h2 class="script" style="font-size:clamp(60px, 12vw, 100px); color: #fff; text-shadow:0 3px 12px rgba(0,0,0,0.9);">Kindly RSVP</h2>
@@ -416,16 +416,17 @@ body.used #hint{display:none}
     Your presence is the greatest gift of all.
   </p>
  </div>
- <button class="chev" data-go="6" aria-label="Next page"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
 </section>
 
-<!-- PAGE 8: FOOTER / OUTRO (7th page.jpg Background - No Card) -->
+<!-- PAGE 8: FOOTER / OUTRO -->
 <section class="pg" id="end">
- <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center;">
+ <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center; max-width: 650px; margin: auto;">
   <h2 class="script">And so,<br>the adventure begins…</h2>
   <svg class="sun"><use href="#sun"/></svg>
   <div class="caps" style="font-size: 18px; font-weight: 600; color:var(--gold); letter-spacing:0.35em; text-shadow: 0 2px 8px #000;">Thank You</div>
-  <p style="font-style:italic; margin:10px 0 0; font-size: 24px; color:#fff; text-shadow: 0 2px 8px #000;">for being part of my story.</p>
+  <p style="font-style:italic; margin:16px 0 0; font-size: 21px; line-height: 1.6; color:#fff; text-shadow: 0 2px 8px #000;">
+    From the bottom of my heart, thank you for making my 18th birthday so magical. Your presence, love, and support mean the world to me. I will forever cherish the memories we created as I step into this beautiful new chapter.
+  </p>
  </div>
 </section>
 
