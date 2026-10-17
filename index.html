@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Franz’s 18th – A New Chapter Begins</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#160d2e;--purple:#3b2368;--gold:#e8b862;--cream:#f6e7c8;--parch:#f4e4c1;--ink:#5a3b6b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120a26}}
+:root[data-theme="dark"]{--bg:#120a26}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--cream);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px}
+
+/* ===== MENU ===== */
+#top{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:0;right:0;z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 clamp(10px, 4vw, 56px);pointer-events:none}
+nav{pointer-events:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,10,46,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(232,184,98,.65);box-shadow:0 0 14px rgba(232,184,98,.28),0 6px 20px rgba(0,0,0,.35);animation:glow 2.8s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 24px rgba(232,184,98,.6),0 6px 20px rgba(0,0,0,.35)}}
+nav a{font:600 clamp(6px, 1vw, 10.5px) 'Cinzel',serif;letter-spacing:.14em;color:#fff3dc;text-decoration:none;padding:clamp(4px, 0.8vw, 7px) clamp(6px, 1.2vw, 13px);border-radius:999px;white-space:nowrap;transition:.25s}
+nav a:hover{background:rgba(232,184,98,.22);color:var(--gold)}
+nav a.active{background:var(--gold);color:#2a1650;box-shadow:0 0 12px rgba(232,184,98,.65)}
+body.used nav{animation:none}
+#hint{font:italic 14px 'Cormorant Garamond',serif;color:var(--gold);letter-spacing:.06em;text-shadow:0 2px 8px #000;animation:tw 2s ease-in-out infinite}
+@keyframes tw{50%{opacity:.4}}
+body.used #hint{display:none}
+#music{position:fixed;right:14px;top:calc(12px + env(safe-area-inset-top,0px));z-index:11;width:32px;height:32px;border-radius:50%;background:rgba(20,10,46,.62);border:1px solid rgba(232,184,98,.7);color:var(--gold);font-size:15px;cursor:pointer; display: flex; align-items: center; justify-content: center;}
+#music.off{opacity:.5}
+
+/* ===== BOOK ===== */
+#book{position:fixed;inset:0;perspective:2200px;overflow:hidden;z-index:1;background:var(--bg)}
+.pg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:96px 5vw 40px;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;visibility:hidden;z-index:0;transform-origin:left center;-webkit-backface-visibility:hidden;backface-visibility:hidden; background-size: cover; background-position: center; background-repeat: no-repeat;}
+.pg::-webkit-scrollbar{display:none}
+.pg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,3,22,.6),rgba(8,3,22,0) 75%);opacity:0;pointer-events:none;transition:opacity 1s}
+.pg.cur{visibility:visible;z-index:1}
+.pg.under{visibility:visible;z-index:2}
+.pg.top{visibility:visible;z-index:3}
+.pg.turn-out{transform:rotateY(-110deg);transition:transform 1s cubic-bezier(.65,0,.25,1)}
+.pg.turn-out::after{opacity:1}
+.pg.turn-in-start{visibility:visible;z-index:3;transform:rotateY(-110deg)}
+.pg.turn-in-start::after{opacity:1}
+.pg.turn-in{visibility:visible;z-index:3;transform:none;transition:transform 1s cubic-bezier(.65,0,.25,1)}
+
+.script{font-family:'Great Vibes',cursive;color:var(--gold);font-weight:400;margin:0;text-shadow:0 0 24px rgba(232,184,98,.45)}
+.caps{font:400 13px 'Cinzel',serif;letter-spacing:.35em;text-transform:uppercase;color:var(--cream)}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);margin:14px 0}
+.orn::before,.orn::after{content:"";width:60px;height:1px;background:var(--gold)}
+.castle{position:absolute;bottom:0;height:auto;fill:#0f0822;opacity:.95}
+.btn{font:600 clamp(8px, 1.2vw, 11px) 'Cinzel',serif;letter-spacing:.22em;color:var(--cream);background:var(--purple);border:1px solid var(--gold);border-radius:999px;padding:clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 30px);cursor:pointer;display:inline-block; transition:.25s;}
+.btn:hover{background:var(--gold);color:#2a1650}
+.fade{opacity:0;transform:translateY(22px);transition:1s}
+.pg.in .fade{opacity:1;transform:none}
+.inner{position:relative;z-index:2; width: 100%;}
+
+/* COVER / INTRO GATE */
+#gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:transparent}
+#gate.done{display:none}
+.half{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;background:#150b2e;transition:transform 1.1s cubic-bezier(.7,0,.2,1)}
+.half.l{left:0}.half.r{right:0}
+.half::before{content:"";position:absolute;top:0;bottom:0;width:100vw;background:linear-gradient(rgba(20,10,46,.25),rgba(20,10,46,.4)),url('intro.png') center/cover no-repeat,radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e)}
+.l::before{left:0}.r::before{right:0}
+.l .castle{left:0;width:100vw}.r .castle{right:0;width:100vw}
+#gate.hasimg .fb{display:none}
+#gate .inner{z-index:3;transition:opacity .3s}
+#gate .script{font-size:clamp(80px,18vw,170px);line-height:1}
+.opening #gate .inner{opacity:0;pointer-events:none}
+.opening .half.l{transform:translateX(-101%)}
+.opening .half.r{transform:translateX(101%)}
+.enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
+
+/* PAGE 2 HOME */
+#home{
+ background:linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)),url('2nd page.jpg') center/cover no-repeat;
+}
+#home .inner{display:flex; flex-direction:column; align-items:center; text-align:center; height:100%; justify-content:center;}
+.hero{width:100%;text-shadow:0 2px 15px rgba(0,0,0,.9); text-align:center;}
+.hero .eyebrow{font:400 14px 'Cinzel',serif;letter-spacing:.3em;color:#e8d5b5; margin-bottom: 4px; text-transform: uppercase;}
+.hero .name{font-family:'Allura','Great Vibes',cursive;font-weight:400;font-size:clamp(80px,20vw,210px);letter-spacing:0.02em;line-height:1;margin:0;color:#f0cf91;-webkit-text-stroke:.8px #d1a85c;text-shadow:0 0 40px rgba(236,199,131,.2),0 4px 18px rgba(0,0,0,.9)}
+.hero .debut{font:400 24px 'Cinzel',serif;letter-spacing:.4em;color:#e3d4b8;margin:8px 0 0 0;}
+.hero .flourish{display:block;margin:16px auto 0;width:180px;height:auto;overflow:visible; filter:drop-shadow(0 2px 4px rgba(0,0,0,.8));}
+
+.hero-info{display:flex; flex-direction:row; align-items:flex-start; justify-content:center; gap:0; margin:30px auto 0; width:100%; max-width: 600px;}
+.hero-info .it{border-left:1px solid rgba(230,191,122,.6); padding:0 15px; font:600 10px 'Cinzel',serif;letter-spacing:.1em;color:#f6e9d0;line-height:1.4; text-align:center; flex:1;}
+.hero-info .it:first-child{border-left:0;}
+.hero-info svg{width:20px;height:20px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block; margin:0 auto 6px;}
+.hero-info small{display:block;font:400 12px 'Cormorant Garamond',serif;letter-spacing:.02em;color:#f3e3c8; margin-top:4px; text-transform: none;}
+
+.chev{display:block;margin:30px auto 0;background:none;border:0;padding:6px;cursor:pointer;animation:bob 2.4s ease-in-out infinite}
+.chev svg{width:22px;height:14px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* PAGE 3 MY STORY */
+#story{
+ background:linear-gradient(rgba(10,4,20,.3),rgba(5,2,12,.6)),url('3rd page.jpg') center/cover no-repeat;
+ align-items: center;
+}
+.parch {
+ background: linear-gradient(135deg, rgba(253, 244, 227, 0.95), rgba(245, 223, 186, 0.9));
+ color: #4a2e21;
+ padding: clamp(24px, 5vw, 40px);
+ width: 90%;
+ max-width: 500px;
+ border-radius: 4px;
+ box-shadow: 0 0 25px rgba(255, 220, 150, 0.3), inset 0 0 30px rgba(230, 180, 110, 0.2), 0 15px 40px rgba(10, 5, 20, 0.6);
+ border: 1px solid rgba(232, 184, 98, 0.4);
+ position: relative;
+ margin: 0 auto;
+}
+.parch::before {
+ content: ""; position: absolute; inset: 4px;
+ border: 1px solid rgba(138, 90, 60, 0.15); pointer-events: none;
+}
+.parch .script {
+ color: #6b3e34; text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.6);
+ font-size: clamp(36px, 8vw, 56px); margin-bottom: 8px; text-align:center;
+}
+.parch p { line-height: 1.5; margin: 12px 0; font-size: 16px; text-align: center;}
+.parch .orn { color: #8a5a40; margin: 16px 0 0; }
+.parch .orn::before, .parch .orn::after { background: #8a5a40; opacity: 0.5; width: 40px;}
+
+/* PAGE 4 THE CELEBRATION */
+#cele{background:linear-gradient(rgba(15,8,25,.5),rgba(10,5,20,.7)),url('4th page.jpg') center/cover no-repeat;}
+#cele .script { font-size: clamp(48px, 12vw, 80px); margin-bottom: 10px;}
+.inline-details-row { display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: 10px; margin-top: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); width: 100%; max-width: 800px; margin-inline: auto;}
+.detail-col { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
+.detail-col .ttl { font: 400 12px 'Cinzel', serif; letter-spacing: 0.05em; color: #f6e9d0; margin-bottom: 4px; text-transform: uppercase;}
+.sub-detail { margin-top: 4px; }
+.cele-dot { color: var(--gold); font-size: 16px; line-height: 1.2; margin: 0; padding-top: 2px;}
+
+#countdown { font-family: 'Cinzel', serif; font-size: 10px; color: var(--gold); letter-spacing: 0.05em; font-weight: 600; white-space: nowrap; }
+.map-link { font-family: 'Cormorant Garamond', serif; font-size: 12px; color: var(--gold); text-decoration: underline; display: inline-block; transition: .25s; white-space: nowrap; }
+.map-link:hover { color: #fff; }
+
+.shades { display: flex; gap: 4px; justify-content: center; align-items: center; }
+.swatch { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(232,184,98,.8); box-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+
+/* PAGE 5 MY 18S */
+#eighteens{background:linear-gradient(rgba(10,4,20,.6),rgba(5,2,12,.8)),url('5th page.jpg') center/cover no-repeat;}
+#eighteens .script { font-size: clamp(48px, 12vw, 80px); }
+
+/* LIGHTBOX for roles */
+#lb-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; padding: 20px; }
+#lb-overlay.show { opacity: 1; pointer-events: auto; }
+.lb-box { background: linear-gradient(135deg, rgba(253, 244, 227, 0.98), rgba(245, 223, 186, 0.96)); color: #4a2e21; padding: 30px; max-width: 400px; width: 100%; border-radius: 6px; box-shadow: 0 10px 50px rgba(0,0,0,0.9); text-align: center; position: relative; transform: translateY(20px); transition: 0.3s; border: 1px solid rgba(232, 184, 98, 0.4); }
+#lb-overlay.show .lb-box { transform: translateY(0); }
+.lb-close { position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #8a5a40; background: none; border: none; padding: 0; line-height: 1; }
+
+/* PAGE 6 GALLERY */
+#gallery{background:radial-gradient(ellipse at center, #1e0b35, #0a0412 85%); padding: 80px 15px 40px;}
+.lanterns-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.ltn { position: absolute; bottom: -50px; width: 12px; height: 16px; background: radial-gradient(circle at center, #fff3dc, #e8b862 60%, #a8501a); border-radius: 5px 5px 2px 2px; box-shadow: 0 0 10px rgba(232,184,98,0.8), 0 0 25px rgba(168,80,26,0.5); animation: float-up linear infinite; opacity: 0; }
+@keyframes float-up { 0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; } 15% { opacity: 0.6; } 50% { transform: translateY(-50vh) translateX(15px) scale(1); opacity: 0.6; } 85% { opacity: 0.6; } 100% { transform: translateY(-110vh) translateX(-15px) scale(0.8); opacity: 0; } }
+
+.gal { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 500px; margin: 0 auto; z-index: 2; position: relative; height: 100%;}
+.th { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-content: start;}
+.fr { padding: 0; border-radius: 6px; border: 1px solid rgba(232, 184, 98, 0.7); box-shadow: 0 0 15px rgba(232, 184, 98, 0.2), inset 0 0 10px rgba(232, 184, 98, 0.2); position: relative; overflow: hidden; transition: all 0.3s ease; cursor: pointer; background: #111; }
+.fr:hover { box-shadow: 0 0 25px rgba(232, 184, 98, 0.7), inset 0 0 15px rgba(232, 184, 98, 0.5); transform: translateY(-2px); border-color: #fff; }
+.fr::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 20px rgba(10, 5, 20, 0.8); pointer-events: none; border-radius: 6px; }
+.ph { width: 100%; height: 100%; min-height: 80px; background-size: cover; background-position: center; display: flex; align-items: flex-end; justify-content: center; transition: transform 0.5s ease; }
+.fr:hover .ph { transform: scale(1.05); }
+
+.big { flex: 1; min-height: 250px;}
+.big .ph { height: 100%; min-height: 100%; padding-bottom: 15px; background-position: center 15%; }
+.fr.big { animation: hero-glow 3s infinite alternate ease-in-out; }
+@keyframes hero-glow { 0% { box-shadow: 0 0 15px rgba(232, 184, 98, 0.3), inset 0 0 10px rgba(232, 184, 98, 0.2); border-color: rgba(232, 184, 98, 0.5); } 100% { box-shadow: 0 0 35px rgba(232, 184, 98, 0.7), inset 0 0 25px rgba(232, 184, 98, 0.5); border-color: rgba(255, 230, 160, 0.9); } }
+.big .script { position: relative; font-size: 28px; color: #fff; text-shadow: 0 2px 8px #000, 0 0 15px var(--gold); z-index: 2; pointer-events:none; }
+
+/* GALLERY LIGHTBOX */
+#gal-lb-overlay { position: fixed; inset: 0; background: rgba(5,2,12,.95); z-index: 300; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; padding: 15px; backdrop-filter: blur(10px); }
+#gal-lb-overlay.show { opacity: 1; pointer-events: auto; }
+#gal-lb-img { max-width: 100%; max-height: 100%; border-radius: 6px; box-shadow: 0 0 30px rgba(232, 184, 98, 0.4); object-fit: contain; transform: scale(0.95); transition: 0.3s; border: 1px solid rgba(232, 184, 98, 0.4); }
+#gal-lb-overlay.show #gal-lb-img { transform: scale(1); }
+.gal-lb-close { position: absolute; top: 15px; right: 20px; font-size: 36px; cursor: pointer; color: #e8b862; background: none; border: none; padding: 0; line-height: 1; text-shadow: 0 2px 8px #000; z-index: 301;}
+
+/* PAGE 7 RSVP */
+#rsvp { 
+ background:linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.7)),url('6th page.jpg') center/cover no-repeat;
+}
+.rsvp-wrapper {
+ margin-top: 5vh; 
+ display: flex; 
+ flex-direction: column; 
+ align-items: center; 
+ width: 100%; 
+ text-align: center;
+}
+.qr-code { width: 160px; height: 160px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.8); box-shadow: 0 10px 30px rgba(0,0,0,0.8); object-fit: cover; transition: transform 0.3s;}
+
+/* PAGE 8 FOOTER / OUTRO */
+#end { background:linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)),url('7th page.jpg') center/cover no-repeat; }
+#end .script { font-size: clamp(50px,12vw,90px); color:var(--cream); line-height:1.1; text-shadow: 0 3px 10px rgba(0,0,0,0.8); }
+#end svg.sun { width: 30px; fill:var(--gold); margin: 15px 0 8px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+
+/* Form inputs */
+input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; width: 100%;}
+
+/* ========================================================= */
+/* === MOBILE FIT: same layout as desktop, scaled to fit === */
+/* Mobile backgrounds COVER the whole page (no stretch, no    */
+/* bars, no sideways scroll). Use the --focus values below to */
+/* choose which part of each image stays in view:             */
+/*   0% = left edge, 50% = center, 100% = right edge          */
+/* ========================================================= */
+@media(max-width: 720px) {
+  :root{
+    --focus-cover: 50% 60%;   /* cover page: boat + lanterns */
+    --focus-home:  85% 50%;   /* page 2: big lamp on the right */
+    --focus-story: 50% 50%;   /* page 3: tower (adjust X% to move left/right) */
+    --focus-cele:  50% 50%;
+    --focus-18:    50% 50%;
+    --focus-rsvp:  50% 50%;
+    --focus-end:   50% 50%;
+  }
+  html, body { height: 100dvh; }
+
+  /* cover/intro gate (both doors share the same focus) */
+  .half::before {
+    background-size: 100% 100%, cover, 100% 100%;
+    background-position: center, var(--focus-cover), center;
+    background-repeat: no-repeat;
+  }
+
+  /* inner pages: layer 1 = dark overlay, layer 2 = image covering the page */
+  #home, #story, #cele, #eighteens, #rsvp, #end {
+    background-size: 100% 100%, cover;
+    background-repeat: no-repeat;
+    background-color: #0a0514;
+  }
+  #home      { background-position: center, var(--focus-home); }
+  #story     { background-position: center, var(--focus-story); }
+  #cele      { background-position: center, var(--focus-cele); }
+  #eighteens { background-position: center, var(--focus-18); }
+  #rsvp      { background-position: center, var(--focus-rsvp); }
+  #end       { background-position: center, var(--focus-end); }
+
+  /* page 3 card panel at 20% opacity */
+  #story .parch {
+    background: rgba(253, 244, 227, 0.2);
+    border-color: rgba(232, 184, 98, 0.5);
+    box-shadow: 0 0 25px rgba(255, 220, 150, 0.15), 0 10px 30px rgba(10, 5, 20, 0.35);
+  }
+
+  /* menu: readable, wraps to two rows; music button moves to bottom */
+  nav a { font-size: 8.5px; padding: 6px 8px; letter-spacing: .1em; }
+  #music { top: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+
+  /* every page: room for menu on top, content centered, scrolls only if needed */
+  .pg { padding: 118px 18px calc(30px + env(safe-area-inset-bottom, 0px)); }
+  .pg > * { margin-top: auto; margin-bottom: auto; }
+  #home .inner { height: auto; }
+
+  /* home */
+  .hero-info .it { font-size: 9px; padding: 0 8px; }
+  .hero-info small { font-size: 12px; }
+
+  /* celebration */
+  .inline-details-row { gap: 6px; }
+  .detail-col .ttl { font-size: 10px; }
+  #countdown { white-space: normal; font-size: 9px; }
+
+  /* gallery: 1 hero + 3x2 square thumbnails, no distortion */
+  #gallery { padding: 118px 15px calc(30px + env(safe-area-inset-bottom, 0px)); }
+  .gal { height: auto; }
+  .big { flex: none; height: 42dvh; min-height: 260px; }
+  .th { grid-template-columns: repeat(3, 1fr); }
+  .th .fr { aspect-ratio: 1 / 1; }
+
+  /* rsvp */
+  .rsvp-wrapper { margin-top: 0; }
+  .qr-code { width: 170px; height: 170px; }
+}
+
+/* Desktop styles applied when width is larger */
+@media(min-width: 768px) {
+ nav a { font-size: 10.5px; padding: 7px 13px; }
+ #top { padding: 0 56px; }
+ .hero .eyebrow { font-size: 13px; margin-bottom: 8px; }
+ .hero .name { font-size: clamp(120px, 18vw, 210px); }
+ .hero .debut { font-size: clamp(24px, 3vw, 38px); margin: 10px 0 0 0; }
+ .hero .flourish { width: 220px; margin: 24px auto 0; }
+ .hero-info { gap: 24px; margin: 36px auto 0; }
+ .hero-info .it { font-size: 12px; padding: 0 20px; }
+ .hero-info svg { width: 26px; height: 26px; margin: 0 auto 8px; }
+ .hero-info small { font-size: 17px; }
+ .parch { padding: clamp(32px, 6vw, 64px); max-width: 560px; width: auto;}
+ .parch .script { font-size: clamp(44px, 8vw, 68px); }
+ .parch p { font-size: 20px; margin: 16px 0; }
+ #cele .script { font-size: clamp(60px, 12vw, 120px); }
+ .inline-details-row { gap: 3vw; margin-top: 40px; }
+ .detail-col .ttl { font-size: clamp(14px, 1.8vw, 20px); }
+ .cele-dot { font-size: 26px; margin: 0 10px; }
+ #countdown { font-size: clamp(12px, 1.3vw, 15px); }
+ .map-link { font-size: clamp(14px, 1.5vw, 17px); }
+ .swatch { width: 22px; height: 22px; }
+ #eighteens .script { font-size: clamp(52px, 10vw, 86px); }
+ .lb-box { padding: 44px; max-width: 480px; }
+ .lb-close { right: 18px; top: 12px; font-size: 32px; }
+ .gal { flex-direction: row; display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px; max-width: 1060px; height: auto;}
+ .th { grid-template-columns: repeat(2, 1fr); gap: 16px;}
+ .ph { min-height: 120px; }
+ .big .ph { min-height: min(600px, 70vh); padding-bottom: 24px; }
+ .big .script { font-size: clamp(32px, 4vw, 44px); }
+ .rsvp-wrapper { margin-top: 10vh; }
+ .qr-code { width: 220px; height: 220px; }
+ #end .script { font-size: clamp(60px, 12vw, 110px); }
+ #end svg.sun { width: 40px; margin: 24px 0 12px; }
+}
+
+@media(max-height: 500px) {
+  .pg { padding-top: 70px; padding-bottom: 10px; }
+  .hero .name { font-size: 60px; }
+  .parch { padding: 15px; }
+  .parch .script { font-size: 28px; }
+  .gal { gap: 10px; }
+  .big .ph { min-height: 150px; }
+  .th { gap: 5px; }
+  .ph { min-height: 50px; }
+  .qr-code { width: 120px; height: 120px; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="19"/><g stroke="currentColor"><path d="M50 4v16M50 80v16M4 50h16M80 50h16M17 17l11 11M72 72l11 11M83 17L72 28M28 72L17 83" stroke="#a8501a" stroke-width="6" stroke-linecap="round" fill="none"/></g></symbol>
+ <symbol id="castle" viewBox="0 0 800 190"><path d="M0 190V150h90v-30l12-28 12 28v30h70v-60l16-50 16 50v60h60v-40h34v-26l14-34 14 34v26h40v-80l20-70 20 70v80h40V90l18-40 18 40v50h60v-26l12-30 12 30v36h60v-50l16-40 16 40v50h70v-30h60v50H0z"/></symbol>
+</svg>
+
+<!-- MENU -->
+<div id="top">
+ <nav>
+  <a href="#" id="cover">COVER</a>
+  <a href="#" data-i="0">HOME</a>
+  <a href="#" data-i="1">MY STORY</a>
+  <a href="#" data-i="2">THE CELEBRATION</a>
+  <a href="#" data-i="3">MY 18S</a>
+  <a href="#" data-i="4">GALLERY</a>
+  <a href="#" data-i="5">RSVP</a>
+  <a href="#" data-i="6">THANK YOU</a>
+ </nav>
+ <div id="hint">✦ Tap the menu to turn the page ✦</div>
+</div>
+<button id="music" class="off" aria-label="Toggle music" title="Music on/off">♫</button>
+
+<!-- COVER / INTRO GATE -->
+<div id="gate">
+ <div class="half l"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
+ <div class="half r"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
+ <div class="inner">
+  <div class="caps">A Debut Celebration</div>
+  <h1 class="script">Franz</h1>
+  <div class="orn">❀</div>
+  <div class="caps">A New Chapter Begins</div>
+  <button class="enter" id="enter">ENTER<br>⌄</button>
+ </div>
+</div>
+
+<div id="book">
+
+<!-- PAGE 2: HOME -->
+<section class="pg cur" id="home">
+ <div class="inner hero fade">
+  <div class="eyebrow">YOU’RE INVITED TO</div>
+  <h2 class="name">Franz’s</h2>
+  <div class="debut">18TH</div>
+  <svg class="flourish" viewBox="0 0 210 30" aria-hidden="true">
+   <g fill="none" stroke="#e6bf7a" stroke-width="1.1" stroke-linecap="round">
+    <path d="M4 15H68c8 0 10-6 18-6"/>
+    <path d="M206 15H142c-8 0-10-6-18-6"/>
+   </g>
+   <g fill="#e6bf7a" transform="translate(105 15)">
+    <ellipse cx="0" cy="-6.5" rx="3.2" ry="7"/>
+    <ellipse cx="0" cy="-6.5" rx="3.2" ry="7" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-6.5" rx="3.2" ry="7" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-6.5" rx="3.2" ry="7" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-6.5" rx="3.2" ry="7" transform="rotate(288)"/>
+    <circle r="2.1" fill="#7a4e16"/>
+   </g>
+  </svg>
+  
+  <div class="hero-info">
+   <div class="it">
+    <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2"/></svg>
+    <div>SEPT 22, 2028<small>6:00 PM</small></div>
+   </div>
+   <div class="it">
+    <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.2a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.4"/></svg>
+    <div>MANILA HOTEL<small>Manila, Philippines</small></div>
+   </div>
+   <div class="it">
+    <svg viewBox="0 0 24 24"><path d="M9 3l1.5 4L8.5 11 5 21h14l-3.5-10-2-4L15 3"/><path d="M10.5 7h3"/></svg>
+    <div>DRESS CODE<small>Shades of White</small></div>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<!-- PAGE 3: MY STORY -->
+<section class="pg" id="story">
+ <div class="parch fade">
+  <h2 class="script">A Little About Me</h2>
+  <p>I find inspiration in the pages of classic novels, the timeless melodies of jazz, and the creativity of makeup. I love discovering beauty in the little things and finding my own ways to express who I am.</p>
+  <p>As I turn eighteen, I’m stepping into a new chapter filled with possibilities, new experiences, and dreams waiting to take shape. I may not know exactly where life will lead me, but I’m excited to discover what lies ahead and become the person I aspire to be.</p>
+  <p><b>This is my story, my journey, and the beginning of something beautiful.</b></p>
+  <div class="orn">❀</div>
+ </div>
+</section>
+
+<!-- PAGE 4: THE CELEBRATION -->
+<section class="pg" id="cele">
+ <div class="inner fade" style="width:100%;">
+  <h2 class="script">The Celebration</h2>
+  
+  <div class="inline-details-row">
+   <div class="detail-col">
+    <div class="ttl">SEPT 22, 2028<br>6:00 PM</div>
+    <div id="countdown" class="sub-detail"></div>
+   </div>
+   <div class="cele-dot">✦</div>
+   <div class="detail-col">
+    <div class="ttl">MANILA HOTEL</div>
+    <a href="https://maps.google.com/?q=Manila+Hotel,+Philippines" target="_blank" class="map-link sub-detail">Get Directions</a>
+   </div>
+   <div class="cele-dot">✦</div>
+   <div class="detail-col">
+    <div class="ttl">DRESS CODE:<br>WHITE</div>
+    <div class="shades sub-detail">
+     <div class="swatch" style="background:#ffffff" title="Pure White"></div>
+     <div class="swatch" style="background:#fdfbf7" title="Ivory"></div>
+     <div class="swatch" style="background:#f5f5dc" title="Cream"></div>
+     <div class="swatch" style="background:#ede3d5" title="Champagne"></div>
+    </div>
+   </div>
+  </div>
+  
+ </div>
+</section>
+
+<!-- PAGE 5: MY 18S -->
+<section class="pg" id="eighteens">
+ <div class="inner fade" style="max-width: 540px; padding: 15px; text-align: center; margin: auto;">
+  <h2 class="script">My 18s</h2>
+  <div class="caps" style="margin-top:10px; font-weight:600; color:var(--gold); text-shadow:0 2px 6px #000; font-size: 14px;">Find Your Role</div>
+  
+  <p style="font-size: 18px; font-style: italic; margin: 15px 0 8px; color: #fff; text-shadow:0 2px 8px #000;">I have a little note for you...</p>
+  <p style="font-size: 14px; margin: 0 0 15px; color: #eee; text-shadow:0 2px 8px #000;">Enter your name below to read it and see your special part.</p>
+  
+  <div style="display:flex; flex-direction:column; gap:10px; max-width: 260px; margin: 0 auto;">
+   <input id="roleName" placeholder="e.g. Mavis Godani" style="text-align:center; background: rgba(255,255,255,0.9); border: 1px solid rgba(232,184,98,.6); color: #2a1650; font-weight: 500;">
+   <button class="btn" id="checkRole" style="width:100%; font-size: 12px; padding: 12px;">OPEN MY NOTE</button>
+  </div>
+  
+  <div class="orn">❀</div>
+ </div>
+</section>
+
+<!-- PAGE 6: GALLERY -->
+<section class="pg" id="gallery">
+ <div class="lanterns-bg" aria-hidden="true">
+   <div class="ltn" style="left:15%; animation-duration:14s; animation-delay:0s;"></div>
+   <div class="ltn" style="left:28%; animation-duration:18s; animation-delay:3s;"></div>
+   <div class="ltn" style="left:45%; animation-duration:12s; animation-delay:1s;"></div>
+   <div class="ltn" style="left:60%; animation-duration:16s; animation-delay:5s;"></div>
+   <div class="ltn" style="left:75%; animation-duration:20s; animation-delay:2s;"></div>
+   <div class="ltn" style="left:88%; animation-duration:15s; animation-delay:7s;"></div>
+ </div>
+
+ <div class="gal fade">
+  <div class="fr big">
+   <!-- HERO IMAGE: 1st.jpeg -->
+   <div class="ph ph-click" style="background-image: url('1st.jpeg');" title="Click to enlarge">
+    <span class="script">Dreams do come true.</span>
+   </div>
+  </div>
+  <div class="th">
+   <!-- THUMBNAILS: 2nd.jpeg to 7th.jpeg -->
+   <div class="fr"><div class="ph ph-click" style="background-image: url('2nd.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('3rd.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('4th.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('5th.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('6th.jpeg'); background-position: center 15%;" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('7th.jpeg');" title="Click to enlarge"></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- PAGE 7: RSVP -->
+<section class="pg" id="rsvp">
+ <div class="inner fade rsvp-wrapper">
+  <h2 class="script" style="color: #fff; text-shadow:0 3px 12px rgba(0,0,0,0.9); font-size: clamp(40px, 10vw, 100px); margin-bottom: 5px;">Kindly RSVP</h2>
+  <p style="font-size: clamp(14px, 2.5vw, 24px); font-style: italic; margin: 0 0 20px; color: #f6e9d0; text-shadow:0 2px 8px #000;">I can’t wait to celebrate with you!</p>
+  
+  <img src="sampleQR.png" alt="RSVP QR Code" class="qr-code">
+  <p style="font-size: clamp(12px, 1.8vw, 18px); font-weight: 600; margin-top: 15px; color: var(--gold); letter-spacing: 0.15em; text-shadow:0 2px 8px #000;">SCAN TO RSVP</p>
+  
+  <p class="gift script" style="color:var(--cream); text-shadow: 0 2px 10px #000; margin-top: 25px; font-size:clamp(20px, 4vw, 28px);">
+    <svg style="display:inline-block; vertical-align:middle; margin-right:8px; width:clamp(20px, 3vw, 34px); fill:var(--gold);"><use href="#sun"/></svg>
+    Your presence is the greatest gift.
+  </p>
+ </div>
+</section>
+
+<!-- PAGE 8: FOOTER / OUTRO -->
+<section class="pg" id="end">
+ <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center; max-width: 600px; margin: auto; padding: 15px;">
+  <h2 class="script">And so,<br>the adventure begins…</h2>
+  <svg class="sun"><use href="#sun"/></svg>
+  <div class="caps" style="font-size: clamp(12px, 1.8vw, 18px); font-weight: 600; color:var(--gold); letter-spacing:0.35em; text-shadow: 0 2px 8px #000;">Thank You</div>
+  <p style="font-style:italic; margin:10px 0 0; font-size: clamp(14px, 2.5vw, 21px); line-height: 1.5; color:#fff; text-shadow: 0 2px 8px #000;">
+    From the bottom of my heart, thank you for making my 18th birthday so magical. Your presence, love, and support mean the world to me. I will forever cherish the memories we created as I step into this beautiful new chapter.
+  </p>
+ </div>
+</section>
+
+</div>
+
+<!-- LIGHTBOX MODAL FOR ROLE CHECKER -->
+<div id="lb-overlay">
+  <div class="lb-box parch">
+    <button class="lb-close" id="lb-close-btn">&times;</button>
+    <div class="orn" style="margin-top:0;">❀</div>
+    <div id="lb-text" style="font-size: 16px; line-height: 1.5; color: #4a2e21; margin: 15px 0;"></div>
+    <div class="orn" style="margin-bottom:0;">❀</div>
+  </div>
+</div>
+
+<!-- LIGHTBOX MODAL FOR GALLERY IMAGES -->
+<div id="gal-lb-overlay">
+  <button class="gal-lb-close" id="gal-lb-close-btn">&times;</button>
+  <img id="gal-lb-img" src="" alt="Enlarged gallery view">
+</div>
+
+<script>
+var body=document.body,gate=document.getElementById('gate'),
+ pages=['home','story','cele','eighteens','gallery','rsvp','end'].map(function(id){return document.getElementById(id)}),
+ links=[].slice.call(document.querySelectorAll('nav a[data-i]')),
+ cur=0,busy=false,T=1000;
+
+/* image checks */
+function ld(src,fn){var i=new Image();i.onload=fn;i.src=src}
+ld('intro.png',function(){gate.classList.add('hasimg')});
+ld('2nd page.jpg',function(){pages[0].classList.add('hasimg')});
+ld('3rd page.jpg',function(){pages[1].classList.add('hasimg')});
+ld('4th page.jpg',function(){pages[2].classList.add('hasimg');});
+ld('5th page.jpg',function(){pages[3].classList.add('hasimg');});
+ld('6th page.jpg',function(){pages[5].classList.add('hasimg');});
+ld('7th page.jpg',function(){pages[6].classList.add('hasimg');});
+
+function mark(){links.forEach(function(a){a.classList.toggle('active',+a.getAttribute('data-i')===cur)})}
+
+/* show a page instantly */
+function show(n){
+ pages.forEach(function(p,k){
+  p.classList.remove('cur','in','top','under','turn-out','turn-in','turn-in-start');
+  if(k===n)p.classList.add('cur','in');
+ });
+ cur=n;mark();
+}
+
+/* turn the page */
+function go(n){
+ if(busy||n===cur||n<0||n>=pages.length)return;
+ busy=true;
+ var a=pages[cur],b=pages[n],fwd=n>cur;
+ b.classList.add('in');
+ if(fwd){
+  b.classList.add('under');a.classList.add('top');
+  void a.offsetWidth;a.classList.add('turn-out');
+ }else{
+  b.classList.add('turn-in-start');
+  void b.offsetWidth;
+  b.classList.remove('turn-in-start');b.classList.add('turn-in');
+ }
+ cur=n;mark();
+ setTimeout(function(){
+  a.classList.remove('cur','in','top','turn-out');
+  b.classList.remove('under','turn-in');b.classList.add('cur');
+  busy=false;
+ },T+30);
+}
+
+show(0);pages[0].classList.remove('in');
+
+links.forEach(function(a){a.onclick=function(e){e.preventDefault();body.classList.add('used');go(+a.getAttribute('data-i'))}});
+[].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){body.classList.add('used');go(+b.getAttribute('data-go'))}});
+
+/* Keyboard scroll support: Arrow Down/Right goes next, Arrow Up/Left goes prev */
+document.addEventListener('keydown',function(e){
+ if(!gate.classList.contains('done')||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+ if(e.key==='ArrowRight' || e.key==='ArrowDown')go(cur+1);
+ if(e.key==='ArrowLeft' || e.key==='ArrowUp')go(cur-1);
+});
+
+/* Countdown Logic for Page 4 */
+var countDownDate = new Date("Sep 22, 2028 18:00:00").getTime();
+setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var cd = document.getElementById("countdown");
+  if(cd) {
+    if (distance < 0) {
+      cd.innerHTML = "THE DAY HAS ARRIVED";
+    } else {
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      cd.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+  }
+}, 1000);
+
+/* soft ambient music */
+var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
+function note(){var o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;
+ o.type='sine';o.frequency.value=sc[(n++*3+(Math.random()*2|0))%sc.length];
+ g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05,t+.3);g.gain.exponentialRampToValueAtTime(.0005,t+2.6);
+ o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+2.7)}
+function music(v){
+ try{on=v;mb.classList.toggle('off',!v);
+  if(v){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();note();timer=setInterval(note,900)}
+  else{clearInterval(timer)}}catch(e){}}
+mb.onclick=function(){music(!on)};
+
+/* ENTER */
+document.getElementById('enter').onclick=function(){
+ if(!on)music(true);
+ show(0);
+ body.classList.add('opening');
+ setTimeout(function(){gate.classList.add('done')},1150)};
+
+/* COVER */
+document.getElementById('cover').onclick=function(e){
+ e.preventDefault();
+ if(busy)return;
+ gate.classList.remove('done');
+ void gate.offsetWidth;
+ body.classList.remove('opening')};
+
+/* ROLE CHECKER LIGHTBOX LOGIC */
+var lbOverlay = document.getElementById('lb-overlay');
+var lbText = document.getElementById('lb-text');
+var lbCloseBtn = document.getElementById('lb-close-btn');
+
+document.getElementById('checkRole').onclick = function() {
+ var nameInput = document.getElementById('roleName').value.trim().toLowerCase();
+ 
+ if(!nameInput){
+  alert("Please enter a name.");
+  return;
+ }
+ 
+ var msg = "";
+ if(nameInput === 'mavis godani') {
+  msg = 'Dear Mavis, thank you for your endless guidance and love. <br><br>You are part of the <b>18 Candles / Treasures</b>.';
+ } else if (nameInput === 'andrea asuncion') {
+  msg = 'Dear Andrea, your generosity means the world to me. <br><br>You are part of the <b>18 Blue Bills</b>.';
+ } else if (nameInput === 'drew asuncion') {
+  msg = 'Dear Drew, thank you for sharing this beautiful dance with me. <br><br>You are part of the <b>18 Roses</b>.';
+ } else {
+  var formattedName = nameInput.replace(/\b\w/g, function(l){ return l.toUpperCase(); });
+  msg = 'Dear ' + formattedName + ', I am so happy to share this memorable day with you. <br><br>You are an honored <b>Guest</b>.';
+ }
+ 
+ lbText.innerHTML = msg;
+ lbOverlay.classList.add('show');
+};
+
+lbCloseBtn.onclick = function() { lbOverlay.classList.remove('show'); };
+lbOverlay.onclick = function(e) { if(e.target === lbOverlay) lbOverlay.classList.remove('show'); };
+
+/* GALLERY LIGHTBOX LOGIC */
+var galLbOverlay = document.getElementById('gal-lb-overlay');
+var galLbImg = document.getElementById('gal-lb-img');
+var galLbClose = document.getElementById('gal-lb-close-btn');
+
+document.querySelectorAll('.ph-click').forEach(function(el) {
+ el.onclick = function() {
+  var bg = this.style.backgroundImage;
+  if(bg) {
+   var url = bg.slice(4, -1).replace(/["']/g, "");
+   galLbImg.src = url;
+   galLbOverlay.classList.add('show');
+  }
+ };
+});
+
+galLbClose.onclick = function() { galLbOverlay.classList.remove('show'); };
+galLbOverlay.onclick = function(e) { if(e.target === galLbOverlay) galLbOverlay.classList.remove('show'); };
+
+</script>
+</body>
+</html>
