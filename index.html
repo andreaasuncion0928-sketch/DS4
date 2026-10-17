@@ -31,7 +31,9 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:ce
 .fade{opacity:0;transform:translateY(22px);transition:1s}.in .fade,.fade.in{opacity:1;transform:none}
 
 /* 1 opening */
-#open{background:radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e)}
+/* Intro page uses intro.png (keep it in the same folder as this file). Gradient below is the fallback if the image is missing. */
+#open{background:linear-gradient(rgba(20,10,46,.25),rgba(20,10,46,.4)),url('intro.png') center/cover no-repeat,radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e)}
+#open.hasimg .fb{display:none}
 #open .script{font-size:clamp(80px,18vw,170px);line-height:1}
 .enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
 @keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
@@ -108,7 +110,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  <button id="music" class="off" aria-label="Toggle music" title="Music on/off">♫</button>
 </nav>
 
-<!-- 1 Opening -->
+<!-- 1 Opening (background image: intro.png) -->
 <section id="open">
  <div class="inner">
   <div class="caps">A Debut Celebration</div>
@@ -117,7 +119,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
   <div class="caps">A New Chapter Begins</div>
   <button class="enter" id="enter">ENTER<br>⌄</button>
  </div>
- <svg class="castle" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg>
+ <svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg>
 </section>
 
 <!-- 2 Welcome -->
@@ -216,6 +218,9 @@ for(var k=0;k<16;k++){var d=document.createElement('div');d.className='ln';
  d.style.cssText='left:'+Math.random()*100+'%;animation-duration:'+(16+Math.random()*16)+'s;animation-delay:-'+Math.random()*24+'s;transform:scale('+(.6+Math.random()*.9)+')';L.appendChild(d)}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.2});
 [].forEach.call(document.querySelectorAll('.fade'),function(n){io.observe(n)});
+
+/* hide the drawn castle once intro.png loads */
+var im=new Image();im.onload=function(){document.getElementById('open').classList.add('hasimg')};im.src='intro.png';
 
 /* soft ambient music (generated, no audio files) */
 var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
