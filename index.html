@@ -606,11 +606,16 @@ var on = false;
 var mb = document.getElementById('music');
 var bgMusic = new Audio('song.mp3');
 bgMusic.loop = true;
+var firstPlay = true;
 
 function music(v){
   on = v;
   mb.classList.toggle('off', !v);
   if(v){
+    if (firstPlay) {
+      bgMusic.currentTime = 10.0;
+      firstPlay = false;
+    }
     // Play the loaded song.mp3
     bgMusic.play().catch(function(e) {
       console.log("Audio playback was prevented by the browser:", e);
@@ -624,7 +629,7 @@ mb.onclick = function(){ music(!on) };
 
 /* ENTER */
 document.getElementById('enter').onclick=function(){
- if(!on) music(true); // This will now trigger song.mp3
+ if(!on) music(true); // This will trigger song.mp3 at 10.0s mark
  show(0);
  body.classList.add('opening');
  setTimeout(function(){gate.classList.add('done')},1150);
