@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Franz’s Debut – A New Chapter Begins</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Great+Vibes&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#160d2e;--purple:#3b2368;--gold:#e8b862;--cream:#f6e7c8;--parch:#f4e4c1;--ink:#5a3b6b;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -49,35 +49,50 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:ce
 .enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
 @keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
 
-/* 2 HERO: uses '2nd page.jpg' (same folder). Gradients are the fallback. */
-#home{padding-right:clamp(0px,9vw,140px);background:linear-gradient(rgba(20,10,46,.18),rgba(20,10,46,.3)),url('2nd page.jpg') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(255,170,60,.35),transparent 40%),linear-gradient(160deg,#1c0f3d,#3b2368 60%,#24123f);transform:scale(1.07);transition:transform 2.4s ease}
+/* 2 HERO: uses 'image_3efb2e.png' (same folder). Gradients are the fallback. */
+#home{padding-right:clamp(0px,15vw,220px);background:linear-gradient(rgba(20,10,46,.18),rgba(20,10,46,.3)),url('image_3efb2e.png') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(255,170,60,.35),transparent 40%),linear-gradient(160deg,#1c0f3d,#3b2368 60%,#24123f);transform:scale(1.07);transition:transform 2.4s ease}
 .opening #home{transform:none}
 #home.hasimg .bigl{display:none}
-/* soft blur only in a small oval behind the text (the big lamp on the right stays sharp) */
-#home .inner{padding:40px clamp(20px,4vw,56px)}
+/* localized blur specifically targeting the background elements behind the text area */
+#home .inner{padding:50px clamp(20px,5vw,70px); position: relative;}
 #home .inner::before{
- content:"";position:absolute;inset:-26px -10px;z-index:-1;
- background:radial-gradient(ellipse at center,rgba(16,7,38,.5) 0,rgba(16,7,38,.3) 55%,rgba(16,7,38,0) 100%);
- -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
- -webkit-mask-image:radial-gradient(ellipse at center,#000 50%,transparent 100%);
- mask-image:radial-gradient(ellipse at center,#000 50%,transparent 100%);
+  content: "";
+  position: absolute;
+  inset: -40px -20px;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(16, 7, 38, 0.4) 0, rgba(16, 7, 38, 0.1) 60%, transparent 100%);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 45%, transparent 90%);
+  mask-image: radial-gradient(ellipse at center, #000 45%, transparent 90%);
 }
-.hero{max-width:640px;text-shadow:0 1px 10px rgba(10,4,28,.8)}
-.hero .eyebrow{font:400 12px 'Cinzel',serif;letter-spacing:.34em;padding-left:.34em;color:#f1e2c8}
-.hero .name{font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(76px,11vw,116px);line-height:1;margin:10px 0 0;color:#ecc783;text-shadow:0 0 26px rgba(236,199,131,.3),0 2px 12px rgba(10,4,28,.85)}
-.hero .debut{font:400 clamp(20px,2.5vw,27px) 'Cinzel',serif;letter-spacing:.5em;padding-left:.5em;color:#f5e8d2;margin:2px 0 0}
-.hero .flourish{display:block;margin:16px auto 20px;width:150px;height:22px;stroke:#e6bf7a;fill:none;stroke-width:1.2;stroke-linecap:round}
-.hero .msg{font:400 clamp(18px,1.9vw,21px)/1.6 'Cormorant Garamond',serif;letter-spacing:.02em;color:#f0dfc6;max-width:400px;margin:0 auto}
-.hero-info{display:flex;justify-content:center;align-items:stretch;margin-top:30px}
-.hero-info .it{padding:2px clamp(16px,3vw,38px);border-left:1px solid rgba(230,191,122,.6);font:400 11px 'Cinzel',serif;letter-spacing:.17em;color:#f1e2c8;line-height:1.9}
+
+.hero{max-width:700px;text-shadow:0 1px 10px rgba(10,4,28,.8)}
+.hero .eyebrow{font:600 13px 'Cinzel',serif;letter-spacing:.28em;color:#f3e8d2}
+.hero .name{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(85px,13vw,130px);line-height:1;margin:15px 0 5px;color:#ecc783;text-shadow:0 0 30px rgba(236,199,131,.35),0 2px 14px rgba(10,4,28,.9)}
+.hero .debut{font:400 clamp(22px,3vw,30px) 'Cinzel',serif;letter-spacing:.6em;padding-left:.6em;color:#f3e8d2;margin:0}
+
+/* floral divider matching the reference */
+.hero .flourish{display:flex;align-items:center;justify-content:center;gap:12px;margin:24px 0 28px;color:#e6bf7a}
+.hero .flourish::before,.hero .flourish::after{content:"";width:80px;height:1px;background:#e6bf7a;opacity:.8}
+.hero .flourish svg{width:28px;height:28px;fill:currentColor}
+
+.hero .msg{font:400 clamp(19px,2.1vw,24px)/1.6 'Cormorant Garamond',serif;letter-spacing:.03em;color:#f0dfc6;max-width:480px;margin:0 auto}
+
+.hero-info{display:flex;justify-content:center;align-items:stretch;margin-top:40px}
+.hero-info .it{padding:4px clamp(20px,4vw,50px);border-left:1px solid rgba(230,191,122,.5);font:600 12px 'Cinzel',serif;letter-spacing:.15em;color:#f3e8d2;line-height:2}
 .hero-info .it:first-child{border-left:0}
-.hero-info svg{width:24px;height:24px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block;margin:0 auto 9px}
-.hero-info small{display:block;font:400 15px 'Cormorant Garamond',serif;letter-spacing:.05em;color:#f0dfc6}
-.chev{display:block;margin:26px auto 0;width:22px;color:#e6bf7a;animation:bob 2.4s ease-in-out infinite}
-.chev svg{width:22px;height:14px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.hero-info svg{width:28px;height:28px;stroke:#e6bf7a;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;margin:0 auto 12px}
+.hero-info small{display:block;font:400 16px 'Cormorant Garamond',serif;letter-spacing:.04em;color:#e8d5b8;margin-top:2px}
+
+.chev{display:block;margin:35px auto 0;width:24px;color:#e6bf7a;animation:bob 2.4s ease-in-out infinite}
+.chev svg{width:24px;height:15px;stroke:#e6bf7a;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* Fallback big lamp */
 .bigl{position:absolute;right:3vw;top:14%;width:clamp(110px,20vw,240px);aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:radial-gradient(circle at 50% 45%,#ffe2a0,#f2a640 70%,#b8641c);box-shadow:0 0 90px 30px rgba(255,170,60,.45);display:flex;align-items:center;justify-content:center;animation:bob 5s ease-in-out infinite}
 .bigl svg{width:62%;fill:#a8501a}
 @keyframes bob{50%{transform:translateY(-8px)}}
+
 /* 3 story */
 #story{background:linear-gradient(90deg,#4a3a7a,#8a5a8e 45%,#e6a07a);gap:5vw}
 .tower{width:min(260px,30vw);flex:none}.tower svg{width:100%}
@@ -116,14 +131,17 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 #end .script{font-size:clamp(40px,8vw,70px);color:var(--cream);line-height:1.2}
 #end svg.sun{width:34px;fill:var(--gold);margin:18px 0 6px}
 #end .castle{left:0;right:0;width:100%}
+@media(max-width:850px){
+ #home{padding-right:5vw;}
+ .bigl{display:none;}
+}
 @media(max-width:720px){
  nav{font-size:9px;gap:9px;padding-right:46px}
  #story,#rsvp{flex-direction:column}.tower{width:110px}
- .bigl{position:relative;right:auto;top:auto;margin:0 auto 22px;width:96px}
  #home{flex-direction:column;padding-right:5vw}
- #home .inner::before{inset:-20px -14px}
- .hero-info .it{padding:2px 10px;font-size:9px;letter-spacing:.12em}
- .hero-info small{font-size:13px}
+ #home .inner::before{inset:-20px -10px}
+ .hero-info .it{padding:2px 10px;font-size:10px;letter-spacing:.12em}
+ .hero-info small{font-size:14px}
  .gal{grid-template-columns:1fr}.th{grid-template-columns:repeat(4,1fr)}.big .ph{min-height:300px}
 }
 </style>
@@ -132,6 +150,27 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="19"/><g stroke="currentColor"><path d="M50 4v16M50 80v16M4 50h16M80 50h16M17 17l11 11M72 72l11 11M83 17L72 28M28 72L17 83" stroke="#a8501a" stroke-width="6" stroke-linecap="round" fill="none"/></g></symbol>
  <symbol id="castle" viewBox="0 0 800 190"><path d="M0 190V150h90v-30l12-28 12 28v30h70v-60l16-50 16 50v60h60v-40h34v-26l14-34 14 34v26h40v-80l20-70 20 70v80h40V90l18-40 18 40v50h60v-26l12-30 12 30v36h60v-50l16-40 16 40v50h70v-30h60v50H0z"/></symbol>
+ <!-- Custom Icons -->
+ <symbol id="icon-calendar" viewBox="0 0 24 24">
+   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+   <line x1="16" y1="2" x2="16" y2="6"/>
+   <line x1="8" y1="2" x2="8" y2="6"/>
+   <line x1="3" y1="10" x2="21" y2="10"/>
+   <circle cx="8" cy="14" r="1"/>
+   <circle cx="12" cy="14" r="1"/>
+   <circle cx="16" cy="14" r="1"/>
+   <circle cx="8" cy="18" r="1"/>
+   <circle cx="12" cy="18" r="1"/>
+   <circle cx="16" cy="18" r="1"/>
+ </symbol>
+ <symbol id="icon-pin" viewBox="0 0 24 24">
+   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+   <circle cx="12" cy="10" r="3"/>
+ </symbol>
+ <symbol id="icon-dress" viewBox="0 0 24 24">
+   <path d="M9 3h6l1 4 3 2v3h-2l-2 9H9l-2-9H5V9l3-2 1-4z"/>
+   <line x1="9" y1="9" x2="15" y2="9"/>
+ </symbol>
 </svg>
 <div id="lanterns"></div>
 
@@ -153,30 +192,27 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </div>
 
-<!-- 2 Welcome (2nd page.jpg) -->
+<!-- 2 Welcome (image_3efb2e.png) -->
 <section id="home">
  <div class="inner hero fade">
   <div class="eyebrow">YOU’RE INVITED TO</div>
   <h2 class="name">Franz’s</h2>
   <div class="debut">DEBUT</div>
-  <svg class="flourish" viewBox="0 0 160 22" aria-hidden="true">
-   <path d="M4 11h54c7 0 9-6 16-6M156 11h-54c-7 0-9-6-16-6"/>
-   <circle cx="80" cy="11" r="2.2"/>
-   <ellipse cx="80" cy="4.5" rx="2.2" ry="3.6"/><ellipse cx="80" cy="17.5" rx="2.2" ry="3.6"/>
-   <ellipse cx="73.5" cy="11" rx="3.6" ry="2.2"/><ellipse cx="86.5" cy="11" rx="3.6" ry="2.2"/>
-  </svg>
+  <div class="flourish">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C9 6 6 8 6 12c0 2 1.5 4 4 4 1.5 0 2-1 2-2 0-2-3-4-3-6 2 2 4 4 7 4 1 0 2-.5 2-2 0-3-3-5-6-8z"/><path d="M12 22c3-4 6-6 6-10 0-2-1.5-4-4-4-1.5 0-2 1-2 2 0 2 3 4 3 6-2-2-4-4-7-4-1 0-2 .5-2 2 0 3 3 5 6 8z"/></svg>
+  </div>
   <p class="msg">A dream, a journey, a new chapter…<br>and I’d be honored to have you<br>with me as I step into it.</p>
   <div class="hero-info">
    <div class="it">
-    <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2"/></svg>
+    <svg><use href="#icon-calendar"/></svg>
     SEPT 22, 2028<small>6:00 PM</small>
    </div>
    <div class="it">
-    <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.2a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.4"/></svg>
+    <svg><use href="#icon-pin"/></svg>
     MANILA HOTEL<small>Manila, Philippines</small>
    </div>
    <div class="it">
-    <svg viewBox="0 0 24 24"><path d="M9 3l1.5 4L8.5 11 5 21h14l-3.5-10-2-4L15 3"/><path d="M10.5 7h3"/></svg>
+    <svg><use href="#icon-dress"/></svg>
     DRESS CODE<small>White</small>
    </div>
   </div>
@@ -269,7 +305,7 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 var gate=document.getElementById('gate'),home=document.getElementById('home');
 function ld(src,fn){var i=new Image();i.onload=fn;i.src=src}
 ld('intro.png',function(){gate.classList.add('hasimg')});
-ld('2nd page.jpg',function(){home.classList.add('hasimg')});
+ld('image_3efb2e.png',function(){home.classList.add('hasimg')});
 
 /* soft ambient music (generated, no audio files) */
 var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
