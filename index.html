@@ -187,8 +187,6 @@ body.used #hint{display:none}
 /* PAGE 8 LIVE PHOTO */
 #livephoto { background:linear-gradient(rgba(10,4,20,.7),rgba(5,2,12,.9)),url('7th page.jpg') center/cover no-repeat; }
 #livephoto .script { font-size: clamp(40px,10vw,70px); color:var(--cream); line-height:1.2; text-shadow: 0 3px 15px rgba(0,0,0,0.9); margin-bottom: 20px; }
-.live-stream { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; width: 100%; max-width: 600px; padding: 10px; }
-.live-item { aspect-ratio: 1/1; background: rgba(255,255,255,0.1); border: 1px dashed rgba(232,184,98,0.5); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: rgba(232,184,98,0.5); font-size: 24px; }
 
 /* Form inputs */
 input, select, textarea { font-size: 14px; padding: 12px; border-radius:4px; width: 100%;}
@@ -498,8 +496,10 @@ input, select, textarea { font-size: 14px; padding: 12px; border-radius:4px; wid
   <h2 class="script">Live Photo Stream</h2>
   
   <p style="font-style:italic; margin: 30px 0; font-size: clamp(18px, 3vw, 28px); line-height: 1.5; color:#fff; text-shadow: 0 2px 8px #000;">
-    Live photo moments shared by our guests.<br>Photos uploaded through the QR code will appear here live.
+    Live photo moments shared by our guests.<br>Please upload through the QR code below, and they will appear here live.
   </p>
+
+  <img src="demoQR.png" alt="Live Photo Upload QR Code" class="qr-code" style="margin-top: 10px;">
  </div>
 </section>
 
@@ -601,24 +601,34 @@ setInterval(function() {
   }
 }, 1000);
 
-/* soft ambient music */
-var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
-function note(){var o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;
- o.type='sine';o.frequency.value=sc[(n++*3+(Math.random()*2|0))%sc.length];
- g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05,t+.3);g.gain.exponentialRampToValueAtTime(.0005,t+2.6);
- o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+2.7)}
+/* Audio playback logic */
+var on = false;
+var mb = document.getElementById('music');
+var bgMusic = new Audio('song.mp3');
+bgMusic.loop = true;
+
 function music(v){
- try{on=v;mb.classList.toggle('off',!v);
-  if(v){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();note();timer=setInterval(note,900)}
-  else{clearInterval(timer)}}catch(e){}}
-mb.onclick=function(){music(!on)};
+  on = v;
+  mb.classList.toggle('off', !v);
+  if(v){
+    // Play the loaded song.mp3
+    bgMusic.play().catch(function(e) {
+      console.log("Audio playback was prevented by the browser:", e);
+    });
+  } else {
+    bgMusic.pause();
+  }
+}
+
+mb.onclick = function(){ music(!on) };
 
 /* ENTER */
 document.getElementById('enter').onclick=function(){
- if(!on)music(true);
+ if(!on) music(true); // This will now trigger song.mp3
  show(0);
  body.classList.add('opening');
- setTimeout(function(){gate.classList.add('done')},1150)};
+ setTimeout(function(){gate.classList.add('done')},1150);
+};
 
 /* COVER */
 document.getElementById('cover').onclick=function(e){
