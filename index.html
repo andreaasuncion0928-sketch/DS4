@@ -69,36 +69,48 @@ body.used #hint{display:none}
 .enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
 @keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
 
-/* PAGE 2 HOME (Cinematic / Darker) */
-#home{padding-right:clamp(0px,9vw,140px);
- background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('2nd page.jpg') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(150,90,30,.25),transparent 50%),linear-gradient(160deg,#0a0514,#1a0e2e 60%,#0a0514)}
-#home.hasimg .bigl{display:none}
-#home .inner{padding:40px clamp(20px,4vw,56px); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;}
-#home .inner::before{
- content:"";position:absolute;inset:-40px -20px;z-index:-1;
- background:radial-gradient(ellipse at center,rgba(0,0,0,.6) 0,rgba(0,0,0,.3) 60%,transparent 100%);
- -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
- -webkit-mask-image:radial-gradient(ellipse at center,#000 50%,transparent 100%);
- mask-image:radial-gradient(ellipse at center,#000 50%,transparent 100%);
+/* PAGE 2 HOME (Cinematic, Left-Aligned, Horizontal Details) */
+#home{
+ justify-content: flex-start;
+ background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('2nd page.jpg') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(150,90,30,.25),transparent 50%),linear-gradient(160deg,#0a0514,#1a0e2e 60%,#0a0514)
 }
-.hero{max-width:700px;text-shadow:0 2px 15px rgba(0,0,0,.9); text-align:center;}
-.hero .eyebrow{font:400 13px 'Cinzel',serif;letter-spacing:.34em;padding-left:.34em;color:#e8d5b5}
-.hero .name{font-family:'Allura','Great Vibes',cursive;font-weight:400;font-size:clamp(104px,16vw,172px);line-height:.92;margin:8px 0 0;color:#f0cf91;-webkit-text-stroke:.6px #d1a85c;text-shadow:0 0 40px rgba(236,199,131,.2),0 4px 18px rgba(0,0,0,.9)}
-.hero .debut{font:400 clamp(22px,2.8vw,31px) 'Cinzel',serif;letter-spacing:.5em;padding-left:.5em;color:#e3d4b8;margin:0}
-.hero .flourish{display:block;margin:18px auto 0;width:220px;height:32px;overflow:visible; filter:drop-shadow(0 2px 4px rgba(0,0,0,.8));}
-.chev{display:block;margin:40px auto 0;background:none;border:0;padding:6px;cursor:pointer;animation:bob 2.4s ease-in-out infinite}
+#home.hasimg .bigl{display:none}
+#home .inner{padding:40px 0 40px 5vw; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; height:100%; max-width:65vw;}
+#home .inner::before{
+ content:"";position:absolute;inset:-60px -30px;z-index:-1;
+ background:radial-gradient(ellipse at left,rgba(0,0,0,.6) 0,rgba(0,0,0,.2) 65%,transparent 100%);
+ -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+ -webkit-mask-image:radial-gradient(ellipse at left,#000 50%,transparent 100%);
+ mask-image:radial-gradient(ellipse at left,#000 50%,transparent 100%);
+}
+.hero{width:100%;text-shadow:0 2px 15px rgba(0,0,0,.9); text-align:left;}
+.hero .eyebrow{font:400 13px 'Cinzel',serif;letter-spacing:.34em;color:#e8d5b5; margin-left:8px;}
+.hero .name{font-family:'Allura','Great Vibes',cursive;font-weight:400;font-size:clamp(120px,18vw,210px);letter-spacing:0.04em;line-height:.92;margin:8px 0 0 -10px;color:#f0cf91;-webkit-text-stroke:.8px #d1a85c;text-shadow:0 0 40px rgba(236,199,131,.2),0 4px 18px rgba(0,0,0,.9)}
+.hero .debut{font:400 clamp(24px,3vw,38px) 'Cinzel',serif;letter-spacing:.5em;padding-left:.1em;color:#e3d4b8;margin:10px 0 0 10px;}
+.hero .flourish{display:block;margin:24px 0 0 10px;width:220px;height:32px;overflow:visible; filter:drop-shadow(0 2px 4px rgba(0,0,0,.8));}
+
+.hero-info{display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; gap:24px; margin:36px 0 0 10px;}
+.hero-info .it{border-left:1px solid rgba(230,191,122,.6); padding-left:20px; font:600 12px 'Cinzel',serif;letter-spacing:.15em;color:#f6e9d0;line-height:1.8;}
+.hero-info .it:first-child{border-left:0; padding-left:0;}
+.hero-info svg{width:26px;height:26px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:middle;margin-right:8px;}
+.hero-info small{display:block;font:400 17px 'Cormorant Garamond',serif;letter-spacing:.05em;color:#f3e3c8; margin-top:2px;}
+
+.chev{display:block;margin:40px 0 0 10px;background:none;border:0;padding:6px;cursor:pointer;animation:bob 2.4s ease-in-out infinite}
 .chev svg{width:22px;height:14px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block}
-.bigl{position:absolute;right:3vw;top:20%;width:clamp(110px,20vw,240px);aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:radial-gradient(circle at 50% 45%,#ffe2a0,#f2a640 70%,#b8641c);box-shadow:0 0 90px 30px rgba(255,170,60,.45);display:flex;align-items:center;justify-content:center;animation:bob 5s ease-in-out infinite}
+.bigl{position:absolute;right:3vw;top:15%;width:clamp(140px,24vw,280px);aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:radial-gradient(circle at 50% 45%,#ffe2a0,#f2a640 70%,#b8641c);box-shadow:0 0 120px 40px rgba(255,170,60,.45);display:flex;align-items:center;justify-content:center;animation:bob 5s ease-in-out infinite}
 .bigl svg{width:62%;fill:#a8501a}
 @keyframes bob{50%{transform:translateY(-8px)}}
 
-/* PAGE 3 MY STORY */
-#story{background:url('3rd page.jpg') center/cover no-repeat,linear-gradient(90deg,#4a3a7a,#8a5a8e 45%,#e6a07a);gap:5vw}
-#story.hasimg{justify-content:flex-end;padding-right:clamp(20px,8vw,120px)}
-#story.hasimg .tower{display:none}
-.tower{width:min(260px,30vw);flex:none}.tower svg{width:100%}
+/* PAGE 3 MY STORY (Cinematic Overlay & Layout reversed) */
+#story{
+ justify-content:space-between; 
+ background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('3rd page.jpg') center/cover no-repeat;
+ gap:4vw;
+}
+.tower{width:min(280px,32vw);flex:none; filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));}
+.tower svg{width:100%}
 
-/* PARCHMENT STYLE (used for Story and Details) */
+/* PARCHMENT STYLE */
 .parch {
  background: linear-gradient(135deg, rgba(253, 244, 227, 0.95), rgba(245, 223, 186, 0.9));
  color: #4a2e21;
@@ -110,7 +122,7 @@ body.used #hint{display:none}
  position: relative;
  -webkit-backdrop-filter: blur(4px);
  backdrop-filter: blur(4px);
- margin: auto;
+ margin: 0;
 }
 .parch::before {
  content: ""; position: absolute; inset: 4px;
@@ -124,14 +136,16 @@ body.used #hint{display:none}
 .parch .orn { color: #8a5a40; }
 .parch .orn::before, .parch .orn::after { background: #8a5a40; opacity: 0.5; }
 
-/* PAGE 4 THE CELEBRATION (Details & Traditions) */
+/* PAGE 4 THE CELEBRATION (Details Inline) */
 #cele{background:linear-gradient(rgba(15,8,25,.65),rgba(10,5,20,.85)),url('4th page.jpg') center/cover no-repeat,linear-gradient(#2a1650,#1a0d36)}
-.details-list { display: flex; flex-direction: column; gap: 24px; margin: 24px 0; align-items: center; }
-.details-list .it { font: 600 13px 'Cinzel',serif; letter-spacing: .15em; color: #6b3e34; text-align: center; }
-.details-list svg { width: 34px; height: 34px; stroke: #8a5a40; fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; display: block; margin: 0 auto 6px; }
-.details-list small { display: block; font: 400 19px 'Cormorant Garamond',serif; letter-spacing: .02em; color: #4a2e21; margin-top: 4px; line-height: 1.3; }
+.inline-details { font: 400 16px 'Cinzel', serif; letter-spacing: 0.15em; color: #f6e9d0; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: center; margin-top: 30px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+.inline-details span.dot { color: var(--gold); font-size: 20px; }
 
-/* PAGE 5 GALLERY */
+/* PAGE 5 MY 18S */
+#eighteens{background:linear-gradient(rgba(10,4,20,.7),rgba(5,2,12,.85)),url('4th page.jpg') center/cover no-repeat;}
+#eighteens .parch { margin: auto; text-align: center; }
+
+/* PAGE 6 GALLERY */
 #gallery{background:#1a0d36}
 .gal{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;max-width:860px;width:100%}
 .fr{border:2px solid var(--gold);padding:5px;border-radius:3px}
@@ -141,9 +155,9 @@ body.used #hint{display:none}
 .big .script{position:relative;font-size:32px;color:#fff;padding:14px;text-shadow:0 2px 8px #0006}
 .th{display:grid;gap:12px}
 
-/* PAGE 6 RSVP */
+/* PAGE 7 RSVP */
 #rsvp{background:linear-gradient(120deg,#3b2368,#9a5a8a 55%,#f0a36a);gap:5vw;flex-wrap:wrap}
-.f{display:block;text-align:left}
+.f{display:block;text-align:left; margin: auto;}
 label{display:block;font:600 11px 'Cinzel',serif;letter-spacing:.14em;margin:12px 0 4px}
 input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-radius:4px;background:#fbf1da;color:var(--ink);font:inherit}
 .parch.f .script{color: var(--ink);}
@@ -155,7 +169,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 #ty{text-align:center;margin-top:12px;color:var(--ink);font-style:italic}
 #rsvp .chev{position:absolute;left:0;right:0;bottom:14px;margin:0 auto;width:34px}
 
-/* PAGE 7 FOOTER */
+/* PAGE 8 FOOTER */
 #end{background:linear-gradient(#24123f,#8d3f7a 70%,#e9843f)}
 #end .script{font-size:clamp(40px,8vw,70px);color:var(--cream);line-height:1.2}
 #end svg.sun{width:34px;fill:var(--gold);margin:18px 0 6px}
@@ -163,8 +177,13 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 
 @media(max-height:700px){
  .pg{padding-top:84px;padding-bottom:20px}
- .hero .name{font-size:clamp(70px,11vw,112px)}
- .hero .flourish{margin:8px auto 0}
+ .hero .name{font-size:clamp(90px,14vw,160px)}
+ .hero .flourish{margin:16px 0 0 10px}
+}
+@media(max-width:850px){
+ #story { flex-direction: column-reverse; justify-content: center; text-align: center; }
+ .tower { width: 140px; margin: 0 auto; }
+ .parch { margin: 0 auto; }
 }
 @media(max-width:720px){
  #top{padding:0 50px 0 8px}
@@ -173,11 +192,18 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  #hint{font-size:13px}
  .pg{padding-top:112px}
  #story,#rsvp{flex-direction:column}.tower{width:110px}
- #story.hasimg{justify-content:center;padding-right:5vw}
- .bigl{position:relative;right:auto;top:auto;margin:0 auto 22px;width:96px}
- #home{flex-direction:column;padding-right:5vw}
- #home .inner::before{inset:-20px -14px}
- .hero .name{font-size:clamp(88px,26vw,130px)}
+ .bigl{position:relative;right:auto;top:auto;margin:0 auto 22px;width:120px}
+ #home{flex-direction:column; justify-content:center; padding-right:0;}
+ #home .inner{padding:20px 5vw; max-width:100%; align-items:center; text-align:center;}
+ #home .inner::before{inset:-20px -14px; background:radial-gradient(ellipse at center,rgba(0,0,0,.6) 0,rgba(0,0,0,.2) 65%,transparent 100%); -webkit-mask-image:none; mask-image:none;}
+ .hero { text-align:center; }
+ .hero .name{font-size:clamp(100px,26vw,150px); margin:8px 0 0 0; text-align:center;}
+ .hero .debut { margin: 10px 0 0 0; padding:0; }
+ .hero .flourish { margin: 16px auto 0; }
+ .hero-info { justify-content:center; margin: 24px 0 0 0; }
+ .chev { margin: 24px auto 0; }
+ .inline-details { flex-direction: column; gap: 10px; }
+ .inline-details span.dot { display: none; }
  .gal{grid-template-columns:1fr}.th{grid-template-columns:repeat(4,1fr)}.big .ph{min-height:260px}
 }
 </style>
@@ -195,14 +221,15 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
   <a href="#" data-i="0">HOME</a>
   <a href="#" data-i="1">MY STORY</a>
   <a href="#" data-i="2">THE CELEBRATION</a>
-  <a href="#" data-i="3">GALLERY</a>
-  <a href="#" data-i="4">RSVP</a>
+  <a href="#" data-i="3">MY 18S</a>
+  <a href="#" data-i="4">GALLERY</a>
+  <a href="#" data-i="5">RSVP</a>
  </nav>
  <div id="hint">✦ Tap the menu to turn the page ✦</div>
 </div>
 <button id="music" class="off" aria-label="Toggle music" title="Music on/off">♫</button>
 
-<!-- COVER / INTRO GATE (intro.png) -->
+<!-- COVER / INTRO GATE -->
 <div id="gate">
  <div class="half l"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
  <div class="half r"><svg class="castle fb" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg></div>
@@ -217,7 +244,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 
 <div id="book">
 
-<!-- PAGE 2: HOME (2nd page.jpg - cinematic) -->
+<!-- PAGE 2: HOME (2nd page.jpg - cinematic left layout) -->
 <section class="pg cur" id="home">
  <div class="inner hero fade">
   <div class="eyebrow">YOU’RE INVITED TO</div>
@@ -237,6 +264,22 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
     <circle r="2.1" fill="#7a4e16"/>
    </g>
   </svg>
+  
+  <div class="hero-info">
+   <div class="it">
+    <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2"/></svg>
+    <div>SEPT 22, 2028<small>6:00 PM</small></div>
+   </div>
+   <div class="it">
+    <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.2a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.4"/></svg>
+    <div>MANILA HOTEL<small>Manila, Philippines</small></div>
+   </div>
+   <div class="it">
+    <svg viewBox="0 0 24 24"><path d="M9 3l1.5 4L8.5 11 5 21h14l-3.5-10-2-4L15 3"/><path d="M10.5 7h3"/></svg>
+    <div>DRESS CODE: WHITE<small>Formal Attire</small></div>
+   </div>
+  </div>
+
   <button class="chev" data-go="1" aria-label="Next page: My Story"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
  </div>
  <div class="bigl"><svg><use href="#sun"/></svg></div>
@@ -258,26 +301,23 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 
 <!-- PAGE 4: THE CELEBRATION (4th page.jpg) -->
 <section class="pg" id="cele">
- <div class="parch fade" style="max-width: 500px; padding: clamp(24px, 5vw, 44px);">
-  <h2 class="script">The Details</h2>
+ <div class="inner fade" style="width:100%;">
+  <h2 class="script" style="font-size:clamp(60px, 12vw, 120px);">The Celebration</h2>
   
-  <div class="details-list">
-   <div class="it">
-    <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2"/></svg>
-    SEPT 22, 2028<small>6:00 PM</small>
-   </div>
-   <div class="it">
-    <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.2a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.4"/></svg>
-    MANILA HOTEL<small>Manila, Philippines<br><a href="#" style="font-size:14px; color:#8a5a40; text-decoration:underline;">View Directions</a></small>
-   </div>
-   <div class="it">
-    <svg viewBox="0 0 24 24"><path d="M9 3l1.5 4L8.5 11 5 21h14l-3.5-10-2-4L15 3"/><path d="M10.5 7h3"/></svg>
-    DRESS CODE: WHITE<small>Strictly Formal Attire</small>
-   </div>
+  <div class="inline-details">
+   <span>SEPT 22, 2028 | 6:00 PM</span>
+   <span class="dot">✦</span>
+   <span>MANILA HOTEL</span>
+   <span class="dot">✦</span>
+   <span>DRESS CODE: WHITE (FORMAL)</span>
   </div>
+ </div>
+</section>
 
-  <div class="orn">❀</div>
-  
+<!-- PAGE 5: MY 18S (Find Your Role) -->
+<section class="pg" id="eighteens">
+ <div class="parch fade" style="max-width: 500px; padding: clamp(24px, 5vw, 44px);">
+  <h2 class="script">My 18s</h2>
   <div class="caps" style="margin-top:14px; font-weight:600; color:#6b3e34;">Find Your Role</div>
   <p style="font-size: 16px; margin: 8px 0;">Enter your name to see your part in the 18 Traditions.</p>
   
@@ -287,10 +327,11 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
   </div>
   
   <div id="roleResult" style="margin-top: 14px; font-style: italic; min-height: 24px; font-size: 18px; color: #4a2e21;"></div>
+  <div class="orn">❀</div>
  </div>
 </section>
 
-<!-- PAGE 5: GALLERY -->
+<!-- PAGE 6: GALLERY -->
 <section class="pg" id="gallery">
  <div class="gal fade">
   <div class="fr big"><div class="ph">
@@ -305,7 +346,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </section>
 
-<!-- PAGE 6: RSVP -->
+<!-- PAGE 7: RSVP -->
 <section class="pg" id="rsvp">
  <div class="parch fade f">
   <h2 class="script">Kindly RSVP</h2>
@@ -318,10 +359,10 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
   <div id="ty" aria-live="polite"></div>
  </div>
  <p class="gift script fade" style="color:var(--cream)"><svg><use href="#sun"/></svg>Your presence is the greatest gift of all.</p>
- <button class="chev" data-go="5" aria-label="Next page"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
+ <button class="chev" data-go="6" aria-label="Next page"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
 </section>
 
-<!-- PAGE 7: FOOTER -->
+<!-- PAGE 8: FOOTER -->
 <section class="pg" id="end">
  <div class="inner fade">
   <h2 class="script">And so,<br>the adventure begins…</h2>
@@ -336,7 +377,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 
 <script>
 var body=document.body,gate=document.getElementById('gate'),
- pages=['home','story','cele','gallery','rsvp','end'].map(function(id){return document.getElementById(id)}),
+ pages=['home','story','cele','eighteens','gallery','rsvp','end'].map(function(id){return document.getElementById(id)}),
  links=[].slice.call(document.querySelectorAll('nav a[data-i]')),
  cur=0,busy=false,T=1000;
 
@@ -345,7 +386,7 @@ function ld(src,fn){var i=new Image();i.onload=fn;i.src=src}
 ld('intro.png',function(){gate.classList.add('hasimg')});
 ld('2nd page.jpg',function(){pages[0].classList.add('hasimg')});
 ld('3rd page.jpg',function(){pages[1].classList.add('hasimg')});
-ld('4th page.jpg',function(){pages[2].classList.add('hasimg')});
+ld('4th page.jpg',function(){pages[2].classList.add('hasimg'); pages[3].classList.add('hasimg');});
 
 function mark(){links.forEach(function(a){a.classList.toggle('active',+a.getAttribute('data-i')===cur)})}
 
