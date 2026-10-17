@@ -14,10 +14,10 @@ html,body{height:100%;margin:0;overflow:hidden}
 body{background:var(--bg);color:var(--cream);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px}
 
 /* ===== MENU ===== */
-#top{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:0;right:0;z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 10px;pointer-events:none}
+#top{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:0;right:0;z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 clamp(10px, 4vw, 56px);pointer-events:none}
 nav{pointer-events:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,10,46,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(232,184,98,.65);box-shadow:0 0 14px rgba(232,184,98,.28),0 6px 20px rgba(0,0,0,.35);animation:glow 2.8s ease-in-out infinite}
 @keyframes glow{50%{box-shadow:0 0 24px rgba(232,184,98,.6),0 6px 20px rgba(0,0,0,.35)}}
-nav a{font:600 10px 'Cinzel',serif;letter-spacing:.14em;color:#fff3dc;text-decoration:none;padding:6px 10px;border-radius:999px;white-space:nowrap;transition:.25s}
+nav a{font:600 clamp(6px, 1vw, 10.5px) 'Cinzel',serif;letter-spacing:.14em;color:#fff3dc;text-decoration:none;padding:clamp(4px, 0.8vw, 7px) clamp(6px, 1.2vw, 13px);border-radius:999px;white-space:nowrap;transition:.25s}
 nav a:hover{background:rgba(232,184,98,.22);color:var(--gold)}
 nav a.active{background:var(--gold);color:#2a1650;box-shadow:0 0 12px rgba(232,184,98,.65)}
 body.used nav{animation:none}
@@ -46,7 +46,7 @@ body.used #hint{display:none}
 .orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);margin:14px 0}
 .orn::before,.orn::after{content:"";width:60px;height:1px;background:var(--gold)}
 .castle{position:absolute;bottom:0;height:auto;fill:#0f0822;opacity:.95}
-.btn{font:600 11px 'Cinzel',serif;letter-spacing:.22em;color:var(--cream);background:var(--purple);border:1px solid var(--gold);border-radius:999px;padding:12px 30px;cursor:pointer;display:inline-block; transition:.25s;}
+.btn{font:600 clamp(8px, 1.2vw, 11px) 'Cinzel',serif;letter-spacing:.22em;color:var(--cream);background:var(--purple);border:1px solid var(--gold);border-radius:999px;padding:clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 30px);cursor:pointer;display:inline-block; transition:.25s;}
 .btn:hover{background:var(--gold);color:#2a1650}
 .fade{opacity:0;transform:translateY(22px);transition:1s}
 .pg.in .fade{opacity:1;transform:none}
@@ -71,7 +71,7 @@ body.used #hint{display:none}
 
 /* PAGE 2 HOME */
 #home{
- background:linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)),url('2nd page.jpg');
+ background:linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)),url('2nd page.jpg') center/cover no-repeat;
 }
 #home .inner{display:flex; flex-direction:column; align-items:center; text-align:center; height:100%; justify-content:center;}
 .hero{width:100%;text-shadow:0 2px 15px rgba(0,0,0,.9); text-align:center;}
@@ -92,7 +92,7 @@ body.used #hint{display:none}
 
 /* PAGE 3 MY STORY */
 #story{
- background:linear-gradient(rgba(10,4,20,.3),rgba(5,2,12,.6)),url('3rd page.jpg');
+ background:linear-gradient(rgba(10,4,20,.3),rgba(5,2,12,.6)),url('3rd page.jpg') center/cover no-repeat;
  align-items: center;
 }
 .parch {
@@ -120,7 +120,7 @@ body.used #hint{display:none}
 .parch .orn::before, .parch .orn::after { background: #8a5a40; opacity: 0.5; width: 40px;}
 
 /* PAGE 4 THE CELEBRATION */
-#cele{background:linear-gradient(rgba(15,8,25,.5),rgba(10,5,20,.7)),url('4th page.jpg');}
+#cele{background:linear-gradient(rgba(15,8,25,.5),rgba(10,5,20,.7)),url('4th page.jpg') center/cover no-repeat;}
 #cele .script { font-size: clamp(48px, 12vw, 80px); margin-bottom: 10px;}
 .inline-details-row { display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: 10px; margin-top: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); width: 100%; max-width: 800px; margin-inline: auto;}
 .detail-col { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
@@ -136,7 +136,7 @@ body.used #hint{display:none}
 .swatch { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(232,184,98,.8); box-shadow: 0 2px 6px rgba(0,0,0,0.6); }
 
 /* PAGE 5 MY 18S */
-#eighteens{background:linear-gradient(rgba(10,4,20,.6),rgba(5,2,12,.8)),url('5th page.jpg');}
+#eighteens{background:linear-gradient(rgba(10,4,20,.6),rgba(5,2,12,.8)),url('5th page.jpg') center/cover no-repeat;}
 #eighteens .script { font-size: clamp(48px, 12vw, 80px); }
 
 /* LIGHTBOX for roles */
@@ -175,7 +175,7 @@ body.used #hint{display:none}
 
 /* PAGE 7 RSVP */
 #rsvp { 
- background:linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.7)),url('6th page.jpg');
+ background:linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.7)),url('6th page.jpg') center/cover no-repeat;
 }
 .rsvp-wrapper {
  margin-top: 5vh; 
@@ -188,12 +188,21 @@ body.used #hint{display:none}
 .qr-code { width: 160px; height: 160px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.8); box-shadow: 0 10px 30px rgba(0,0,0,0.8); object-fit: cover; transition: transform 0.3s;}
 
 /* PAGE 8 FOOTER / OUTRO */
-#end { background:linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)),url('7th page.jpg'); }
+#end { background:linear-gradient(rgba(10,4,20,.4),rgba(5,2,12,.7)),url('7th page.jpg') center/cover no-repeat; }
 #end .script { font-size: clamp(50px,12vw,90px); color:var(--cream); line-height:1.1; text-shadow: 0 3px 10px rgba(0,0,0,0.8); }
 #end svg.sun { width: 30px; fill:var(--gold); margin: 15px 0 8px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
 
-/* Form inputs for Page 5 */
+/* Form inputs */
 input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; width: 100%;}
+
+/* === MOBILE BACKGROUND FORCE RULE === */
+@media(max-width: 720px) {
+  /* Forces background images to shrink/resize completely into view without cropping on mobile */
+  #home, #story, #cele, #eighteens, #rsvp, #end {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+  }
+}
 
 /* Desktop styles applied when width is larger */
 @media(min-width: 768px) {
@@ -317,7 +326,6 @@ input, select, textarea { font-size: 14px; padding: 10px; border-radius:4px; wid
    </div>
   </div>
 
-  <button class="chev" data-go="1" aria-label="Next page: My Story"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
  </div>
 </section>
 
