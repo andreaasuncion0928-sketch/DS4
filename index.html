@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Franz’s Debut – A New Chapter Begins</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#160d2e;--purple:#3b2368;--gold:#e8b862;--cream:#f6e7c8;--parch:#f4e4c1;--ink:#5a3b6b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120a26}}
+:root[data-theme="dark"]{--bg:#120a26}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:'Cormorant Garamond',Georgia,serif;font-size:19px}
+#lanterns{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.ln{position:absolute;bottom:-60px;width:18px;height:26px;border-radius:7px 7px 10px 10px;background:radial-gradient(#fff3c8,var(--gold));box-shadow:0 0 16px 5px rgba(232,184,98,.5);opacity:.75;animation:up linear infinite}
+@keyframes up{to{transform:translateY(-115vh) translateX(26px)}}
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,38px);padding:calc(14px + env(safe-area-inset-top,0px)) 16px 12px;font:600 11px 'Cinzel',serif;letter-spacing:.16em;background:linear-gradient(rgba(18,10,38,.85),transparent)}
+nav a{color:var(--cream);text-decoration:none;opacity:.8}nav a:hover{color:var(--gold);opacity:1}
+#music{position:absolute;right:16px;top:calc(10px + env(safe-area-inset-top,0px));background:none;border:0;color:var(--gold);font-size:20px;cursor:pointer}
+#music.off{opacity:.45}
+section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:96px 5vw 64px;text-align:center;overflow:hidden}
+.script{font-family:'Great Vibes',cursive;color:var(--gold);font-weight:400;margin:0;text-shadow:0 0 24px rgba(232,184,98,.45)}
+.caps{font:400 13px 'Cinzel',serif;letter-spacing:.35em;text-transform:uppercase;color:var(--cream)}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);margin:14px 0}
+.orn::before,.orn::after{content:"";width:60px;height:1px;background:var(--gold)}
+.castle{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;fill:#0f0822;opacity:.95}
+.btn{font:600 11px 'Cinzel',serif;letter-spacing:.22em;color:var(--cream);background:var(--purple);border:1px solid var(--gold);border-radius:999px;padding:12px 30px;cursor:pointer}
+.btn:hover{background:var(--gold);color:#2a1650}
+.fade{opacity:0;transform:translateY(22px);transition:1s}.in .fade,.fade.in{opacity:1;transform:none}
+
+/* 1 opening */
+#open{background:radial-gradient(ellipse at 50% 85%,#e9843f 0,#8d3f7a 30%,#2b1659 65%,#150b2e)}
+#open .script{font-size:clamp(80px,18vw,170px);line-height:1}
+.enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
+.inner{position:relative;z-index:2}
+/* 2 hero */
+#home{background:radial-gradient(circle at 78% 40%,rgba(255,170,60,.35),transparent 40%),linear-gradient(160deg,#1c0f3d,#3b2368 60%,#24123f)}
+#home .script{font-size:clamp(64px,13vw,120px);line-height:1.05}
+#home h2{font:400 clamp(22px,4vw,34px) 'Cinzel',serif;letter-spacing:.45em;margin:0;padding-left:.45em}
+#home .quote{font-style:italic;max-width:430px;margin:8px auto 26px;line-height:1.5}
+.info{display:flex;justify-content:center}
+.info div{padding:0 clamp(14px,3vw,36px);border-left:1px solid rgba(232,184,98,.5);font:400 11px 'Cinzel',serif;letter-spacing:.14em;line-height:1.9}
+.info div:first-child{border:0}.info i{display:block;font-style:normal;font-size:24px;color:var(--gold)}
+.info small{display:block;font:italic 14px 'Cormorant Garamond',serif;letter-spacing:0;opacity:.8}
+.bigl{position:absolute;right:3vw;top:14%;width:clamp(110px,20vw,240px);aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:radial-gradient(circle at 50% 45%,#ffe2a0,#f2a640 70%,#b8641c);box-shadow:0 0 90px 30px rgba(255,170,60,.45);display:flex;align-items:center;justify-content:center;animation:bob 5s ease-in-out infinite}
+.bigl svg{width:62%;fill:#a8501a}
+@keyframes bob{50%{transform:translateY(-12px)}}
+/* 3 story */
+#story{background:linear-gradient(90deg,#4a3a7a,#8a5a8e 45%,#e6a07a);gap:5vw}
+.tower{width:min(260px,30vw);flex:none}.tower svg{width:100%}
+.parch{background:var(--parch);color:var(--ink);padding:clamp(28px,5vw,56px);max-width:520px;border-radius:6px;box-shadow:0 20px 60px rgba(30,10,60,.5);position:relative}
+.parch .script{color:var(--ink);text-shadow:none;font-size:clamp(40px,7vw,58px)}
+.parch p{line-height:1.6;margin:14px 0}
+.parch .orn{color:var(--ink)}.parch .orn::before,.parch .orn::after{background:var(--ink)}
+#more{display:none}#more.show{display:block}
+/* 4 celebration */
+#cele{background:radial-gradient(ellipse at 50% 0,rgba(255,190,90,.3),transparent 55%),linear-gradient(#2a1650,#1a0d36)}
+#cele .script{font-size:clamp(52px,10vw,86px)}
+.sched{margin:24px auto;max-width:440px;text-align:left}
+.sched div{display:flex;gap:22px;padding:9px 0;font:400 12px 'Cinzel',serif;letter-spacing:.18em}
+.sched b{width:80px;color:var(--gold);font-weight:600;border-right:1px solid rgba(232,184,98,.5);flex:none}
+#full{display:none;max-width:440px;margin:18px auto 0;font-style:italic}#full.show{display:block}
+/* 5 gallery */
+#gallery{background:#1a0d36}
+.gal{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;max-width:860px;width:100%}
+.fr{border:2px solid var(--gold);padding:5px;border-radius:3px}
+.ph{width:100%;height:100%;min-height:90px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:36px}
+/* swap any .ph background with: style="background-image:url('your-photo.jpg')" */
+.big .ph{min-height:420px;background:linear-gradient(160deg,#f9d7b8,#e8a8b8 60%,#b887c9);position:relative;align-items:flex-end;justify-content:flex-start}
+.big svg{position:absolute;inset:auto 0 0 0;width:100%}
+.big .script{position:relative;font-size:32px;color:#fff;padding:14px;text-shadow:0 2px 8px #0006}
+.th{display:grid;gap:12px}
+/* 6 rsvp */
+#rsvp{background:linear-gradient(120deg,#3b2368,#9a5a8a 55%,#f0a36a);gap:5vw}
+form,.f{display:block;text-align:left}
+label{display:block;font:600 11px 'Cinzel',serif;letter-spacing:.14em;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-radius:4px;background:#fbf1da;color:var(--ink);font:inherit}
+.parch .script{text-align:center}.parch .btn{display:block;margin:20px auto 0}
+.gift{max-width:230px;font-size:24px;font-style:italic;line-height:1.4}
+.gift svg{width:54px;fill:#fff3c8;display:block;margin:0 auto 10px}
+#ty{text-align:center;margin-top:12px;color:var(--ink);font-style:italic}
+/* 7 footer */
+#end{background:linear-gradient(#24123f,#8d3f7a 70%,#e9843f)}
+#end .script{font-size:clamp(40px,8vw,70px);color:var(--cream);line-height:1.2}
+#end svg.sun{width:34px;fill:var(--gold);margin:18px 0 6px}
+@media(max-width:720px){
+ nav{font-size:9px;gap:9px;padding-right:46px}
+ #story,#rsvp{flex-direction:column}.tower{width:110px}
+ .bigl{position:relative;right:auto;top:auto;margin:0 auto 22px;width:96px}
+ #home{flex-direction:column}
+ .gal{grid-template-columns:1fr}.th{grid-template-columns:repeat(4,1fr)}.big .ph{min-height:300px}
+ .info div{padding:0 9px;font-size:9px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="19"/><g stroke="currentColor"><path d="M50 4v16M50 80v16M4 50h16M80 50h16M17 17l11 11M72 72l11 11M83 17L72 28M28 72L17 83" stroke="#a8501a" stroke-width="6" stroke-linecap="round" fill="none"/></g></symbol>
+ <symbol id="castle" viewBox="0 0 800 190"><path d="M0 190V150h90v-30l12-28 12 28v30h70v-60l16-50 16 50v60h60v-40h34v-26l14-34 14 34v26h40v-80l20-70 20 70v80h40V90l18-40 18 40v50h60v-26l12-30 12 30v36h60v-50l16-40 16 40v50h70v-30h60v50H0z"/></symbol>
+</svg>
+<div id="lanterns"></div>
+
+<nav>
+ <a href="#home">HOME</a><a href="#cele">THE CELEBRATION</a><a href="#story">HER STORY</a><a href="#gallery">GALLERY</a><a href="#rsvp">RSVP</a>
+ <button id="music" class="off" aria-label="Toggle music" title="Music on/off">♫</button>
+</nav>
+
+<!-- 1 Opening -->
+<section id="open">
+ <div class="inner">
+  <div class="caps">A Debut Celebration</div>
+  <h1 class="script">Franz</h1>
+  <div class="orn">❀</div>
+  <div class="caps">A New Chapter Begins</div>
+  <button class="enter" id="enter">ENTER<br>⌄</button>
+ </div>
+ <svg class="castle" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg>
+</section>
+
+<!-- 2 Welcome -->
+<section id="home">
+ <div class="inner fade">
+  <div class="caps">You’re Invited To</div>
+  <h2 class="script">Franz’s</h2>
+  <h2>DEBUT</h2>
+  <div class="orn">❀</div>
+  <p class="quote">A dream, a journey, a new chapter… and I’d be honored to have you with me as I step into it.</p>
+  <div class="info">
+   <div><i>📅</i>SEPT 22, 2028<small>6:00 PM</small></div>
+   <div><i>📍</i>MANILA HOTEL<small>Manila, Philippines</small></div>
+   <div><i>👗</i>DRESS CODE<small>White</small></div>
+  </div>
+ </div>
+ <div class="bigl"><svg><use href="#sun"/></svg></div>
+</section>
+
+<!-- 3 Story -->
+<section id="story">
+ <div class="tower" aria-hidden="true">
+  <svg viewBox="0 0 160 330"><path d="M10 330l20-120h100l20 120z" fill="#3d6b46"/><rect x="45" y="90" width="70" height="130" fill="#a88fbe"/><polygon points="35,92 80,10 125,92" fill="#c0568a"/><path d="M70 150a10 10 0 0 1 20 0v22H70z" fill="#ffd96b"/><path d="M80 175c12 40-14 70 0 120" fill="none" stroke="#f5c542" stroke-width="5" stroke-linecap="round"/></svg>
+ </div>
+ <div class="parch fade">
+  <h2 class="script">Her Story</h2>
+  <p>From big dreams and little adventures, to a heart full of love and endless curiosity… this is the story of a girl who believes in a brighter tomorrow.</p>
+  <p>Today, she celebrates not just her past, but the beautiful journey ahead.</p>
+  <p id="more">She grew up in a small house with a big garden, painted flowers on every wall she was allowed to, and always dreamed of one sky full of lanterns. At eighteen, she is brave, kind, and ready to share that sky with the people she loves.</p>
+  <div class="orn">❀</div>
+  <button class="btn" id="learn">LEARN MORE</button>
+ </div>
+</section>
+
+<!-- 4 Celebration -->
+<section id="cele">
+ <div class="inner fade">
+  <h2 class="script">The Celebration</h2>
+  <div class="caps" style="margin-top:14px">Schedule of Events</div>
+  <div class="sched">
+   <div><b>6:00 PM</b>COCKTAILS &amp; REGISTRATION</div>
+   <div><b>7:00 PM</b>DINNER</div>
+   <div><b>8:30 PM</b>PROGRAM</div>
+   <div><b>10:00 PM</b>DANCE &amp; CELEBRATION</div>
+  </div>
+  <div class="orn">❀</div>
+  <button class="btn" id="prog">VIEW FULL PROGRAM</button>
+  <p id="full">Grand entrance of the debutante · The 18 Roses · The 18 Candles · Toast and cake · The Lantern Release</p>
+ </div>
+</section>
+
+<!-- 5 Gallery -->
+<section id="gallery">
+ <div class="gal fade">
+  <div class="fr big"><div class="ph">
+   <svg viewBox="0 0 300 200" aria-hidden="true"><circle cx="150" cy="70" r="30" fill="#5b3a6e" opacity=".55"/><path d="M80 200c0-60 30-85 70-85s70 25 70 85z" fill="#5b3a6e" opacity=".55"/></svg>
+   <span class="script">Dreams do come true.</span></div></div>
+  <div class="th">
+   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#f4a6c8,#c070b0)">🌸</div></div>
+   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#7a5aa8,#e9a07a)">🏰</div></div>
+   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#8a4a2a,#f0b050)">✨</div></div>
+   <div class="fr"><div class="ph" style="background:linear-gradient(135deg,#5b3a8e,#a888d0)">👑</div></div>
+  </div>
+ </div>
+</section>
+
+<!-- 6 RSVP -->
+<section id="rsvp">
+ <div class="parch fade f">
+  <h2 class="script">Kindly RSVP</h2>
+  <p style="text-align:center;margin:4px 0">We can’t wait to celebrate with you!</p>
+  <label for="nm">FULL NAME</label><input id="nm" autocomplete="name">
+  <label for="at">WILL YOU ATTEND?</label>
+  <select id="at"><option value="">Select</option><option>Joyfully accepts</option><option>Regretfully declines</option></select>
+  <label for="ms">MESSAGE (OPTIONAL)</label><textarea id="ms" rows="2"></textarea>
+  <button class="btn" id="sub">SUBMIT</button>
+  <div id="ty" aria-live="polite"></div>
+ </div>
+ <p class="gift script" style="color:var(--cream)"><svg><use href="#sun"/></svg>Your presence is the greatest gift of all.</p>
+</section>
+
+<!-- 7 Footer -->
+<section id="end">
+ <div class="inner fade">
+  <h2 class="script">And so,<br>the adventure begins…</h2>
+  <svg class="sun"><use href="#sun"/></svg>
+  <div class="caps">Thank You</div>
+  <p style="font-style:italic;margin:6px">for being part of my story.</p>
+ </div>
+ <svg class="castle" viewBox="0 0 800 190" preserveAspectRatio="xMidYMax slice"><use href="#castle"/></svg>
+</section>
+
+<script>
+var L=document.getElementById('lanterns');
+for(var k=0;k<16;k++){var d=document.createElement('div');d.className='ln';
+ d.style.cssText='left:'+Math.random()*100+'%;animation-duration:'+(16+Math.random()*16)+'s;animation-delay:-'+Math.random()*24+'s;transform:scale('+(.6+Math.random()*.9)+')';L.appendChild(d)}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.2});
+[].forEach.call(document.querySelectorAll('.fade'),function(n){io.observe(n)});
+
+/* soft ambient music (generated, no audio files) */
+var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
+function note(){var o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;
+ o.type='sine';o.frequency.value=sc[(n++*3+(Math.random()*2|0))%sc.length];
+ g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05,t+.3);g.gain.exponentialRampToValueAtTime(.0005,t+2.6);
+ o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+2.7)}
+function music(v){
+ try{on=v;mb.classList.toggle('off',!v);
+  if(v){ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();ctx.resume();note();timer=setInterval(note,900)}
+  else{clearInterval(timer)}}catch(e){}}
+mb.onclick=function(){music(!on)};
+document.getElementById('enter').onclick=function(){music(true);document.getElementById('home').scrollIntoView({behavior:'smooth'})};
+
+function tog(b,t,a,z){document.getElementById(b).onclick=function(){var e=document.getElementById(t),s=e.classList.toggle('show');this.textContent=s?a:z}}
+tog('learn','more','SHOW LESS','LEARN MORE');tog('prog','full','HIDE PROGRAM','VIEW FULL PROGRAM');
+
+document.getElementById('sub').onclick=function(){
+ var n=document.getElementById('nm').value.trim(),a=document.getElementById('at').value,t=document.getElementById('ty');
+ if(!n||!a){t.textContent='Please add your name and choose a reply.';return}
+ t.textContent=a.indexOf('Joyfully')===0?'Thank you, '+n+'! Your lantern is lit. ✨':'Thank you, '+n+'. You’ll be in our hearts that night.'};
+</script>
+</body>
+</html>
