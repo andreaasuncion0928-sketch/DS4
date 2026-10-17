@@ -69,47 +69,37 @@ body.used #hint{display:none}
 .enter{margin-top:28px;width:78px;height:78px;border-radius:50%;border:1px solid var(--gold);background:rgba(232,184,98,.1);color:var(--gold);font:600 10px 'Cinzel',serif;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 22px rgba(232,184,98,.4);animation:pulse 2.4s infinite}
 @keyframes pulse{50%{box-shadow:0 0 38px rgba(232,184,98,.8)}}
 
-/* PAGE 2 HOME (Cinematic, Left-Aligned, Horizontal Details) */
+/* PAGE 2 HOME (Centered Horizontally, No lamp blur) */
 #home{
- justify-content: flex-start;
- background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('2nd page.jpg') center/cover no-repeat,radial-gradient(circle at 78% 40%,rgba(150,90,30,.25),transparent 50%),linear-gradient(160deg,#0a0514,#1a0e2e 60%,#0a0514)
+ justify-content: center;
+ background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('2nd page.jpg') center/cover no-repeat,linear-gradient(160deg,#0a0514,#1a0e2e 60%,#0a0514)
 }
 #home.hasimg .bigl{display:none}
-#home .inner{padding:40px 0 40px 5vw; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; height:100%; max-width:65vw;}
-#home .inner::before{
- content:"";position:absolute;inset:-60px -30px;z-index:-1;
- background:radial-gradient(ellipse at left,rgba(0,0,0,.6) 0,rgba(0,0,0,.2) 65%,transparent 100%);
- -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
- -webkit-mask-image:radial-gradient(ellipse at left,#000 50%,transparent 100%);
- mask-image:radial-gradient(ellipse at left,#000 50%,transparent 100%);
-}
-.hero{width:100%;text-shadow:0 2px 15px rgba(0,0,0,.9); text-align:left;}
-.hero .eyebrow{font:400 13px 'Cinzel',serif;letter-spacing:.34em;color:#e8d5b5; margin-left:8px;}
-.hero .name{font-family:'Allura','Great Vibes',cursive;font-weight:400;font-size:clamp(120px,18vw,210px);letter-spacing:0.04em;line-height:.92;margin:8px 0 0 -10px;color:#f0cf91;-webkit-text-stroke:.8px #d1a85c;text-shadow:0 0 40px rgba(236,199,131,.2),0 4px 18px rgba(0,0,0,.9)}
-.hero .debut{font:400 clamp(24px,3vw,38px) 'Cinzel',serif;letter-spacing:.5em;padding-left:.1em;color:#e3d4b8;margin:10px 0 0 10px;}
-.hero .flourish{display:block;margin:24px 0 0 10px;width:220px;height:32px;overflow:visible; filter:drop-shadow(0 2px 4px rgba(0,0,0,.8));}
+#home .inner{padding:40px 5vw; display:flex; flex-direction:column; align-items:center; text-align:center; height:100%; width:100%; z-index:2;}
+.hero{width:100%;text-shadow:0 2px 15px rgba(0,0,0,.9); text-align:center;}
+.hero .eyebrow{font:400 13px 'Cinzel',serif;letter-spacing:.34em;color:#e8d5b5; margin-bottom: 8px;}
+.hero .name{font-family:'Allura','Great Vibes',cursive;font-weight:400;font-size:clamp(120px,18vw,210px);letter-spacing:0.04em;line-height:.92;margin:0;color:#f0cf91;-webkit-text-stroke:.8px #d1a85c;text-shadow:0 0 40px rgba(236,199,131,.2),0 4px 18px rgba(0,0,0,.9)}
+.hero .debut{font:400 clamp(24px,3vw,38px) 'Cinzel',serif;letter-spacing:.5em;padding-left:.1em;color:#e3d4b8;margin:10px 0 0 0;}
+.hero .flourish{display:block;margin:24px auto 0;width:220px;height:32px;overflow:visible; filter:drop-shadow(0 2px 4px rgba(0,0,0,.8));}
 
-.hero-info{display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; gap:24px; margin:36px 0 0 10px;}
+.hero-info{display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap:24px; margin:36px auto 0;}
 .hero-info .it{border-left:1px solid rgba(230,191,122,.6); padding-left:20px; font:600 12px 'Cinzel',serif;letter-spacing:.15em;color:#f6e9d0;line-height:1.8;}
 .hero-info .it:first-child{border-left:0; padding-left:0;}
 .hero-info svg{width:26px;height:26px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:middle;margin-right:8px;}
 .hero-info small{display:block;font:400 17px 'Cormorant Garamond',serif;letter-spacing:.05em;color:#f3e3c8; margin-top:2px;}
 
-.chev{display:block;margin:40px 0 0 10px;background:none;border:0;padding:6px;cursor:pointer;animation:bob 2.4s ease-in-out infinite}
+.chev{display:block;margin:40px auto 0;background:none;border:0;padding:6px;cursor:pointer;animation:bob 2.4s ease-in-out infinite}
 .chev svg{width:22px;height:14px;stroke:#e6bf7a;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;display:block}
-.bigl{position:absolute;right:3vw;top:15%;width:clamp(140px,24vw,280px);aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:radial-gradient(circle at 50% 45%,#ffe2a0,#f2a640 70%,#b8641c);box-shadow:0 0 120px 40px rgba(255,170,60,.45);display:flex;align-items:center;justify-content:center;animation:bob 5s ease-in-out infinite}
+.bigl{position:absolute;right:3vw;top:15%;width:clamp(140px,24vw,280px);aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:radial-gradient(circle at 50% 45%,#ffe2a0,#f2a640 70%,#b8641c);box-shadow:0 0 120px 40px rgba(255,170,60,.45);display:flex;align-items:center;justify-content:center;animation:bob 5s ease-in-out infinite; z-index:1;} /* z-index adjusted and mask removed to avoid blur */
 .bigl svg{width:62%;fill:#a8501a}
 @keyframes bob{50%{transform:translateY(-8px)}}
 
-/* PAGE 3 MY STORY (Cinematic Overlay & Layout reversed) */
+/* PAGE 3 MY STORY (Removed Tower, Parchment Right) */
 #story{
- justify-content:space-between; 
+ justify-content:flex-end; 
  background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('3rd page.jpg') center/cover no-repeat;
- gap:4vw;
+ padding-right: clamp(20px, 8vw, 120px);
 }
-.tower{width:min(280px,32vw);flex:none; filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));}
-.tower svg{width:100%}
-
 /* PARCHMENT STYLE */
 .parch {
  background: linear-gradient(135deg, rgba(253, 244, 227, 0.95), rgba(245, 223, 186, 0.9));
@@ -136,13 +126,19 @@ body.used #hint{display:none}
 .parch .orn { color: #8a5a40; }
 .parch .orn::before, .parch .orn::after { background: #8a5a40; opacity: 0.5; }
 
-/* PAGE 4 THE CELEBRATION (Details Inline) */
+/* PAGE 4 THE CELEBRATION (Vertical Layout with Countdown) */
 #cele{background:linear-gradient(rgba(15,8,25,.65),rgba(10,5,20,.85)),url('4th page.jpg') center/cover no-repeat,linear-gradient(#2a1650,#1a0d36)}
-.inline-details { font: 400 16px 'Cinzel', serif; letter-spacing: 0.15em; color: #f6e9d0; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: center; margin-top: 30px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-.inline-details span.dot { color: var(--gold); font-size: 20px; }
+.details-stack { display:flex; flex-direction:column; gap:40px; align-items:center; margin-top:30px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+.details-stack .blk { text-align:center; }
+.details-stack .ttl { font: 400 22px 'Cinzel', serif; letter-spacing: 0.15em; color: #f6e9d0; margin-bottom: 8px; }
+.details-stack .sub { font: 400 16px 'Cormorant Garamond', serif; letter-spacing: 0.05em; color: #e8d5b5; display: block; line-height: 1.4; }
+.details-stack .dot { color: var(--gold); font-size: 24px; line-height: 0; }
+#countdown { font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold); letter-spacing: 0.1em; margin-top: 12px; font-weight: 600; }
+.map-link { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--gold); text-decoration: underline; margin-top: 8px; display: inline-block; transition: .25s;}
+.map-link:hover { color: #fff; }
 
 /* PAGE 5 MY 18S */
-#eighteens{background:linear-gradient(rgba(10,4,20,.7),rgba(5,2,12,.85)),url('4th page.jpg') center/cover no-repeat;}
+#eighteens{background:linear-gradient(rgba(10,4,20,.7),rgba(5,2,12,.85)),url('5th page.jpg') center/cover no-repeat;}
 #eighteens .parch { margin: auto; text-align: center; }
 
 /* PAGE 6 GALLERY */
@@ -178,11 +174,9 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 @media(max-height:700px){
  .pg{padding-top:84px;padding-bottom:20px}
  .hero .name{font-size:clamp(90px,14vw,160px)}
- .hero .flourish{margin:16px 0 0 10px}
 }
 @media(max-width:850px){
- #story { flex-direction: column-reverse; justify-content: center; text-align: center; }
- .tower { width: 140px; margin: 0 auto; }
+ #story { justify-content: center; text-align: center; padding-right: 5vw; }
  .parch { margin: 0 auto; }
 }
 @media(max-width:720px){
@@ -191,19 +185,15 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  nav a{font-size:8.5px;letter-spacing:.08em;padding:6px 8px}
  #hint{font-size:13px}
  .pg{padding-top:112px}
- #story,#rsvp{flex-direction:column}.tower{width:110px}
+ #story,#rsvp{flex-direction:column}
  .bigl{position:relative;right:auto;top:auto;margin:0 auto 22px;width:120px}
- #home{flex-direction:column; justify-content:center; padding-right:0;}
- #home .inner{padding:20px 5vw; max-width:100%; align-items:center; text-align:center;}
- #home .inner::before{inset:-20px -14px; background:radial-gradient(ellipse at center,rgba(0,0,0,.6) 0,rgba(0,0,0,.2) 65%,transparent 100%); -webkit-mask-image:none; mask-image:none;}
- .hero { text-align:center; }
- .hero .name{font-size:clamp(100px,26vw,150px); margin:8px 0 0 0; text-align:center;}
- .hero .debut { margin: 10px 0 0 0; padding:0; }
- .hero .flourish { margin: 16px auto 0; }
- .hero-info { justify-content:center; margin: 24px 0 0 0; }
- .chev { margin: 24px auto 0; }
- .inline-details { flex-direction: column; gap: 10px; }
- .inline-details span.dot { display: none; }
+ #home .inner{padding:20px 5vw;}
+ .hero .name{font-size:clamp(100px,26vw,150px);}
+ .hero-info { flex-direction:column; gap:16px; margin: 24px auto 0; }
+ .hero-info .it { border-left:0; border-top:1px solid rgba(230,191,122,.6); padding-left:0; padding-top:12px; width:100%; text-align:center; }
+ .hero-info .it:first-child { border-top:0; padding-top:0; }
+ .details-stack { gap: 24px; }
+ .details-stack .ttl { font-size: 18px; }
  .gal{grid-template-columns:1fr}.th{grid-template-columns:repeat(4,1fr)}.big .ph{min-height:260px}
 }
 </style>
@@ -244,7 +234,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 
 <div id="book">
 
-<!-- PAGE 2: HOME (2nd page.jpg - cinematic left layout) -->
+<!-- PAGE 2: HOME -->
 <section class="pg cur" id="home">
  <div class="inner hero fade">
   <div class="eyebrow">YOU’RE INVITED TO</div>
@@ -276,7 +266,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
    </div>
    <div class="it">
     <svg viewBox="0 0 24 24"><path d="M9 3l1.5 4L8.5 11 5 21h14l-3.5-10-2-4L15 3"/><path d="M10.5 7h3"/></svg>
-    <div>DRESS CODE: WHITE<small>Formal Attire</small></div>
+    <div>DRESS CODE<small>Shades of White</small></div>
    </div>
   </div>
 
@@ -285,11 +275,8 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  <div class="bigl"><svg><use href="#sun"/></svg></div>
 </section>
 
-<!-- PAGE 3: MY STORY (3rd page.jpg) -->
+<!-- PAGE 3: MY STORY -->
 <section class="pg" id="story">
- <div class="tower" aria-hidden="true">
-  <svg viewBox="0 0 160 330"><path d="M10 330l20-120h100l20 120z" fill="#3d6b46"/><rect x="45" y="90" width="70" height="130" fill="#a88fbe"/><polygon points="35,92 80,10 125,92" fill="#c0568a"/><path d="M70 150a10 10 0 0 1 20 0v22H70z" fill="#ffd96b"/><path d="M80 175c12 40-14 70 0 120" fill="none" stroke="#f5c542" stroke-width="5" stroke-linecap="round"/></svg>
- </div>
  <div class="parch fade">
   <h2 class="script">A Little About Me</h2>
   <p>I find inspiration in the pages of classic novels, the timeless melodies of jazz, and the creativity of makeup. I love discovering beauty in the little things and finding my own ways to express who I am.</p>
@@ -299,34 +286,46 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </section>
 
-<!-- PAGE 4: THE CELEBRATION (4th page.jpg) -->
+<!-- PAGE 4: THE CELEBRATION -->
 <section class="pg" id="cele">
  <div class="inner fade" style="width:100%;">
   <h2 class="script" style="font-size:clamp(60px, 12vw, 120px);">The Celebration</h2>
   
-  <div class="inline-details">
-   <span>SEPT 22, 2028 | 6:00 PM</span>
-   <span class="dot">✦</span>
-   <span>MANILA HOTEL</span>
-   <span class="dot">✦</span>
-   <span>DRESS CODE: WHITE (FORMAL)</span>
+  <div class="details-stack">
+   <div class="blk">
+    <div class="ttl">SEPT 22, 2028 | 6:00 PM</div>
+    <div id="countdown"></div>
+   </div>
+   <div class="dot">✦</div>
+   <div class="blk">
+    <div class="ttl">MANILA HOTEL</div>
+    <span class="sub">Manila, Philippines</span>
+    <a href="https://maps.google.com/?q=Manila+Hotel,+Philippines" target="_blank" class="map-link">Get Directions (Google Maps)</a>
+   </div>
+   <div class="dot">✦</div>
+   <div class="blk">
+    <div class="ttl">DRESS CODE: SHADES OF WHITE</div>
+    <span class="sub">Strictly Formal Attire</span>
+   </div>
   </div>
  </div>
 </section>
 
-<!-- PAGE 5: MY 18S (Find Your Role) -->
+<!-- PAGE 5: MY 18S -->
 <section class="pg" id="eighteens">
  <div class="parch fade" style="max-width: 500px; padding: clamp(24px, 5vw, 44px);">
   <h2 class="script">My 18s</h2>
   <div class="caps" style="margin-top:14px; font-weight:600; color:#6b3e34;">Find Your Role</div>
-  <p style="font-size: 16px; margin: 8px 0;">Enter your name to see your part in the 18 Traditions.</p>
+  
+  <p style="font-size: 20px; font-style: italic; margin: 16px 0 6px; color: #4a2e21;">I have a little note for you...</p>
+  <p style="font-size: 16px; margin: 0 0 16px; color: #6b3e34;">Enter your name below to read it and see your special part in my celebration.</p>
   
   <div style="display:flex; flex-direction:column; gap:10px; max-width: 320px; margin: 0 auto;">
    <input id="roleName" placeholder="e.g. Mavis Godani" style="text-align:center; padding: 12px; background: rgba(255,255,255,0.5); border: 1px solid rgba(138, 90, 60, 0.4); color: #4a2e21;">
    <button class="btn" id="checkRole" style="width:100%; border:none; background:#6b3e34; color:#f6e7c8;">CHECK ROLE</button>
   </div>
   
-  <div id="roleResult" style="margin-top: 14px; font-style: italic; min-height: 24px; font-size: 18px; color: #4a2e21;"></div>
+  <div id="roleResult" style="margin-top: 18px; line-height: 1.5; min-height: 24px; font-size: 18px; color: #4a2e21;"></div>
   <div class="orn">❀</div>
  </div>
 </section>
@@ -381,12 +380,13 @@ var body=document.body,gate=document.getElementById('gate'),
  links=[].slice.call(document.querySelectorAll('nav a[data-i]')),
  cur=0,busy=false,T=1000;
 
-/* image checks: hide the drawn fallbacks when your pictures load */
+/* image checks */
 function ld(src,fn){var i=new Image();i.onload=fn;i.src=src}
 ld('intro.png',function(){gate.classList.add('hasimg')});
 ld('2nd page.jpg',function(){pages[0].classList.add('hasimg')});
 ld('3rd page.jpg',function(){pages[1].classList.add('hasimg')});
-ld('4th page.jpg',function(){pages[2].classList.add('hasimg'); pages[3].classList.add('hasimg');});
+ld('4th page.jpg',function(){pages[2].classList.add('hasimg');});
+ld('5th page.jpg',function(){pages[3].classList.add('hasimg');});
 
 function mark(){links.forEach(function(a){a.classList.toggle('active',+a.getAttribute('data-i')===cur)})}
 
@@ -430,6 +430,25 @@ document.addEventListener('keydown',function(e){
  if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);
 });
 
+/* Countdown Logic for Page 4 */
+var countDownDate = new Date("Sep 22, 2028 18:00:00").getTime();
+setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var cd = document.getElementById("countdown");
+  if(cd) {
+    if (distance < 0) {
+      cd.innerHTML = "THE DAY HAS ARRIVED";
+    } else {
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      cd.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+  }
+}, 1000);
+
 /* soft ambient music */
 var ctx=null,timer=null,on=false,mb=document.getElementById('music'),sc=[392,440,523,587,659,784],n=0;
 function note(){var o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;
@@ -468,13 +487,15 @@ document.getElementById('checkRole').onclick=function(){
  }
  
  if(nameInput === 'mavis godani') {
-  res.innerHTML = 'You are part of the <b>18 Candles / Treasures</b>.';
+  res.innerHTML = 'Dear Mavis, thank you for your endless guidance and love. <br><br>You are part of the <b>18 Candles / Treasures</b>.';
  } else if (nameInput === 'andrea asuncion') {
-  res.innerHTML = 'You are part of the <b>18 Blue Bills</b>.';
+  res.innerHTML = 'Dear Andrea, your generosity means the world to me. <br><br>You are part of the <b>18 Blue Bills</b>.';
  } else if (nameInput === 'drew asuncion') {
-  res.innerHTML = 'You are part of the <b>18 Roses</b>.';
+  res.innerHTML = 'Dear Drew, thank you for sharing this beautiful dance with me. <br><br>You are part of the <b>18 Roses</b>.';
  } else {
-  res.innerHTML = 'You are an honored <b>Guest</b>.';
+  // capitalize first letters for generic guest name
+  var formattedName = nameInput.replace(/\b\w/g, function(l){ return l.toUpperCase(); });
+  res.innerHTML = 'Dear ' + formattedName + ', I am so happy to share this memorable day with you. <br><br>You are an honored <b>Guest</b>.';
  }
 };
 
