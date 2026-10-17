@@ -151,40 +151,82 @@ body.used #hint{display:none}
 #lb-overlay.show .lb-box { transform: translateY(0); }
 .lb-close { position: absolute; top: 12px; right: 18px; font-size: 32px; cursor: pointer; color: #8a5a40; background: none; border: none; padding: 0; line-height: 1; }
 
-/* PAGE 6 GALLERY (Enchanted, glowing layout for 7 images) */
+/* PAGE 6 GALLERY (Enhanced Portrait Layout & Glowing Lanterns) */
 #gallery{background:radial-gradient(ellipse at center, #1e0b35, #0a0412 85%);}
-.gal { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; max-width: 1060px; width: 100%; margin: 0 auto; }
+
+/* Floating Lanterns Background */
+.lanterns-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.ltn {
+  position: absolute; bottom: -50px; width: 12px; height: 16px;
+  background: radial-gradient(circle at center, #fff3dc, #e8b862 60%, #a8501a);
+  border-radius: 5px 5px 2px 2px;
+  box-shadow: 0 0 10px rgba(232,184,98,0.8), 0 0 25px rgba(168,80,26,0.5);
+  animation: float-up linear infinite;
+  opacity: 0;
+}
+@keyframes float-up {
+  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+  15% { opacity: 0.6; }
+  50% { transform: translateY(-50vh) translateX(15px) scale(1); opacity: 0.6; }
+  85% { opacity: 0.6; }
+  100% { transform: translateY(-110vh) translateX(-15px) scale(0.8); opacity: 0; }
+}
+
+.gal { 
+  display: grid; 
+  /* 1fr for hero (narrower for portrait), 1.3fr for thumbnails */
+  grid-template-columns: 1fr 1.3fr; 
+  gap: 24px; max-width: 1060px; width: 100%; margin: 0 auto; z-index: 2; position: relative;
+}
 .th { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: center;}
+
+/* Frame Glowing Effects */
 .fr { 
   padding: 0; 
-  border-radius: 8px; 
-  border: 1px solid rgba(232, 184, 98, 0.6); 
-  box-shadow: 0 0 20px rgba(232, 184, 98, 0.2), inset 0 0 15px rgba(232, 184, 98, 0.3);
+  border-radius: 6px; 
+  border: 1px solid rgba(232, 184, 98, 0.7); 
+  box-shadow: 0 0 25px rgba(232, 184, 98, 0.3), inset 0 0 15px rgba(232, 184, 98, 0.3);
   position: relative; 
   overflow: hidden; 
   transition: all 0.3s ease;
   cursor: pointer;
+  background: #111;
 }
 .fr:hover {
-  box-shadow: 0 0 35px rgba(232, 184, 98, 0.7), inset 0 0 20px rgba(232, 184, 98, 0.5);
+  box-shadow: 0 0 45px rgba(232, 184, 98, 0.9), inset 0 0 25px rgba(232, 184, 98, 0.7);
   transform: translateY(-4px);
-  border-color: rgba(232, 184, 98, 1);
+  border-color: #fff;
 }
 .fr::after {
   content: ""; position: absolute; inset: 0;
-  box-shadow: inset 0 0 35px rgba(20, 10, 40, 0.8);
-  pointer-events: none; border-radius: 8px;
+  box-shadow: inset 0 0 40px rgba(10, 5, 20, 0.9);
+  pointer-events: none; border-radius: 6px;
 }
 .ph {
   width: 100%; height: 100%; 
   min-height: 120px; 
-  background-size: cover; background-position: center; 
+  background-size: cover; 
+  background-position: center; 
   display: flex; align-items: flex-end; justify-content: center; 
   transition: transform 0.5s ease;
 }
 .fr:hover .ph { transform: scale(1.05); }
 
-.big .ph { min-height: min(560px, 65vh); padding-bottom: 24px; }
+/* Hero Portrait adjustments */
+.big .ph { 
+  min-height: min(600px, 70vh); 
+  padding-bottom: 24px; 
+  background-position: center 15%; /* Focuses near top to keep face visible */
+}
+/* Pulsing glowing animation for the hero image */
+.fr.big {
+  animation: hero-glow 3s infinite alternate ease-in-out;
+}
+@keyframes hero-glow {
+  0% { box-shadow: 0 0 20px rgba(232, 184, 98, 0.4), inset 0 0 15px rgba(232, 184, 98, 0.3); border-color: rgba(232, 184, 98, 0.7); }
+  100% { box-shadow: 0 0 50px rgba(232, 184, 98, 0.9), inset 0 0 35px rgba(232, 184, 98, 0.6); border-color: rgba(255, 230, 160, 1); }
+}
+
 .big .script { position: relative; font-size: clamp(32px, 4vw, 44px); color: #fff; text-shadow: 0 3px 12px #000, 0 0 25px var(--gold); z-index: 2; pointer-events:none; }
 
 /* GALLERY LIGHTBOX */
@@ -242,7 +284,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  
  .gal { grid-template-columns: 1fr; gap: 20px;}
  .th { grid-template-columns: repeat(3, 1fr); gap: 12px;}
- .big .ph { min-height: 320px; }
+ .big .ph { min-height: 400px; }
 }
 @media(max-width:480px){
  .th { grid-template-columns: repeat(2, 1fr); }
@@ -385,11 +427,20 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </section>
 
-<!-- PAGE 6: GALLERY (7 Images Grid with Enlarge Feature) -->
+<!-- PAGE 6: GALLERY (Enchanted layout with 7 images and rising lanterns) -->
 <section class="pg" id="gallery">
+ <div class="lanterns-bg" aria-hidden="true">
+   <div class="ltn" style="left:15%; animation-duration:14s; animation-delay:0s;"></div>
+   <div class="ltn" style="left:28%; animation-duration:18s; animation-delay:3s;"></div>
+   <div class="ltn" style="left:45%; animation-duration:12s; animation-delay:1s;"></div>
+   <div class="ltn" style="left:60%; animation-duration:16s; animation-delay:5s;"></div>
+   <div class="ltn" style="left:75%; animation-duration:20s; animation-delay:2s;"></div>
+   <div class="ltn" style="left:88%; animation-duration:15s; animation-delay:7s;"></div>
+ </div>
+
  <div class="gal fade">
   <div class="fr big">
-   <!-- HERO IMAGE: 1st.jpeg -->
+   <!-- HERO IMAGE: 1st.jpeg (Narrower, portrait ratio, position adjusted) -->
    <div class="ph ph-click" style="background-image: url('1st.jpeg');" title="Click to enlarge">
     <span class="script">Dreams do come true.</span>
    </div>
