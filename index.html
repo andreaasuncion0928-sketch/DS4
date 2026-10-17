@@ -177,10 +177,22 @@ body.used #hint{display:none}
 #gal-lb-overlay.show #gal-lb-img { transform: scale(1); }
 .gal-lb-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: #e8b862; background: none; border: none; padding: 0; line-height: 1; text-shadow: 0 2px 10px #000; z-index: 301;}
 
-/* PAGE 7 RSVP (QR Code Version - Centered Text, No Card) */
-#rsvp { background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('6th page.jpg') center/cover no-repeat; }
-.qr-code { width: 220px; height: 220px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.8); box-shadow: 0 10px 40px rgba(0,0,0,0.8); object-fit: cover; }
-#rsvp .chev{position:absolute;left:0;right:0;bottom:14px;margin:0 auto;width:34px}
+/* PAGE 7 RSVP (QR Code Version - Centered Text pushed down, No Card) */
+#rsvp { 
+ background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('6th page.jpg') center/cover no-repeat; 
+ align-items: flex-start; /* aligns items towards the top before margin pushes it down */
+}
+.rsvp-wrapper {
+ margin-top: 10vh; /* Pushes the content well below the menu list */
+ display: flex; 
+ flex-direction: column; 
+ align-items: center; 
+ width: 100%; 
+ text-align: center;
+}
+.qr-code { width: 220px; height: 220px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.8); box-shadow: 0 10px 40px rgba(0,0,0,0.8); object-fit: cover; transition: transform 0.3s;}
+.qr-code:hover { transform: scale(1.05); }
+#rsvp .chev { position:absolute; left:0; right:0; bottom:14px; margin:0 auto; width:34px; }
 
 /* PAGE 8 FOOTER (7th page.jpg Background - Centered, No Card) */
 #end { background:linear-gradient(rgba(10,4,20,.5),rgba(5,2,12,.8)),url('7th page.jpg') center/cover no-repeat; }
@@ -190,6 +202,7 @@ body.used #hint{display:none}
 @media(max-height:700px){
  .pg{padding-top:84px;padding-bottom:20px}
  .hero .name{font-size:clamp(90px,14vw,160px)}
+ .rsvp-wrapper { margin-top: 6vh; }
 }
 @media(max-width:850px){
  #story { justify-content: center; text-align: center; padding-right: 5vw; }
@@ -216,6 +229,7 @@ body.used #hint{display:none}
  .gal { grid-template-columns: 1fr; gap: 20px;}
  .th { grid-template-columns: repeat(3, 1fr); gap: 12px;}
  .big .ph { min-height: 400px; }
+ .rsvp-wrapper { margin-top: 2vh; }
 }
 @media(max-width:480px){
  .th { grid-template-columns: repeat(2, 1fr); }
@@ -388,16 +402,16 @@ body.used #hint{display:none}
  </div>
 </section>
 
-<!-- PAGE 7: RSVP -->
+<!-- PAGE 7: RSVP (Text Pushed Down, No Card) -->
 <section class="pg" id="rsvp">
- <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center;">
-  <h2 class="script" style="font-size:clamp(60px, 12vw, 100px);">Kindly RSVP</h2>
-  <p style="font-size: 22px; font-style: italic; margin: 8px 0 30px; color: #fff; text-shadow:0 2px 8px #000;">I can’t wait to celebrate with you!</p>
+ <div class="inner fade rsvp-wrapper">
+  <h2 class="script" style="font-size:clamp(60px, 12vw, 100px); color: #fff; text-shadow:0 3px 12px rgba(0,0,0,0.9);">Kindly RSVP</h2>
+  <p style="font-size: 24px; font-style: italic; margin: 8px 0 30px; color: #f6e9d0; text-shadow:0 2px 8px #000;">I can’t wait to celebrate with you!</p>
   
   <img src="sampleQR.png" alt="RSVP QR Code" class="qr-code">
-  <p style="font-size: 18px; font-weight: 600; margin-top: 20px; color: var(--gold); letter-spacing: 0.15em; text-shadow:0 2px 8px #000;">SCAN TO RSVP</p>
+  <p style="font-size: 18px; font-weight: 600; margin-top: 24px; color: var(--gold); letter-spacing: 0.15em; text-shadow:0 2px 8px #000;">SCAN TO RSVP</p>
   
-  <p class="gift script" style="color:var(--cream); text-shadow: 0 2px 8px #000; margin-top: 40px; font-size:24px;">
+  <p class="gift script" style="color:var(--cream); text-shadow: 0 2px 10px #000; margin-top: 40px; font-size:28px;">
     <svg style="display:inline-block; vertical-align:middle; margin-right:8px; width:34px; fill:var(--gold);"><use href="#sun"/></svg>
     Your presence is the greatest gift of all.
   </p>
@@ -405,13 +419,13 @@ body.used #hint{display:none}
  <button class="chev" data-go="6" aria-label="Next page"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
 </section>
 
-<!-- PAGE 8: FOOTER -->
+<!-- PAGE 8: FOOTER / OUTRO (7th page.jpg Background - No Card) -->
 <section class="pg" id="end">
  <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center;">
   <h2 class="script">And so,<br>the adventure begins…</h2>
   <svg class="sun"><use href="#sun"/></svg>
-  <div class="caps" style="font-size: 16px; color:var(--gold); letter-spacing:0.3em; text-shadow: 0 2px 8px #000;">Thank You</div>
-  <p style="font-style:italic; margin:10px 0 0; font-size: 22px; color:#fff; text-shadow: 0 2px 8px #000;">for being part of my story.</p>
+  <div class="caps" style="font-size: 18px; font-weight: 600; color:var(--gold); letter-spacing:0.35em; text-shadow: 0 2px 8px #000;">Thank You</div>
+  <p style="font-style:italic; margin:10px 0 0; font-size: 24px; color:#fff; text-shadow: 0 2px 8px #000;">for being part of my story.</p>
  </div>
 </section>
 
@@ -486,9 +500,12 @@ show(0);pages[0].classList.remove('in');
 
 links.forEach(function(a){a.onclick=function(e){e.preventDefault();body.classList.add('used');go(+a.getAttribute('data-i'))}});
 [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){body.classList.add('used');go(+b.getAttribute('data-go'))}});
+
+/* Keyboard scroll support: Arrow Down/Right goes next, Arrow Up/Left goes prev */
 document.addEventListener('keydown',function(e){
  if(!gate.classList.contains('done')||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
- if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);
+ if(e.key==='ArrowRight' || e.key==='ArrowDown')go(cur+1);
+ if(e.key==='ArrowLeft' || e.key==='ArrowUp')go(cur-1);
 });
 
 /* Countdown Logic for Page 4 */
@@ -570,7 +587,6 @@ document.getElementById('checkRole').onclick = function() {
 // Close role lightbox
 lbCloseBtn.onclick = function() { lbOverlay.classList.remove('show'); };
 lbOverlay.onclick = function(e) { if(e.target === lbOverlay) lbOverlay.classList.remove('show'); };
-
 
 /* GALLERY LIGHTBOX LOGIC */
 var galLbOverlay = document.getElementById('gal-lb-overlay');
