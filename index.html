@@ -151,82 +151,23 @@ body.used #hint{display:none}
 #lb-overlay.show .lb-box { transform: translateY(0); }
 .lb-close { position: absolute; top: 12px; right: 18px; font-size: 32px; cursor: pointer; color: #8a5a40; background: none; border: none; padding: 0; line-height: 1; }
 
-/* PAGE 6 GALLERY (Enhanced Portrait Layout & Glowing Lanterns) */
+/* PAGE 6 GALLERY */
 #gallery{background:radial-gradient(ellipse at center, #1e0b35, #0a0412 85%);}
-
-/* Floating Lanterns Background */
 .lanterns-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.ltn {
-  position: absolute; bottom: -50px; width: 12px; height: 16px;
-  background: radial-gradient(circle at center, #fff3dc, #e8b862 60%, #a8501a);
-  border-radius: 5px 5px 2px 2px;
-  box-shadow: 0 0 10px rgba(232,184,98,0.8), 0 0 25px rgba(168,80,26,0.5);
-  animation: float-up linear infinite;
-  opacity: 0;
-}
-@keyframes float-up {
-  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
-  15% { opacity: 0.6; }
-  50% { transform: translateY(-50vh) translateX(15px) scale(1); opacity: 0.6; }
-  85% { opacity: 0.6; }
-  100% { transform: translateY(-110vh) translateX(-15px) scale(0.8); opacity: 0; }
-}
+.ltn { position: absolute; bottom: -50px; width: 12px; height: 16px; background: radial-gradient(circle at center, #fff3dc, #e8b862 60%, #a8501a); border-radius: 5px 5px 2px 2px; box-shadow: 0 0 10px rgba(232,184,98,0.8), 0 0 25px rgba(168,80,26,0.5); animation: float-up linear infinite; opacity: 0; }
+@keyframes float-up { 0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; } 15% { opacity: 0.6; } 50% { transform: translateY(-50vh) translateX(15px) scale(1); opacity: 0.6; } 85% { opacity: 0.6; } 100% { transform: translateY(-110vh) translateX(-15px) scale(0.8); opacity: 0; } }
 
-.gal { 
-  display: grid; 
-  /* 1fr for hero (narrower for portrait), 1.3fr for thumbnails */
-  grid-template-columns: 1fr 1.3fr; 
-  gap: 24px; max-width: 1060px; width: 100%; margin: 0 auto; z-index: 2; position: relative;
-}
+.gal { display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px; max-width: 1060px; width: 100%; margin: 0 auto; z-index: 2; position: relative; }
 .th { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: center;}
-
-/* Frame Glowing Effects */
-.fr { 
-  padding: 0; 
-  border-radius: 6px; 
-  border: 1px solid rgba(232, 184, 98, 0.7); 
-  box-shadow: 0 0 25px rgba(232, 184, 98, 0.3), inset 0 0 15px rgba(232, 184, 98, 0.3);
-  position: relative; 
-  overflow: hidden; 
-  transition: all 0.3s ease;
-  cursor: pointer;
-  background: #111;
-}
-.fr:hover {
-  box-shadow: 0 0 45px rgba(232, 184, 98, 0.9), inset 0 0 25px rgba(232, 184, 98, 0.7);
-  transform: translateY(-4px);
-  border-color: #fff;
-}
-.fr::after {
-  content: ""; position: absolute; inset: 0;
-  box-shadow: inset 0 0 40px rgba(10, 5, 20, 0.9);
-  pointer-events: none; border-radius: 6px;
-}
-.ph {
-  width: 100%; height: 100%; 
-  min-height: 120px; 
-  background-size: cover; 
-  background-position: center; 
-  display: flex; align-items: flex-end; justify-content: center; 
-  transition: transform 0.5s ease;
-}
+.fr { padding: 0; border-radius: 6px; border: 1px solid rgba(232, 184, 98, 0.7); box-shadow: 0 0 25px rgba(232, 184, 98, 0.3), inset 0 0 15px rgba(232, 184, 98, 0.3); position: relative; overflow: hidden; transition: all 0.3s ease; cursor: pointer; background: #111; }
+.fr:hover { box-shadow: 0 0 45px rgba(232, 184, 98, 0.9), inset 0 0 25px rgba(232, 184, 98, 0.7); transform: translateY(-4px); border-color: #fff; }
+.fr::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 40px rgba(10, 5, 20, 0.9); pointer-events: none; border-radius: 6px; }
+.ph { width: 100%; height: 100%; min-height: 120px; background-size: cover; background-position: center; display: flex; align-items: flex-end; justify-content: center; transition: transform 0.5s ease; }
 .fr:hover .ph { transform: scale(1.05); }
 
-/* Hero Portrait adjustments */
-.big .ph { 
-  min-height: min(600px, 70vh); 
-  padding-bottom: 24px; 
-  background-position: center 15%; /* Focuses near top to keep face visible */
-}
-/* Pulsing glowing animation for the hero image */
-.fr.big {
-  animation: hero-glow 3s infinite alternate ease-in-out;
-}
-@keyframes hero-glow {
-  0% { box-shadow: 0 0 20px rgba(232, 184, 98, 0.4), inset 0 0 15px rgba(232, 184, 98, 0.3); border-color: rgba(232, 184, 98, 0.7); }
-  100% { box-shadow: 0 0 50px rgba(232, 184, 98, 0.9), inset 0 0 35px rgba(232, 184, 98, 0.6); border-color: rgba(255, 230, 160, 1); }
-}
-
+.big .ph { min-height: min(600px, 70vh); padding-bottom: 24px; background-position: center 15%; }
+.fr.big { animation: hero-glow 3s infinite alternate ease-in-out; }
+@keyframes hero-glow { 0% { box-shadow: 0 0 20px rgba(232, 184, 98, 0.4), inset 0 0 15px rgba(232, 184, 98, 0.3); border-color: rgba(232, 184, 98, 0.7); } 100% { box-shadow: 0 0 50px rgba(232, 184, 98, 0.9), inset 0 0 35px rgba(232, 184, 98, 0.6); border-color: rgba(255, 230, 160, 1); } }
 .big .script { position: relative; font-size: clamp(32px, 4vw, 44px); color: #fff; text-shadow: 0 3px 12px #000, 0 0 25px var(--gold); z-index: 2; pointer-events:none; }
 
 /* GALLERY LIGHTBOX */
@@ -237,17 +178,12 @@ body.used #hint{display:none}
 .gal-lb-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: #e8b862; background: none; border: none; padding: 0; line-height: 1; text-shadow: 0 2px 10px #000; z-index: 301;}
 
 /* PAGE 7 RSVP */
-#rsvp{background:linear-gradient(120deg,#3b2368,#9a5a8a 55%,#f0a36a);gap:5vw;flex-wrap:wrap}
-.f{display:block;text-align:left; margin: auto;}
-label{display:block;font:600 11px 'Cinzel',serif;letter-spacing:.14em;margin:12px 0 4px}
-input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-radius:4px;background:#fbf1da;color:var(--ink);font:inherit}
-.parch.f .script{color: var(--ink);}
-.parch.f { background: var(--parch); box-shadow: 0 20px 60px rgba(30,10,60,.5); border: none; color: var(--ink); backdrop-filter: none; }
-.parch.f::before { display: none; }
-.parch .btn{display:block;margin:20px auto 0}
+#rsvp{ background:linear-gradient(rgba(10,4,20,.65),rgba(5,2,12,.85)),url('6th page.jpg') center/cover no-repeat; flex-direction: column; align-items: center; justify-content: center; gap: 5vw; }
+.f{display:block;text-align:center; margin: auto; max-width: 440px;}
+.parch.f { background: var(--parch); box-shadow: 0 20px 60px rgba(10,5,20,.6); border: 1px solid rgba(232, 184, 98, 0.4); color: var(--ink); }
+.qr-code { width: 180px; height: 180px; margin: 0 auto; display: block; border-radius: 8px; border: 3px solid rgba(232,184,98,0.6); box-shadow: 0 10px 30px rgba(10,5,20,0.5); object-fit: cover; }
 .gift{max-width:230px;font-size:24px;font-style:italic;line-height:1.4}
 .gift svg{width:54px;fill:#fff3c8;display:block;margin:0 auto 10px}
-#ty{text-align:center;margin-top:12px;color:var(--ink);font-style:italic}
 #rsvp .chev{position:absolute;left:0;right:0;bottom:14px;margin:0 auto;width:34px}
 
 /* PAGE 8 FOOTER */
@@ -270,7 +206,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  nav a{font-size:8.5px;letter-spacing:.08em;padding:6px 8px}
  #hint{font-size:13px}
  .pg{padding-top:112px}
- #story,#rsvp{flex-direction:column}
+ #story{flex-direction:column}
  .bigl{position:relative;right:auto;top:auto;margin:0 auto 22px;width:120px}
  #home .inner{padding:20px 5vw;}
  .hero .name{font-size:clamp(100px,26vw,150px);}
@@ -427,7 +363,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
  </div>
 </section>
 
-<!-- PAGE 6: GALLERY (Enchanted layout with 7 images and rising lanterns) -->
+<!-- PAGE 6: GALLERY -->
 <section class="pg" id="gallery">
  <div class="lanterns-bg" aria-hidden="true">
    <div class="ltn" style="left:15%; animation-duration:14s; animation-delay:0s;"></div>
@@ -440,7 +376,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 
  <div class="gal fade">
   <div class="fr big">
-   <!-- HERO IMAGE: 1st.jpeg (Narrower, portrait ratio, position adjusted) -->
+   <!-- HERO IMAGE: 1st.jpeg -->
    <div class="ph ph-click" style="background-image: url('1st.jpeg');" title="Click to enlarge">
     <span class="script">Dreams do come true.</span>
    </div>
@@ -451,7 +387,7 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
    <div class="fr"><div class="ph ph-click" style="background-image: url('3rd.jpeg');" title="Click to enlarge"></div></div>
    <div class="fr"><div class="ph ph-click" style="background-image: url('4th.jpeg');" title="Click to enlarge"></div></div>
    <div class="fr"><div class="ph ph-click" style="background-image: url('5th.jpeg');" title="Click to enlarge"></div></div>
-   <div class="fr"><div class="ph ph-click" style="background-image: url('6th.jpeg');" title="Click to enlarge"></div></div>
+   <div class="fr"><div class="ph ph-click" style="background-image: url('6th.jpeg'); background-position: center 15%;" title="Click to enlarge"></div></div>
    <div class="fr"><div class="ph ph-click" style="background-image: url('7th.jpeg');" title="Click to enlarge"></div></div>
   </div>
  </div>
@@ -461,15 +397,12 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #c9b48a;border-ra
 <section class="pg" id="rsvp">
  <div class="parch fade f">
   <h2 class="script">Kindly RSVP</h2>
-  <p style="text-align:center;margin:4px 0">I can’t wait to celebrate with you!</p>
-  <label for="nm">FULL NAME</label><input id="nm" autocomplete="name">
-  <label for="at">WILL YOU ATTEND?</label>
-  <select id="at"><option value="">Select</option><option>Joyfully accepts</option><option>Regretfully declines</option></select>
-  <label for="ms">MESSAGE (OPTIONAL)</label><textarea id="ms" rows="2"></textarea>
-  <button class="btn" id="sub">SUBMIT</button>
-  <div id="ty" aria-live="polite"></div>
+  <p style="margin:8px 0 20px; text-align:center;">I can’t wait to celebrate with you!</p>
+  
+  <img src="sampleQR.png" alt="RSVP QR Code" class="qr-code">
+  <p style="font-size: 16px; font-weight: 600; margin-top: 16px; color: #6b3e34; letter-spacing: 0.05em; text-align:center;">SCAN TO RSVP</p>
  </div>
- <p class="gift script fade" style="color:var(--cream)"><svg><use href="#sun"/></svg>Your presence is the greatest gift of all.</p>
+ <p class="gift script fade" style="color:var(--cream); text-shadow: 0 2px 8px #000;"><svg><use href="#sun"/></svg>Your presence is the greatest gift of all.</p>
  <button class="chev" data-go="6" aria-label="Next page"><svg viewBox="0 0 22 14"><path d="M2 3l9 8 9-8"/></svg></button>
 </section>
 
@@ -515,6 +448,7 @@ ld('2nd page.jpg',function(){pages[0].classList.add('hasimg')});
 ld('3rd page.jpg',function(){pages[1].classList.add('hasimg')});
 ld('4th page.jpg',function(){pages[2].classList.add('hasimg');});
 ld('5th page.jpg',function(){pages[3].classList.add('hasimg');});
+ld('6th page.jpg',function(){pages[5].classList.add('hasimg');});
 
 function mark(){links.forEach(function(a){a.classList.toggle('active',+a.getAttribute('data-i')===cur)})}
 
@@ -659,12 +593,6 @@ document.querySelectorAll('.ph-click').forEach(function(el) {
 galLbClose.onclick = function() { galLbOverlay.classList.remove('show'); };
 galLbOverlay.onclick = function(e) { if(e.target === galLbOverlay) galLbOverlay.classList.remove('show'); };
 
-
-/* RSVP SUBMIT */
-document.getElementById('sub').onclick=function(){
- var n=document.getElementById('nm').value.trim(),a=document.getElementById('at').value,t=document.getElementById('ty');
- if(!n||!a){t.textContent='Please add your name and choose a reply.';return}
- t.textContent=a.indexOf('Joyfully')===0?'Thank you, '+n+'! Your lantern is lit. ✨':'Thank you, '+n+'. You’ll be in my heart that night.'};
 </script>
 </body>
 </html>
