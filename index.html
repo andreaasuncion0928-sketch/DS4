@@ -613,7 +613,7 @@ function music(v){
   mb.classList.toggle('off', !v);
   if(v){
     if (firstPlay) {
-      bgMusic.currentTime = 10.0;
+      bgMusic.currentTime = 9.0;
       firstPlay = false;
     }
     // Play the loaded song.mp3
@@ -629,7 +629,7 @@ mb.onclick = function(){ music(!on) };
 
 /* ENTER */
 document.getElementById('enter').onclick=function(){
- if(!on) music(true); // This will trigger song.mp3 at 10.0s mark
+ if(!on) music(true); // This will trigger song.mp3 at 9.0s mark
  show(0);
  body.classList.add('opening');
  setTimeout(function(){gate.classList.add('done')},1150);
