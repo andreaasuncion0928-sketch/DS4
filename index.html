@@ -186,7 +186,10 @@ body.used #hint{display:none}
 
 /* PAGE 8 LIVE PHOTO */
 #livephoto { background:linear-gradient(rgba(10,4,20,.7),rgba(5,2,12,.9)),url('7th page.jpg') center/cover no-repeat; }
-#livephoto .script { font-size: clamp(40px,10vw,70px); color:var(--cream); line-height:1.2; text-shadow: 0 3px 15px rgba(0,0,0,0.9); margin-bottom: 20px; }
+#livephoto .script { font-size: clamp(40px,10vw,70px); color:var(--cream); line-height:1.2; text-shadow: 0 3px 15px rgba(0,0,0,0.9); margin-bottom: 5px; }
+#photo-stream::-webkit-scrollbar { display: none; }
+.live-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; border: 1px solid rgba(232,184,98,0.7); box-shadow: 0 0 10px rgba(232,184,98,0.2); cursor: pointer; transition: transform 0.3s ease; }
+.live-img:hover { transform: scale(1.05); border-color: #fff; box-shadow: 0 0 15px rgba(232,184,98,0.6); z-index: 2; position: relative;}
 
 /* Form inputs */
 input, select, textarea { font-size: 14px; padding: 12px; border-radius:4px; width: 100%;}
@@ -492,14 +495,18 @@ input, select, textarea { font-size: 14px; padding: 12px; border-radius:4px; wid
 
 <!-- PAGE 8: LIVE PHOTO -->
 <section class="pg" id="livephoto">
- <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; text-align:center; max-width: 800px; margin: auto; padding: 15px;">
-  <h2 class="script">Live Photo Stream</h2>
+ <div class="inner fade" style="display:flex; flex-direction:column; align-items:center; width:100%; height: 100%; text-align:center; max-width: 800px; margin: auto; padding: 15px 15px 0;">
+  <h2 class="script" style="margin-bottom: 5px;">Live Photo Stream</h2>
   
-  <p style="font-style:italic; margin: 30px 0; font-size: clamp(18px, 3vw, 28px); line-height: 1.5; color:#fff; text-shadow: 0 2px 8px #000;">
+  <p style="font-style:italic; margin: 10px 0 15px; font-size: clamp(14px, 2.5vw, 20px); line-height: 1.4; color:#fff; text-shadow: 0 2px 8px #000;">
     Live photo moments shared by our guests.<br>Please upload through the QR code below, and they will appear here live.
   </p>
 
-  <img src="demoQR.png" alt="Live Photo Upload QR Code" class="qr-code" style="margin-top: 10px;">
+  <img src="demoQR.png" alt="Live Photo Upload QR Code" class="qr-code" style="width: 130px; height: 130px; flex-shrink: 0; margin-bottom: 10px;">
+
+  <div id="photo-stream" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; width: 100%; flex: 1; overflow-y: auto; padding: 15px 5px; margin-top: 5px;">
+    <!-- Dynamically loaded photos go here -->
+  </div>
  </div>
 </section>
 
@@ -526,6 +533,7 @@ var body=document.body,gate=document.getElementById('gate'),
  pages=['home','story','cele','eighteens','gallery','rsvp','livephoto'].map(function(id){return document.getElementById(id)}),
  links=[].slice.call(document.querySelectorAll('nav a[data-i]')),
  cur=0,busy=false,T=1000;
+var livePoll = null;
 
 /* image checks */
 function ld(src,fn){var i=new Image();i.onload=fn;i.src=src}
@@ -538,6 +546,40 @@ ld('6th page.jpg',function(){pages[5].classList.add('hasimg');});
 ld('7th page.jpg',function(){pages[6].classList.add('hasimg');});
 
 function mark(){links.forEach(function(a){a.classList.toggle('active',+a.getAttribute('data-i')===cur)})}
+
+/* Fetch Live Photos from Google Apps Script */
+function fetchLivePhotos() {
+  fetch('https://script.google.com/macros/s/AKfycbwyOiSonCrkGAdQ89FNU9nJKyR6augm6T-Z2Y2uP76k_l3W3Lfz9xrH8lz7JACM1hFP1g/exec')
+  .then(function(res){ return res.json(); })
+  .then(function(data){
+    var stream = document.getElementById('photo-stream');
+    var photos = Array.isArray(data) ? data : (data.photos || data.data || data.images || []);
+    
+    // Extract strings
+    var newUrls = photos.map(function(item) {
+      return typeof item === 'string' ? item : (item.url || item.link || item.image || Object.values(item)[0]);
+    }).filter(Boolean);
+    
+    var currentImgs = Array.from(stream.querySelectorAll('img')).map(function(img){ return img.getAttribute('src'); });
+    
+    // Check if there are new updates
+    if (JSON.stringify(newUrls) !== JSON.stringify(currentImgs)) {
+      stream.innerHTML = '';
+      newUrls.forEach(function(url) {
+        var img = document.createElement('img');
+        img.src = url;
+        img.className = 'live-img ph-click';
+        img.title = 'Click to enlarge';
+        img.onclick = function() {
+          document.getElementById('gal-lb-img').src = this.src;
+          document.getElementById('gal-lb-overlay').classList.add('show');
+        };
+        stream.appendChild(img);
+      });
+    }
+  })
+  .catch(function(e){ console.log("Live photo fetch error:", e); });
+}
 
 /* show a page instantly */
 function show(n){
@@ -563,6 +605,15 @@ function go(n){
   b.classList.remove('turn-in-start');b.classList.add('turn-in');
  }
  cur=n;mark();
+
+ // Manage Live Photo polling
+ if (n === 6) {
+   fetchLivePhotos();
+   if(!livePoll) livePoll = setInterval(fetchLivePhotos, 10000); // Check every 10 seconds
+ } else {
+   if(livePoll) { clearInterval(livePoll); livePoll = null; }
+ }
+
  setTimeout(function(){
   a.classList.remove('cur','in','top','turn-out');
   b.classList.remove('under','turn-in');b.classList.add('cur');
